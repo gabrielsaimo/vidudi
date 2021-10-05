@@ -31,8 +31,8 @@ $idusuario_cookie = $_COOKIE['idusuario'];
 
     //verifica e define em qual foi recebido
     if($_REQUEST['_modulo'] == 'pessoa'){
-        $obj = "(nome,sexo,criadoem,alteradoem,email,idemcargo,idrede,idusuario)";
-        $value = "('{$_REQUEST["nome"]}','{$_REQUEST["sexo"]}',sysdate(),sysdate(),'{$_REQUEST["email"]}','{$_REQUEST["emcargo"]}','{$_REQUEST["rede"]}','{$_COOKIE['idusuario']}')";
+        $obj = "(nome,bairro,endereco,sexo,criadoem,alteradoem,email,idemcargo,idrede,idusuario)";
+        $value = "('{$_REQUEST["nome"]}','{$_REQUEST['bairro']}','{$_REQUEST['endereco']}','{$_REQUEST["sexo"]}',sysdate(),sysdate(),'{$_REQUEST["email"]}','{$_REQUEST["emcargo"]}','{$_REQUEST["rede"]}','{$_COOKIE['idusuario']}')";
         $modulo = 'pessoa';
     }else{
         $obj = "(celula,endereco,horario,inidata,dia,idlider,status)";
@@ -80,8 +80,8 @@ $idusuario_cookie = $_COOKIE['idusuario'];
             $sql = $acaoss." $modulo SET status='ATIVO' WHERE idcelula='{$_REQUEST["id"]}'";
             
         }else{
-            if( empty($_REQUEST["nome"])){
-                $sql = $acaoss." $modulo SET telefone='{$_REQUEST["telefone"]}',idade='{$_REQUEST["idade"]}',idlider='{$_REQUEST["idlider"]}',batizado='{$_REQUEST["batizado"]}',cursao='{$_REQUEST["cursao"]}',ctl='{$_REQUEST["ctl"]}' WHERE id='{$_REQUEST["id"]}'";
+            if( empty($_REQUEST["nome"]) and empty($_REQUEST["status"])){
+                $sql = $acaoss." $modulo SET telefone='{$_REQUEST["telefone"]}',idade='{$_REQUEST["idade"]}',idlider='{$_REQUEST["idlider"]}',batizado='{$_REQUEST["batizado"]}',cursao='{$_REQUEST["cursao"]}',ctl='{$_REQUEST["ctl"]}',bairro='{$_REQUEST['bairro']}',endereco='{$_REQUEST['endereco']}' WHERE id='{$_REQUEST["id"]}'";
             }else if(!empty($_REQUEST["nome"])){
                 $sql = $acaoss." $modulo SET nome='{$_REQUEST["nome"]}',sexo='{$_REQUEST["sexo"]}',alteradoem=now(),email='{$_REQUEST["email"]}',idemcargo='{$_REQUEST["emcargo"]}',idrede='{$_REQUEST["rede"]}',idusuario='$idusuario_cookie' WHERE id='{$_REQUEST["id"]}'";
             }else{
