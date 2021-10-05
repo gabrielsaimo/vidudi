@@ -1,0 +1,2 @@
+crie um database com o nome "crud"
+add tudo nela.
