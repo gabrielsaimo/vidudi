@@ -8,8 +8,8 @@
 </head>
 <body>
     <form method="POST" action="cadastrocb.php">
-        <label>Login:</label><input type="text" name="login" id="login"><br>
-        <label>Senha:</label><input type="password" name="senha" id="senha"><br>
+        <label class="texto1">Login:</label><input class="texto" type="text" name="login" id="login"><br>
+        <label class="texto1">Senha:</label><input class="texto" type="password" name="senha" id="senha"><br>
         <input type="submit" value="Cadastrar" id="cadastrar" name="cadastrar">
         </form>
 </body>
