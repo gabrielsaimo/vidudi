@@ -1,4 +1,4 @@
-<?
+<?php
     include("cb.php");
     $grupo = selectAllPessoa();
     $login_cookie = $_COOKIE['login'];
@@ -20,7 +20,11 @@
                 </div>
                 <div class="centro">
                  
-                    <?$q1 = $banco->query("SELECT u.*,p.id,p.idemcargo,p.idrede from usuario u join pessoa p on (u.idusuario = p.idusuario)where u.idusuario =".$idusuario_cookie);
+                    <?
+                    if(empty($idusuario_cookie)){
+                        $idusuario_cookie = 0;
+                    }
+                    $q1 = $banco->query("SELECT u.*,p.id,p.idemcargo,p.idrede from usuario u join pessoa p on (u.idusuario = p.idusuario)where u.idusuario =".$idusuario_cookie);
                     $row = mysqli_fetch_array($q1);
                     if(isset($login_cookie)){
                         if(!empty($row['idemcargo']) and $row['idemcargo'] >= 3){?>

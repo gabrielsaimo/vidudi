@@ -26,7 +26,7 @@
             }else if($rows['idemcargo']== 4) {
                 $per = 'p.idemcargo in(1,2,3) and p.idrede ='.$rows['idrede'];
             }else{
-                $per = '';
+                $per = 'p.idemcargo';
             }
             
             $modulo = $_GET['_modulo'];
@@ -38,8 +38,14 @@
                 $from = "c.*,p.nome";
             }
             $q = $banco->query("SELECT ".$from." FROM " .$modulo ." ". $cond." ");
-            $banco->close();
+                $banco->close();
+            if(!empty($_GET['_modulo'])){
+                $nump = mysqli_num_rows($q);
+                    echo $nump;
+            }
+            
             if($_GET['_modulo']=='celula'){
+
                 while($row = mysqli_fetch_array($q)) { ?>
                     <tr class="bb clickable-row" data-href="index.php?_modulo=icelula&_colunas[]=nome&_colunas[]=sexo&_colunas[]=emcargo&_colunas[]=rede&_colunas[]=criadoem&_colunas[]=alteradoem&_pk=idpessoa&id=<?=$row["idcelula"]?>&_acao=r" >
                     <td ><?= $row["idcelula"] ?></td>
@@ -50,35 +56,32 @@
                     <td ><?= $row["nome"] ?></td>
                     <td ><?= date('d-m-Y', strtotime($row["inidata"] ))?></td>
                     <?if($row["status"] != 'ATIVO'){?>
-                        <td> <button class="btn fundo-azul" id="<?=$row["idcelula"]?>" onclick="ativar(this)"><b>ATIVAR</b></button></td>
+                        <td> <button class="btn fundo-azul" title="Ativar" id="<?=$row["idcelula"]?>" onclick="ativar(this)"><img src="../img/visivel.png"></button></td>
                         <td></td>
                     <?}else{?>
-                        <td> <a class="btn fundo-amarelo" href="?_modulo=celula&celula=<?=$row['celula']?>&_acao=u&id=<?=$row["idcelula"]?>"><b>Editar</b></a> </td>
-                        <td> <button class="btn fundo-vermelho" id="<?=$row["idcelula"]?>" onclick="deletar(this)"><b>Excluir</b></button></td>
+                        <td> <a class="btn fundo-amarelo" title="Editar" href="?_modulo=celula&celula=<?=$row['celula']?>&_acao=u&id=<?=$row["idcelula"]?>"><img src="../img/editar.png" ></a> </td>
+                        <td> <button class="btn fundo-vermelho" title="Inativar" id="<?=$row["idcelula"]?>" onclick="deletar(this)"><img src="../img/invisivel.png"></button></td>
                     <?}?>
                     </tr>
                     <?}
-                }
-               
-
-
-            while($row = mysqli_fetch_array($q)) {//desenhar apenas as colunas?>
-                <tr class="bb clickable-row" data-href="index.php?_modulo=ipessoa&_acao=r&id=<?=$row["id"]?>" > 
-                <td ><?=$row["nome"]?></td>
-                <td ><?=$row["sexo"]?></td>
-                <td ><?=$row["cargo"]?></td>
-                <td ><?=$row["rede"]?></td>
-                <td ><?=$row["criadoem"]?></td>
-                <td ><?=$row["alteradoem"]?></td>
-                <?if($row["status"] != 'ATIVO'){?>
-                    <td> <button class="btn fundo-azul" id="<?=$row["id"]?>" onclick="ativar(this)"><b>ATIVAR</b></button></td>
-                <?}else {?>
-                <td><a class="btn fundo-amarelo" href="?_modulo=<?=$_GET['_modulo']?>&_acao=r&id=<?=$row["id"]?>"><b>Editar</b></a> </td>
-                <td> <button class="btn fundo-vermelho" onclick="deletar(this)" id="<?=$row["id"]?>"><b>Excluir</b></button></td>
-                <?}?>
-                </tr>
-            <?}
-        ?>
+                }else if($_GET['_modulo']=='pessoa'){
+                    while($row = mysqli_fetch_array($q)) {//desenhar apenas as colunas?>
+                        <tr class="bb clickable-row" data-href="index.php?_modulo=ipessoa&_acao=r&id=<?=$row["id"]?>" > 
+                        <td ><?=$row["nome"]?></td>
+                        <td ><?=$row["sexo"]?></td>
+                        <td ><?=$row["cargo"]?></td>
+                        <td ><?=$row["rede"]?></td>
+                        <td ><?=$row["criadoem"]?></td>
+                        <td ><?=$row["alteradoem"]?></td>
+                        <?if($row["status"] != 'ATIVO'){?>
+                            <td> <button class="btn fundo-azul" id="<?=$row["id"]?>" onclick="ativar(this)"><b>ATIVAR</b></button></td>
+                        <?}else {?>
+                        <td><a class="btn fundo-amarelo" title="Editar" href="?_modulo=<?=$_GET['_modulo']?>&_acao=r&id=<?=$row["id"]?>"><img src="../img/editar.png" > </a> </td>
+                        <td> <button class="btn fundo-vermelho" title="Inativar" onclick="deletar(this)" id="<?=$row["id"]?>"><img src="../img/invisivel.png" ></button></td>
+                        <?}?>
+                        </tr>
+                    <?}
+                }?>
     </tbody>
 </table>
 
@@ -112,7 +115,7 @@
                 url: 'cb.php',
                 type: 'POST',
                 dataType :'text',
-                data:{ id,_acao:"u",_modulo:"<?=$modulo?>"},
+                data:{ id,_acao:"u",_modulo:"<?=$modulo?>",status:"ATIVO"},
                 success: function(data,text,jqxhr) {
                     location.reload();
                 },
