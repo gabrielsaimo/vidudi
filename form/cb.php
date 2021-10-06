@@ -1,4 +1,5 @@
 <?
+
 session_start();
 foreach ($_POST as $nome_campo => $valor_campo) {
     if($nome_campo == ''){
@@ -9,7 +10,6 @@ foreach ($_POST as $nome_campo => $valor_campo) {
    if($nome_campo == "sexo" ){
     
    }
-
 }
 if($_REQUEST["batizado"] == 'on'){
     $_REQUEST["batizado"] = 'Y';

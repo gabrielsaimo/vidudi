@@ -38,12 +38,9 @@
                 $from = "c.*,p.nome";
             }
             $q = $banco->query("SELECT ".$from." FROM " .$modulo ." ". $cond." ");
-                $banco->close();
-            if(!empty($_GET['_modulo'])){
-                $nump = mysqli_num_rows($q);
-                    echo $nump;
-            }
-            
+            $banco->close();
+            $nump = mysqli_num_rows($q);
+                echo $nump;
             if($_GET['_modulo']=='celula'){
 
                 while($row = mysqli_fetch_array($q)) { ?>
@@ -64,24 +61,26 @@
                     <?}?>
                     </tr>
                     <?}
-                }else if($_GET['_modulo']=='pessoa'){
-                    while($row = mysqli_fetch_array($q)) {//desenhar apenas as colunas?>
-                        <tr class="bb clickable-row" data-href="index.php?_modulo=ipessoa&_acao=r&id=<?=$row["id"]?>" > 
-                        <td ><?=$row["nome"]?></td>
-                        <td ><?=$row["sexo"]?></td>
-                        <td ><?=$row["cargo"]?></td>
-                        <td ><?=$row["rede"]?></td>
-                        <td ><?=$row["criadoem"]?></td>
-                        <td ><?=$row["alteradoem"]?></td>
-                        <?if($row["status"] != 'ATIVO'){?>
-                            <td> <button class="btn fundo-azul" id="<?=$row["id"]?>" onclick="ativar(this)"><b>ATIVAR</b></button></td>
-                        <?}else {?>
-                        <td><a class="btn fundo-amarelo" title="Editar" href="?_modulo=<?=$_GET['_modulo']?>&_acao=r&id=<?=$row["id"]?>"><img src="../img/editar.png" > </a> </td>
-                        <td> <button class="btn fundo-vermelho" title="Inativar" onclick="deletar(this)" id="<?=$row["id"]?>"><img src="../img/invisivel.png" ></button></td>
-                        <?}?>
-                        </tr>
-                    <?}
-                }?>
+                }
+               
+                
+            while($row = mysqli_fetch_array($q)) {//desenhar apenas as colunas?>
+                <tr class="bb clickable-row" data-href="index.php?_modulo=ipessoa&_acao=r&id=<?=$row["id"]?>" > 
+                <td ><?=$row["nome"]?></td>
+                <td ><?=$row["sexo"]?></td>
+                <td ><?=$row["cargo"]?></td>
+                <td ><?=$row["rede"]?></td>
+                <td ><?=$row["criadoem"]?></td>
+                <td ><?=$row["alteradoem"]?></td>
+                <?if($row["status"] != 'ATIVO'){?>
+                    <td> <button class="btn fundo-azul" id="<?=$row["id"]?>" onclick="ativar(this)"><b>ATIVAR</b></button></td>
+                <?}else {?>
+                <td><a class="btn fundo-amarelo" title="Editar" href="?_modulo=<?=$_GET['_modulo']?>&_acao=r&id=<?=$row["id"]?>"><img src="../img/editar.png" > </a> </td>
+                <td> <button class="btn fundo-vermelho" title="Inativar" onclick="deletar(this)" id="<?=$row["id"]?>"><img src="../img/invisivel.png" ></button></td>
+                <?}?>
+                </tr>
+            <?}
+        ?>
     </tbody>
 </table>
 
