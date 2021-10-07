@@ -1,4 +1,9 @@
-@media only screen and (max-width: 500px) {
+.labelmobi{
+    display: block;
+    margin-left:auto;
+    margin-right:auto;
+    }
+@media only screen and (max-width: 599px) {
     .btn1{  /*** start my css ****/
         display: flex;
         text-align: center;
@@ -27,6 +32,9 @@
     }
 }
     @media only screen and (min-width: 600px) {
+        .pc{
+            display: none;
+        }
         .btn1{  /*** start my css ****/
     display: block;
     text-align: center;
@@ -55,11 +63,7 @@
     color: #fff;
     transform: translateY(-7px);
 }
-.labelmobi{
-    display: block;
-    margin-left:auto;
-    margin-right:auto;
-    }
+
 }
 .texto{  /*** futurista esquerda ****/
     display: flex;

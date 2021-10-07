@@ -85,6 +85,12 @@
                             <label for="ctl">CTL</label>
                         </td>
                     </tr>
+                    <tr>
+                        <td>
+                            <input type="checkbox" name="semi" id="semi">
+                            <label for="semi">Seminario</label>
+                        </td>
+                    </tr>
 
                     </tr>
 

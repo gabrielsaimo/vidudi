@@ -1,8 +1,18 @@
 <?
     include("cb.php");
+    require_once('Mobile_Detect.php');
     $grupo = selectAllPessoa();
     $login_cookie = $_COOKIE['login'];
     $banco = abrirBanco();
+    $detect = new Mobile_Detect; //criando uma nova instância de Mobile_Detect
+if ($detect->isMobile())  //se o dispositivo é um dispositivo móvel
+{
+    $celula = '1';
+}
+else //senão
+{
+    $celula = '0';
+}
 ?>
 <!DOCTYPE html>
 

@@ -26,6 +26,11 @@ if($_REQUEST["cursao"] == 'on'){
 }else{
     $_REQUEST["ctl"] = 'N';
 }
+if($_REQUEST["semi"] == 'on'){
+    $_REQUEST["semi"] = 'Y';
+}else{
+    $_REQUEST["semi"] = 'N';
+}
 
 $idusuario_cookie = $_COOKIE['idusuario'];
 
@@ -81,7 +86,7 @@ $idusuario_cookie = $_COOKIE['idusuario'];
             
         }else{
             if( empty($_REQUEST["nome"]) and empty($_REQUEST["status"])){
-                $sql = $acaoss." $modulo SET telefone='{$_REQUEST["telefone"]}',idade='{$_REQUEST["idade"]}',idlider='{$_REQUEST["idlider"]}',batizado='{$_REQUEST["batizado"]}',cursao='{$_REQUEST["cursao"]}',ctl='{$_REQUEST["ctl"]}',bairro='{$_REQUEST['bairro']}',endereco='{$_REQUEST['endereco']}' WHERE id='{$_REQUEST["id"]}'";
+                $sql = $acaoss." $modulo SET telefone='{$_REQUEST["telefone"]}',idade='{$_REQUEST["idade"]}',idlider='{$_REQUEST["idlider"]}',batizado='{$_REQUEST["batizado"]}',cursao='{$_REQUEST["cursao"]}',ctl='{$_REQUEST["ctl"]}',semi='{$_REQUEST["semi"]}',bairro='{$_REQUEST['bairro']}',endereco='{$_REQUEST['endereco']}' WHERE id='{$_REQUEST["id"]}'";
             }else if(!empty($_REQUEST["nome"])){
                 $sql = $acaoss." $modulo SET nome='{$_REQUEST["nome"]}',sexo='{$_REQUEST["sexo"]}',alteradoem=now(),email='{$_REQUEST["email"]}',idemcargo='{$_REQUEST["emcargo"]}',idrede='{$_REQUEST["rede"]}',idusuario='$idusuario_cookie' WHERE id='{$_REQUEST["id"]}'";
             }else{
