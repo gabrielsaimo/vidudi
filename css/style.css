@@ -267,7 +267,7 @@ select.selects {
         align-items: center;
         justify-content: center;
         transition: .4s;
-        width: 10%;
+        width: 30%;
         height: 45px;
         font-size: 11px;
         text-transform: uppercase;

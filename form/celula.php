@@ -91,13 +91,13 @@
                     echo "</select></td>";?>
                </tr>
                <tr>
-               <td><input type="submit" class="btn1"style="margin-left: 160%;" ></td>
+               <td><input type="submit" class="btn1" style="display: block;
+    margin-left:auto;
+    margin-right:auto;" ></td>
                </tr>
             </tbody>
         </table>
     </form>
 </div>
 
-<div class="centro " style=" margin-top: 20%;">
-<img src="img/pato.gif" style="width: 100px; " />
 </div>

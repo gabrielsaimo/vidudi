@@ -8,8 +8,6 @@
     <title>Document</title>
 </head>
 <body>
-    
-
     <form method="POST" action="logincb.php"  style="margin-top: 100px;
         margin-bottom: -462px;">
         <label class="labelmobi" >Login:<input  type="text" style="width: 185px;"  name="login" id="login"></label>
