@@ -14,27 +14,34 @@
     <link rel="stylesheet" type="text/css" href="../css/style.css">
     </head>
         <body>
-        <a href="index.php"> <img src="../img/logovid.jpg"  style="width: 100px; border-radius: 50%;"/></a> 
+        <a href="index.php"> <img src="../img/logovid.jpg" class="imagem"  style="width: 100px; border-radius: 50%;"/></a> 
             <div class="container" style="margin-top:-60px ;">
                 <div class="posicionarCabecalho">
                 </div>
-                <div class="centro">
-                 
-                    <?$q1 = $banco->query("SELECT u.*,p.id,p.idemcargo,p.idrede from usuario u join pessoa p on (u.idusuario = p.idusuario)where u.idusuario =".$idusuario_cookie);
-                    $row = mysqli_fetch_array($q1);
-                    if(isset($login_cookie)){
+                <?if(empty($idusuario_cookie)){
+                        $idusuario_cookie = 0;
+                    }
+                    $q1 = $banco->query("SELECT u.*,p.id,p.idemcargo,p.idrede from usuario u join pessoa p on (u.idusuario = p.idusuario)where u.idusuario =".$idusuario_cookie);
+                    $row = mysqli_fetch_array($q1);?>
+                
+                    <?if(isset($login_cookie)){
                         if(!empty($row['idemcargo']) and $row['idemcargo'] >= 3){?>
-                            <a class="btn1 fundo-azulc espaco" href="?_modulo=pessoa&_colunas[]=nome&_colunas[]=sexo&_colunas[]=emcargo&_colunas[]=rede&_colunas[]=criadoem&_colunas[]=alteradoem&_pk=idpessoa">Pesquisar Pessoa</a><br>
-                            <a class="btn1 fundo-azulc espaco" href="?_modulo=celula&_colunas[]=id&_colunas[]=celula&_colunas[]=endereco&_colunas[]=dia&_colunas[]=hora&_colunas[]=lider&_colunas[]=multiplicou">celulas</a><br>
+                        <div class="centro">
+                            <a class="btn1 fundo-azulc espaco1" href="?_modulo=pessoa&_colunas[]=nome&_colunas[]=sexo&_colunas[]=emcargo&_colunas[]=rede&_colunas[]=criadoem&_colunas[]=alteradoem&_pk=idpessoa">Pesquisar Pessoa</a>
+                        </div>
+                        <div class="centro">
+                            <a class="btn1 fundo-azulc espaco" href="?_modulo=celula&_colunas[]=id&_colunas[]=celula&_colunas[]=endereco&_colunas[]=dia&_colunas[]=hora&_colunas[]=lider&_colunas[]=multiplicou">celulas</a>
+                        </div>
                         <?}?>
-                    
-                        <a class="btn1 fundo-azulc espaco" href="?_modulo=celula&_acao=r">Inserir celula</a><br>
-                            
+                            <div class="centro">
+                            <a class="btn1 fundo-azulc espaco" href="?_modulo=celula&_acao=r">Inserir celula</a><br>
+                            </div>
+                           
                     <?}else{?>
                             
                     <?}?>
                    
-                </div>
+                
                         <br>
                 <div class="row">
                 <?

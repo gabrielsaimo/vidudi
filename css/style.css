@@ -1,3 +1,7 @@
+.imagem{
+    width: 100px; 
+    border-radius: 50%;
+}
 .table {
     margin: auto;
     margin-bottom: 20px;
@@ -10,31 +14,6 @@
     color: aliceblue;
 }a:link { 
     text-decoration:none;
-}.btn1{  /*** start my css ****/
-    display: flex;
-    text-align: center;
-    align-items: center;
-    justify-content: center;
-    transition: .4s;
-    width: 140px;
-    height: 45px;
-    font-size: 11px;
-    text-transform: uppercase;
-    letter-spacing: 2.5px;
-    font-weight: 500;
-    color: #000;
-    background-color: #fff;
-    border: none;
-    border-radius: 20px;
-    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
-    transition: all 0.3s ease 0s;
-    cursor: pointer;
-    outline: none;
-}.btn1:hover {
-    background-color: #2e59e5;
-    box-shadow: 0px 10px 30px rgba(46, 49, 229, 0.4);
-    color: #fff;
-    transform: translateY(-7px);
 }.color-black{
     color: black !important;
 }.fundo-amarelo{
@@ -54,7 +33,9 @@ background: yellow !important;
     background: rgb(128, 122, 150);
 }
 .espaco{
-margin-right: 10px;
+margin-top: 10px;
+}.espaco1{
+    margin-top: 100px;
 }.texto{  /*** futurista esquerda ****/
     display: flex;
     text-align: center;
@@ -119,22 +100,6 @@ margin-right: 10px;
     animation: glow linear 3s infinite;
     box-shadow: 0px 10px 30px rgba(46, 49, 229, 0.4);
     color: #fff;
-}.caixa{  
-    display: block;
-    text-align: center;
-    align-items: center;
-    justify-content: center;
-    width:100%;
-    height: 75vh;
-    font-size: 11px;
-    font-weight: 400;
-    color: #000;
-    background-attachment: #f0f0;
-    border: none;
-    border-radius: 30px 30px 30px 30px;
-    box-shadow:0px 0px 100px 1px rgba(0, 0, 0, 0.1);
-    transition: all 0.3s ease 0s;
-    cursor:default;
 }
 .selects{  
     display: flex;
@@ -157,6 +122,9 @@ margin-right: 10px;
     z-index: 2;
 }.menos-top{
     margin-top:-70vh ;
+}
+.clickable-row{
+    cursor: pointer;
 }
 .bb{
     text-align: center;
@@ -199,9 +167,166 @@ margin-right: 10px;
 }.btn:hover{
     border-radius: 5px;
 }
+.left{
+    margin-left: -205px;
+}
+select.selects {
+    height: 45px;
+    width: 186px;
+}
+
+@keyframes glow { 
+    0% { background-color:cadetblue; }
+    20% { background-color:cornflowerblue }
+    40% { background-color:cyan; }
+    60% { background-color:aqua; }
+    80% { background-color:dodgerblue; }
+    100% { background-color:cadetblue; } 
+}
+@media only screen and (max-width: 500px) {
+    .btn1{  /*** start my css ****/
+        display: flex;
+        text-align: center;
+        align-items: center;
+        justify-content: center;
+        transition: .4s;
+        width: 100%;
+        height: 45px;
+        font-size: 11px;
+        text-transform: uppercase;
+        letter-spacing: 2.5px;
+        font-weight: 500;
+        color: #000;
+        background-color: #094679;
+        border: none;
+        border-radius: 20px;
+        box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+        transition: all 0.3s ease 0s;
+        cursor: pointer;
+        outline: none;
+    }.btn1:hover {
+        background-color: #2e59e5;
+        box-shadow: 0px 10px 30px rgba(46, 49, 229, 0.4);
+        color: #fff;
+        transform: translateY(-7px);
+    }
+    .imagem{
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    
+    .labelmobi{
+        width: 60px;
+    }
+    .espaco{
+        margin-top: 10px;
+        }.espaco1{
+            margin-top: 100px;
+        }
+    .caixa{  
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        height: 75vh;
+        font-size: 11px;
+        font-weight: 400;
+        color: #000;
+        background-attachment: #f0f0;
+        border: none;
+        border-radius: '';
+        box-shadow:'';
+        transition: all 0.3s ease 0s;
+        cursor:default;
+    }
+    .texto1{  /*** futurista esquerda ****/
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 130px;
+        height: 43px;
+        
+        text-transform: uppercase;
+        letter-spacing: 1.5px;
+        font-weight: 500;
+        color: #000;
+        margin-right: -30px;
+        background-color: rgb(185, 177, 177);
+        border: none;
+        border-radius: 45px 10px 10px 40px;
+        box-shadow:0px 0px 50px 10px rgba(0, 0, 0, 0.1);
+        transition: all 0.3s ease 0s;
+        cursor:default;
+        outline: none;
+    }
+  }
+  @media only screen and (min-width: 600px) {
+    .btn1{  /*** start my css ****/
+        display: flex;
+        text-align: center;
+        align-items: center;
+        justify-content: center;
+        transition: .4s;
+        width: 10%;
+        height: 45px;
+        font-size: 11px;
+        text-transform: uppercase;
+        letter-spacing: 2.5px;
+        font-weight: 500;
+        color: #000;
+        background-color: #094679;
+        border: none;
+        border-radius: 20px;
+        box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+        transition: all 0.3s ease 0s;
+        cursor: pointer;
+        outline: none;
+    }.btn1:hover {
+        background-color: #2e59e5;
+        box-shadow: 0px 10px 30px rgba(46, 49, 229, 0.4);
+        color: #fff;
+        transform: translateY(-7px);
+    }
+    .labelmobi{
+        width: 256px;
+    }
+    .btncentro{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 30px;
+    height: 28px;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 2.5px;
+    font-weight: 500;
+    color: #000;
+    background-color: #fff;
+    border: none;
+    border-radius: 20px;
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease 0s;
+    cursor: pointer;
+    outline: none;
+    }
+.caixa{  
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width:100%;
+    height: 75vh;
+    font-size: 11px;
+    font-weight: 400;
+    color: #000;
+    background-attachment: #f0f0;
+    border: none;
+    border-radius: 30px 30px 30px 30px;
+    box-shadow:0px 0px 100px 1px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease 0s;
+    cursor:default;
+}
 .texto1{  /*** futurista esquerda ****/
     display: flex;
-    text-align: center;
     align-items: center;
     justify-content: center;
     width: 130px;
@@ -220,22 +345,8 @@ margin-right: 10px;
     cursor:default;
     outline: none;
 }
-.left{
-    margin-left: -205px;
-}
-select.selects {
-    height: 45px;
-    width: 186px;
-}
-@keyframes glow { 
-    0% { background-color:cadetblue; }
-    20% { background-color:cornflowerblue }
-    40% { background-color:cyan; }
-    60% { background-color:aqua; }
-    80% { background-color:dodgerblue; }
-    100% { background-color:cadetblue; } 
-}
 
+  }
 /*
 img {
     opacity: 0;

@@ -17,19 +17,20 @@ $banco = abrirBanco();
                 </thead>
                     <?
                 while($row = mysqli_fetch_array($qp)) {//desenhar apenas as colunas?>
-                    <tr class="bb clickable-row" data-href="index.php?_modulo=ipessoa&_acao=r&id=<?=$row["id"]?>" > 
-                    <td ><?=$row["nome"]?></td>
-                    <td ><?=$row["sexo"]?></td>
-                    <td ><?=$row["cargo"]?></td>
-                    <td ><?=$row["rede"]?></td>
-                    <td ><?=$row["criadoem"]?></td>
-                    <td ><?=$row["alteradoem"]?></td>
-                    <?if($row["status"] != 'ATIVO'){?>
-                        <td> <button class="btn fundo-azul" id="<?=$row["id"]?>" onclick="ativar(this)"><b>ATIVAR</b></button></td>
-                    <?}else {?>
-                    <td><a class="btn fundo-amarelo" href="?_modulo=<?=$_GET['_modulo']?>&_acao=r&id=<?=$row["id"]?>"><b>Editar</b></a> </td>
-                    <td> <button class="btn fundo-vermelho" onclick="deletar(this)" id="<?=$row["id"]?>"><b>Excluir</b></button></td>
-                    <?}?>
+                    <tr class="bb"> 
+                        <td ><?=$row["nome"]?></td>
+                        <td ><?=$row["sexo"]?></td>
+                        <td ><?=$row["cargo"]?></td>
+                        <td ><?=$row["rede"]?></td>
+                        <td ><?=$row["criadoem"]?></td>
+                        <td ><?=$row["alteradoem"]?></td>
+                        <td class="clickable-row" data-href="index.php?_modulo=ipessoa&_acao=r&id=<?=$row["id"]?>">Visializar</td>
+                        <?if($row["status"] != 'ATIVO'){?>
+                            <td> <button class="btn fundo-azul" id="<?=$row["id"]?>" onclick="ativar(this)"><img src="../img/visivel.png"></button></td>
+                        <?}else {?>
+                        <td><a class="btn fundo-amarelo" title="Editar" href="?_modulo=<?=$_GET['_modulo']?>&_acao=r&id=<?=$row["id"]?>"><img src="../img/editar.png" > </a> </td>
+                        <td> <button class="btn fundo-vermelho" title="Inativar" onclick="deletar(this)" id="<?=$row["id"]?>"><img src="../img/invisivel.png"></button></td>
+                        <?}?>
                     </tr>
                 <?}?>
             </table>

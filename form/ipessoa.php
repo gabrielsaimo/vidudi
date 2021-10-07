@@ -6,9 +6,11 @@
     $qi = $banco->query("SELECT anexo from anexo where idobjeto=".$_GET['id']);
     $rown = mysqli_num_rows($qi);
     $rowi = mysqli_fetch_array($qi);
+    
     if($rown>0){
-        Header( "Content-type: anexo/jpg");
+        
         echo '<img style="width: 100px; height: 100px; border-radius: 50%;" src="data:image/jpeg;base64,'.base64_encode( $rowi['anexo'] ).'"/>';
+        Header("Content-type:anexo/jrpg");
     }else{
         echo '<img style="width: 100px; height: 100px; border-radius: 50%;" src="../img/avatar.jpg"/>';
     }
