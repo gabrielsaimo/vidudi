@@ -41,23 +41,23 @@
  //usar os campos de get['coluna'] para buscar na tabela (get[_modulo]) os dados cadastrados la.. apresentaremos apenas as colunas definidas no bloco php anterior.
  $banco = abrirBanco();
  if($_GET['_modulo']=='celula' or $_GET['_modulo']=='pessoa'){
- $qp = $banco->query("SELECT p.idemcargo,p.idrede,p.id from pessoa p join usuario u on (p.idusuario = u.idusuario) where u.idusuario =".$_COOKIE['idusuario']);
- $rows = mysqli_fetch_array($qp);
- if($_GET['_modulo'] != 'celula'){
- if($rows['idemcargo']== 2){
-     $per = ' where p.idemcargo in(1) and p.idrede ='.$rows['idrede'];
- }else if($rows['idemcargo']== 3){
-     $per = ' where p.idemcargo in(1,2) and p.idrede ='.$rows['idrede'];
- }else if($rows['idemcargo']== 4) {
-     $per = ' where p.idemcargo in(1,2,3) and p.idrede ='.$rows['idrede'];
- }
-}
+    $qp = $banco->query("SELECT p.idemcargo,p.idrede,p.id from pessoa p join usuario u on (p.idusuario = u.idusuario) where u.idusuario =".$_COOKIE['idusuario']);
+    $rows = mysqli_fetch_array($qp);
+    if($_GET['_modulo'] != 'celula'){
+        if($rows['idemcargo']== 2){
+            $per = ' where p.idemcargo in(1) and p.idrede ='.$rows['idrede'];
+        }else if($rows['idemcargo']== 3){
+            $per = ' where p.idemcargo in(1,2) and p.idrede ='.$rows['idrede'];
+        }else if($rows['idemcargo']== 4) {
+            $per = ' where p.idemcargo in(1,2,3) and p.idrede ='.$rows['idrede'];
+        }
+    }
 }
  $modulo = $_GET['_modulo'];
 
     $q = $banco->query("SELECT * FROM vwpessoa ". $cond." ".$per);
     $nump = mysqli_num_rows($q);
- }
+
 
      if($celula == 1){?>
 <div style="overflow-y: scroll;width:  100%;height: 1300px">

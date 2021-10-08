@@ -7,7 +7,7 @@
 
 <style>
   
-   
+   <?if($celula == 1){?>
 @media only screen and (min-width: 600px){
     .imagem {
     width: 280px !important;
@@ -83,7 +83,7 @@ input[type=checkbox] {
     margin-left: 50px;
 }
 }
-      
+<?}?>
    
 </style>
     <form style="margin-top: 1000px; cursor: pointer;">
