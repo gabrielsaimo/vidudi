@@ -4,7 +4,7 @@ $banco = abrirBanco();
 $id =$_REQUEST['id'];
 
 // arquivos
-$qi = $banco->query("SELECT anexo from anexo where idobjeto=".$_REQUEST['id']);
+$qi = $banco->query("SELECT anexo from anexo where tipoobjeto='avatar' and  idobjeto=".$_REQUEST['id']);
     $rowi = mysqli_num_rows($qi);
     if($rowi>0){
         if (isset($_FILES['file'])) {
