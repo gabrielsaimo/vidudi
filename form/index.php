@@ -10,7 +10,7 @@
     include("cb.php");
     include_once ("navibar.php");
     require_once('Mobile_Detect.php');
-    $grupo = selectAllPessoa();
+
     $login_cookie = $_COOKIE['login'];
     $banco = abrirBanco();
     

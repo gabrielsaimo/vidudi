@@ -108,16 +108,7 @@ $idusuario_cookie = $_COOKIE['idusuario'];
         voltarIndex();
     }
 
-    function selectAllPessoa() {
-        $banco = abrirBanco();
-        $sql = "SELECT p.id,p.nome,DATE_FORMAT(p.criadoem,'%d/%m/%Y %H:%i:%s') as criadoem,DATE_FORMAT(p.alteradoem,'%d/%m/%Y %H:%i:%s') as alteradoem,p.sexo,e.celula FROM pessoa p JOIN celula e on (p.idempresa = e.idcelula) ORDER BY p.nome";
-        $resultado = $banco->query($sql) or die ('erro no sql :'.mysqli_error($banco));
-        $banco->close();
-        while($row = mysqli_fetch_array($resultado)) {
-            $grupo[] = $row;
-        }
-        return $grupo;
-    }
+  
 
     function selectIdPessoa($id) {
         $banco = abrirBanco();
