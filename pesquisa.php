@@ -3,7 +3,7 @@
 </head>
 <style>
     <?if($celula == 1){?>
-   
+   /*
 @media only screen and (min-width: 600px){
     .imagem {
     width: 280px !important;
@@ -33,7 +33,7 @@
     cursor: pointer;
     outline: none;
 }}
-        <?}?>
+       */ <?}?>
    
 </style>
 <?
@@ -60,18 +60,18 @@
 
 
      if($celula == 1){?>
-<div style="overflow-y: scroll;width:  100%;height: 1300px">
+<div style="overflow-y: scroll;width:  100%;height: 300px">
 <?if($_GET['_modulo']=='celula'){
 
 while($row = mysqli_fetch_array($q)) { ?>
     <div class="card">
    <table>
        <tr>
-       <td ><h1>Célula: <?= $row["celula"] ?><h1></td>
+       <td ><h4>Célula: <?= $row["celula"] ?><h4></td>
        </tr>
        <tr>
            <td>
-             <h1>  Líder: <?= $row["nome"] ?><h1>  
+             <h4>  Líder: <?= $row["nome"] ?><h4>  
            </td>
        </tr>
         <td >Endereço: <?= $row["enderecoc"] ?></td>
@@ -98,27 +98,27 @@ while($row = mysqli_fetch_array($q)) {?>
         
         <?
     if($rown>0){
-    echo '<td> <img style="width: 150px; height: 150px; border-radius: 80%;" src="data:image/jpeg;base64,'.base64_encode( $rowi['anexo'] ).'"/> </td>';
+    echo '<td> <img style="width: 24px; height: 24px; border-radius: 80%;" src="data:image/jpeg;base64,'.base64_encode( $rowi['anexo'] ).'"/> </td>';
     Header("Content-type:anexo/jrpg");
   }else{
-    echo '<td> <img style="width: 150px; height: 150px; border-radius: 80%;" src="../img/avatar.jpg"/> </td> ';
+    echo '<td> <img style="width: 24px; height: 24px; border-radius: 80%;" src="../img/avatar.jpg"/> </td> ';
 }
 ?>
-<td  style="font-size: 50px;width: 50%;">
+<td  style="font-size: 14px;width: 50%;">
     <?=$row["cargo"]?>
     <td style="width: 25%;"></td>
     <td style="width: 25%;">
     <?if($row["batizado"]=='Y'){?>
-            <img style="width: 40px; height: 40px;margin-bottom: -7px;" src="../img/bati.png"/>
+            <img style="width: 15px; height: 15px;margin-bottom: -7px;" src="../img/bati.png"/>
         <?}?>
         <?if($row["cursao"]=='Y'){?>
-            <img style="width: 40px; height: 40px;margin-bottom: -7px;" src="../img/cursao.png"/>
+            <img style="width: 15px; height: 15px;margin-bottom: -7px;" src="../img/cursao.png"/>
         <?}?>
         <?if($row["ctl"]=='Y'){?>
-            <img style="width: 40px; height: 40px;margin-bottom: -7px;" src="../img/ctl.png"/>
+            <img style="width: 15px; height: 15px;margin-bottom: -7px;" src="../img/ctl.png"/>
         <?}?>
         <?if($row["semi"]=='Y'){?>
-            <img style="width: 40px; height: 40px;margin-bottom: -7px;" src="../img/semi.png"/>
+            <img style="width: 15px; height: 15px;margin-bottom: -7px;" src="../img/semi.png"/>
         <?}?>
     </td>
 
@@ -127,21 +127,21 @@ while($row = mysqli_fetch_array($q)) {?>
 <table class="margemleft">
     <tr>
         <td style="width: 50%;">
-       <h1> <?=$row["nome"]?></h1>
+       <h4> <?=$row["nome"]?></h4>
         </td>
         <td style="width: 25%;">
             
         </td>
         <td style="width: 21%;">
             <?if(!empty($row["celula"])){
-              echo  "<h1> Célula: ".$row["celula"]."</h1>";
+              echo  "<h4> Célula: ".$row["celula"]."</h4>";
             }?>
         
         </td>
     </tr>
     <tr>
 <td>
-    <h1>Rede: <?=$row["rede"]?></h1>
+    <h4>Rede: <?=$row["rede"]?></h4>
 </td>
     </tr>
 
