@@ -43,26 +43,21 @@
  if($_GET['_modulo']=='celula' or $_GET['_modulo']=='pessoa'){
  $qp = $banco->query("SELECT p.idemcargo,p.idrede,p.id from pessoa p join usuario u on (p.idusuario = u.idusuario) where u.idusuario =".$_COOKIE['idusuario']);
  $rows = mysqli_fetch_array($qp);
- if($rows['idemcargo']== 2){
-     $per = 'p.idemcargo in(1) and p.idrede ='.$rows['idrede'];
- }else if($rows['idemcargo']== 3){
-     $per = 'p.idemcargo in(1,2) and p.idrede ='.$rows['idrede'];
- }else if($rows['idemcargo']== 4) {
-     $per = 'p.idemcargo in(1,2,3) and p.idrede ='.$rows['idrede'];
- }else{
-     $per = 'p.idemcargo';
- }
- 
- $modulo = $_GET['_modulo'];
  if($_GET['_modulo'] != 'celula'){
-     $cond = "p join rede r on(p.idrede = r.idrede) join emcargo e on(p.idemcargo = e.idemcargo) left join celula c on(p.idlider = c.idlider) where ".$per;
-     $from = "p.*,e.cargo,r.rede,c.celula";
- }else{
-     $cond = "c join pessoa p on(c.idlider = p.id)";
-     $from = "c.*,p.nome";
+ if($rows['idemcargo']== 2){
+     $per = ' where p.idemcargo in(1) and p.idrede ='.$rows['idrede'];
+ }else if($rows['idemcargo']== 3){
+     $per = ' where p.idemcargo in(1,2) and p.idrede ='.$rows['idrede'];
+ }else if($rows['idemcargo']== 4) {
+     $per = ' where p.idemcargo in(1,2,3) and p.idrede ='.$rows['idrede'];
  }
- $q = $banco->query("SELECT ".$from." FROM " .$modulo ." ". $cond." ");
-     $nump = mysqli_num_rows($q);
+}
+}
+ $modulo = $_GET['_modulo'];
+
+    $q = $banco->query("SELECT * FROM vwpessoa ". $cond." ".$per);
+    $nump = mysqli_num_rows($q);
+ }
 
      if($celula == 1){?>
 <div style="overflow-y: scroll;width:  100%;height: 1300px">
@@ -79,8 +74,7 @@ while($row = mysqli_fetch_array($q)) { ?>
              <h1>  Líder: <?= $row["nome"] ?><h1>  
            </td>
        </tr>
-        <td >Endereço: <?= $row["endereco"] ?></td>
-        
+        <td >Endereço: <?= $row["enderecoc"] ?></td>
         <td >Dia: <?= $row["dia"] ?></td>
         <td >Horario <?= $row["horario"] ?></td>
         <td ></td>
