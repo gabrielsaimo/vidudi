@@ -218,8 +218,7 @@ while($row = mysqli_fetch_array($q)) {?>
         ?>
     </tbody>
 </table>
-     <?}
-     ?>
+    
   
 
 
