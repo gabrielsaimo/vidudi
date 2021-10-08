@@ -1,9 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
 <?
     include("cb.php");
+    include_once ("navibar.php");
     require_once('Mobile_Detect.php');
     $grupo = selectAllPessoa();
     $login_cookie = $_COOKIE['login'];
     $banco = abrirBanco();
+    
     $detect = new Mobile_Detect; //criando uma nova instância de Mobile_Detect
 if ($detect->isMobile())  //se o dispositivo é um dispositivo móvel
 {
@@ -24,7 +34,6 @@ else //senão
     <link rel="stylesheet" type="text/css" href="../css/style.css">
     </head>
         <body>
-        <a href="index.php"> <img src="../img/logovid.jpg" class="imagem"  style="width: 100px; border-radius: 50%;"/></a> 
             <div class="container" style="margin-top:-60px ;">
                 <div class="posicionarCabecalho">
                 </div>
@@ -91,4 +100,4 @@ else //senão
                 </div>
             </div>
         </body>
-</html>
+
