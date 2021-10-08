@@ -1,11 +1,5 @@
 <?
-
-/*
-$login_cookie = $_COOKIE['login'];
-$banco = abrirBanco();
-$q1 = $banco->query("SELECT u.*,p.id,p.idemcargo,p.idrede from usuario u join pessoa p on (u.idusuario = p.idusuario)where u.idusuario =".$idusuario_cookie);
-$row = mysqli_fetch_array($q1);*/
-?>
+if(!empty($idusuario_cookie)){?>
 <link rel="stylesheet" type="text/css" href="../css/navibar.css">
 <section class="navigation">
     <div class="nav-container">
@@ -85,3 +79,10 @@ $(".navbar-toggle").click(function(){
 
 
   </script>
+<?}?>
+<?/*
+$login_cookie = $_COOKIE['login'];
+$banco = abrirBanco();
+$q1 = $banco->query("SELECT u.*,p.id,p.idemcargo,p.idrede from usuario u join pessoa p on (u.idusuario = p.idusuario)where u.idusuario =".$idusuario_cookie);
+$row = mysqli_fetch_array($q1);*/
+?>
