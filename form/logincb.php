@@ -5,8 +5,7 @@ $entrar = $_POST['entrar'];
 $senha = $_POST['senha'];
   if (isset($entrar)) {
     $banco = abrirBanco();
-    $q = $banco->query("SELECT * FROM usuario WHERE login =
-    '$login' AND senha = '$senha'") or die("erro ao selecionar");
+    $q = $banco->query("SELECT * FROM usuario WHERE login = '$login' AND senha = '$senha'") or die("erro ao selecionar");
     $row = mysqli_fetch_array($q);
       if (mysqli_num_rows($q)<=0){
         echo"<script language='javascript' type='text/javascript'>

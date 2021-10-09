@@ -64,7 +64,7 @@ $idusuario_cookie = $_COOKIE['idusuario'];
     }
     //funçao que abre o banco de dados MSQLI
     function abrirBanco() {
-        $conexao = new mysqli("localhost", "root", "root", "crud","3306");
+        $conexao = new mysqli("localhost", "root", "root", "vid_udi","3306");
         return $conexao;
     }
 

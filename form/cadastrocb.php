@@ -31,7 +31,7 @@ $idusuario = $array['idusuario'];
       }
     }
     function abrirBanco() {
-      $conexao = new mysqli("localhost", "root", "root", "crud");
+      $conexao = new mysqli("localhost", "root", "root", "vid_udi");
       return $conexao;
   }
 ?>
