@@ -80,4 +80,3 @@ function abrirBanco() {
     function voltarIndex(){
         header("Location:index.php");
     }
-?>

@@ -1,10 +1,12 @@
-.labelmobi{
+.labelmobi {
     display: block;
-    margin-left:auto;
-    margin-right:auto;
-    }
+    margin-left: auto;
+    margin-right: auto;
+}
+
 @media only screen and (max-width: 599px) {
-    .btn1{  /*** start my css ****/
+    .btn1 {
+        /*** start my css ****/
         display: flex;
         text-align: center;
         align-items: center;
@@ -24,44 +26,47 @@
         transition: all 0.3s ease 0s;
         cursor: pointer;
         outline: none;
-    }.btn1:hover {
+    }
+    .btn1:hover {
         background-color: #2e59e5;
         box-shadow: 0px 10px 30px rgba(46, 49, 229, 0.4);
         color: #fff;
         transform: translateY(-7px);
     }
 }
-    @media only screen and (min-width: 600px) {
-        .pc{
-            display: none;
-        }
-        .btn1{  /*** start my css ****/
-    display: block;
-    text-align: center;
-    align-items: center;
-    justify-content: center;
-    margin-left:auto;
-    margin-right:auto;
-    transition: .4s;
-    width: 20%;
-    height: 45px;
-    font-size: 11px;
-    text-transform: uppercase;
-    letter-spacing: 2.5px;
-    font-weight: 500;
-    color: #000;
-    background-color: #094679;
-    border: none;
-    border-radius: 20px;
-    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
-    transition: all 0.3s ease 0s;
-    cursor: pointer;
-    outline: none;
-}.btn1:hover {
-    background-color: #2e59e5;
-    box-shadow: 0px 10px 30px rgba(46, 49, 229, 0.4);
-    color: #fff;
-    transform: translateY(-7px);
-}
 
+@media only screen and (min-width: 600px) {
+    .pc {
+        display: none;
+    }
+    .btn1 {
+        /*** start my css ****/
+        display: block;
+        text-align: center;
+        align-items: center;
+        justify-content: center;
+        margin-left: auto;
+        margin-right: auto;
+        transition: .4s;
+        width: 20%;
+        height: 45px;
+        font-size: 11px;
+        text-transform: uppercase;
+        letter-spacing: 2.5px;
+        font-weight: 500;
+        color: #000;
+        background-color: #094679;
+        border: none;
+        border-radius: 20px;
+        box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+        transition: all 0.3s ease 0s;
+        cursor: pointer;
+        outline: none;
+    }
+    .btn1:hover {
+        background-color: #2e59e5;
+        box-shadow: 0px 10px 30px rgba(46, 49, 229, 0.4);
+        color: #fff;
+        transform: translateY(-7px);
+    }
 }

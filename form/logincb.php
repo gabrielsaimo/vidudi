@@ -10,7 +10,7 @@ $senha = $_POST['senha'];
       if (mysqli_num_rows($q)<=0){
         echo"<script language='javascript' type='text/javascript'>
         alert('Login e/ou senha incorretos');window.location
-        .href='login.html';</script>";
+        .href='login.php';</script>";
         die();
       }else{
         $q1 = $banco->query("SELECT u.idusuario FROM usuario u join pessoa p on(u.idusuario = p.idusuario)WHERE p.nome =
@@ -25,5 +25,3 @@ $senha = $_POST['senha'];
         exit;
       }
   }
-
-?>

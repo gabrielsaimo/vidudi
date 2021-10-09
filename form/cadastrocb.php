@@ -2,6 +2,7 @@
 
 $login = $_POST['login'];
 $senha = $_POST['senha'];
+$confsenha = $_POST['confsenha'];
 $banco = abrirBanco();
 $q = $banco->query ("SELECT login,idusuario FROM usuario WHERE login = '$login'");
 $array = mysqli_fetch_array($q);
@@ -10,13 +11,18 @@ $idusuario = $array['idusuario'];
   if($login == "" || $login == null){
     echo"<script language='javascript' type='text/javascript'>
     alert('O campo login deve ser preenchido');window.location.href='
-    cadastro.html';</script>";
+    cadastro.php';</script>";
 
+    }elseif($senha != $confsenha){
+      echo"<script language='javascript' type='text/javascript'>
+      alert('As Senhas São Diferentes');window.location.href='
+      cadastro.php';</script>";
+      die();
     }else{
       if($logarray == $login){
         echo"<script language='javascript' type='text/javascript'>
         alert('Esse login já existe');window.location.href='
-        cadastro.html';</script>";
+        cadastro.php';</script>";
         die();
       }else{
         $insert = $banco->query ("INSERT INTO usuario (login,senha,criadoem) VALUES ('$login','$senha',sysdate())");
@@ -34,4 +40,3 @@ $idusuario = $array['idusuario'];
       $conexao = new mysqli("localhost", "root", "root", "vid_udi");
       return $conexao;
   }
-?>

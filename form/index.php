@@ -1,101 +1,73 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
 <?
-    include("cb.php");
-    include_once ("navibar.php");
-    require_once('Mobile_Detect.php');
-    $login_cookie = $_COOKIE['login'];
-    $banco = abrirBanco();
-    $detect = new Mobile_Detect; //criando uma nova instância de Mobile_Detect
-if ($detect->isMobile())  //se o dispositivo é um dispositivo móvel
-{
-    $celula = '1';
+include("cb.php");
+$login_cookie = $_COOKIE['login'];
+if ($login_cookie != null) {
+    include_once("navibar.php");
 }
-else //senão
+$banco = abrirBanco();
+require_once('Mobile_Detect.php');
+$detect = new Mobile_Detect; //criando uma nova instância de Mobile_Detect
+if ($detect->isMobile()) {  //se o dispositivo é um dispositivo móvel
+    $celula = 'Y';
+    setcookie("mobile", $celula);
+} else //senão
 {
-    $celula = '0';
+    $celula = 'N';
+    setcookie("mobile", $celula);
 }
 ?>
 <!DOCTYPE html>
 
 <html lang="pt-br">
-    <head>
+
+<head>
     <meta charset="UTF-8">
     <title>Videria</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link rel="stylesheet" type="text/css" href="../css/style.css">
-    </head>
-        <body>
-            <div class="container" style="margin-top:-60px ;">
-                <div class="posicionarCabecalho">
-                </div>
-                <?if(empty($idusuario_cookie)){
-                        $idusuario_cookie = 0;
-                    }
-                    $q1 = $banco->query("SELECT u.*,p.id,p.idemcargo,p.idrede from usuario u join pessoa p on (u.idusuario = p.idusuario)where u.idusuario =".$idusuario_cookie);
-                    $row = mysqli_fetch_array($q1);?>
-                
-                    <?if(isset($login_cookie)){
-                        if(!empty($row['idemcargo']) and $row['idemcargo'] >= 3){?>
-                        <div class="centro">
-                            <a class="btn1 fundo-azulc espaco1" href="?_modulo=pessoa&_colunas[]=nome&_colunas[]=sexo&_colunas[]=emcargo&_colunas[]=rede&_colunas[]=criadoem&_colunas[]=alteradoem&_pk=idpessoa">Pesquisar Pessoa</a>
-                        </div>
-                        <div class="centro">
-                            <a class="btn1 fundo-azulc espaco" href="?_modulo=celula&_colunas[]=id&_colunas[]=celula&_colunas[]=endereco&_colunas[]=dia&_colunas[]=hora&_colunas[]=lider&_colunas[]=multiplicou">celulas</a>
-                        </div>
-                        <?}?>
-                            <div class="centro">
-                            <a class="btn1 fundo-azulc espaco" href="?_modulo=celula&_acao=r">Inserir celula</a><br>
-                            </div>
-                           
-                    <?}else{?>
-                            
-                    <?}?>
-                   
-                
-                        <br>
-                <div class="row">
-                <?
-                    
-                    if(mysqli_num_rows($q1)>0){
-                        if($_GET['_acao']){   
-                        }else{
-                         if(isset($login_cookie) and empty($_GET['_modulo'])){
-                         echo"Bem-Vindo, $login_cookie <br>";
-                            include_once("home.php");
-                         }else if(empty($_GET['_modulo'])){
-                             include_once("login.php");
-                         }
-                    }
-                    }else{
-                        if($_GET['k']==1){
-                            if(mysqli_num_rows($q1)>0){
-                                include_once("home.php");
-                            }else{
-                                $_GET['_modulo'] = 'pessoa';
-                                $_GET['_acao'] = 'r';
-                            }
-                            
-                        }else{
-                        include_once("login.php");
-                        }
-                    };
-                    
-                        if(isset($_GET['_acao']) and isset($_GET['_modulo'])){ 
-                            include_once ($_GET['_modulo'].".php");
-                        }else{
-                            include_once ("../pesquisa.php");
-                        }
-                        if($_GET['k']==1){
-                          //  include_once("home.php");
-                         }?>
-                </div>
-            </div>
-        </body>
+</head>
 
+<body>
+    <div class="container" style="margin-top:-60px ;">
+        <div class="posicionarCabecalho">
+        </div>
+        <? if (empty($idusuario_cookie)) {
+            $idusuario_cookie = 0;
+        }
+        $q1 = $banco->query("SELECT u.*,p.id,p.idemcargo,p.idrede from usuario u join pessoa p on (u.idusuario = p.idusuario)where u.idusuario =" . $idusuario_cookie);
+        $row = mysqli_fetch_array($q1); ?>
+        <div class="row" style="margin-top: 100px; height:50px ;">
+            <?
+
+            if (mysqli_num_rows($q1) > 0) {
+                if ($_GET['_acao']) {
+                } else {
+                    if (isset($login_cookie) and empty($_GET['_modulo'])) {
+                        echo "Bem-Vindo, $login_cookie <br>";
+                        include_once("home.php");
+                    } else if (empty($_GET['_modulo'])) {
+                        include_once("login.php");
+                    }
+                }
+            } else {
+                if ($_GET['k'] == 1) {
+                    if (mysqli_num_rows($q1) > 0) {
+                        include_once("home.php");
+                    } else {
+                        $_GET['_modulo'] = 'pessoa';
+                        $_GET['_acao'] = 'r';
+                    }
+                } else {
+                    include_once("login.php");
+                }
+            };
+
+            if (isset($_GET['_acao']) and isset($_GET['_modulo'])) {
+                include_once($_GET['_modulo'] . ".php");
+            } else {
+                include_once("../pesquisa.php");
+            }
+            ?>
+        </div>
+    </div>
+</body>

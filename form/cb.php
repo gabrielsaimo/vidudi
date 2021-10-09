@@ -134,5 +134,3 @@ $idusuario_cookie = $_COOKIE['idusuario'];
         $banco->close();
         voltarIndex();
     }
-
-?>
