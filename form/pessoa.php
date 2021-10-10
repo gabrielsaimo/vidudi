@@ -154,7 +154,7 @@
                 <tr>
                     <? if (isset($_GET["id"]) != null) { ?>
                         <input type="hidden" name="_modulo" value="pessoa"><input type="hidden" name="_acao" value="u">
-                        <td class="texto">rede: </td>
+                        <td class="texto">Rede: </td>
 
                         <? echo "<td> <select class='input1' name='rede'>";
                         while ($row = mysqli_fetch_array($qr)) {
@@ -163,7 +163,7 @@
                         echo "</select></td>"; ?>
                     <? } else { ?>
                         <input type="hidden" name="_modulo" value="pessoa"><input type="hidden" name="_acao" value="u">
-                        <td class="texto">rede: </td>
+                        <td class="texto">Rede: </td>
 
                         <? echo "<td> <select class='input1' name='rede'>";
                         while ($row = mysqli_fetch_array($qr)) {

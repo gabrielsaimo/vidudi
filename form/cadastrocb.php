@@ -12,13 +12,10 @@ $idusuario = $array['idusuario'];
     echo"<script language='javascript' type='text/javascript'>
     alert('O campo login deve ser preenchido');window.location.href='
     cadastro.php';</script>";
-
-    }elseif($senha != $confsenha){
-      echo"<script language='javascript' type='text/javascript'>
-      alert('As Senhas São Diferentes');window.location.href='
-      cadastro.php';</script>";
-      die();
-    }else{
+    }elseif($senha != $confsenha){?>
+      <script language='javascript' type='text/javascript'>
+      alert('As Senhas São Diferentes');window.location.href='cadastro.php'</script>";
+    <?}else{
       if($logarray == $login){
         echo"<script language='javascript' type='text/javascript'>
         alert('Esse login já existe');window.location.href='

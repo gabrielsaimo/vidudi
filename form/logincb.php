@@ -13,11 +13,12 @@ $senha = $_POST['senha'];
         .href='login.php';</script>";
         die();
       }else{
-        $q1 = $banco->query("SELECT u.idusuario FROM usuario u join pessoa p on(u.idusuario = p.idusuario)WHERE p.nome =
-        '$login'");
+        $q1 = $banco->query("SELECT u.idusuario,p.id FROM usuario u join pessoa p on(u.idusuario = p.idusuario)WHERE u.idusuario =".
+        $row['idusuario']);
         $array = mysqli_fetch_array($q1);
         if(mysqli_num_rows($q1)>0){
             setcookie("idusuario",$array['idusuario']);
+            setcookie("id",$array['id']);
         }
         setcookie("login",$login);
         setcookie("idusuario",$row['idusuario']);

@@ -1,6 +1,7 @@
 <?
 include("cb.php");
 $login_cookie = $_COOKIE['login'];
+$idpessoa = $_COOKIE['id'];
 if ($login_cookie != null) {
     include_once("navibar.php");
 }
@@ -26,7 +27,13 @@ if ($detect->isMobile()) {  //se o dispositivo é um dispositivo móvel
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link rel="stylesheet" type="text/css" href="../css/style.css">
 </head>
-
+<style>
+    <? if ($_GET['logout'] == 'Y') { ?>
+      .form-container {
+      width: 100% !important;
+    }
+    <? } ?>
+  </style>
 <body>
     <div class="container" style="margin-top:-60px ;">
         <div class="posicionarCabecalho">
@@ -44,6 +51,14 @@ if ($detect->isMobile()) {  //se o dispositivo é um dispositivo móvel
                 } else {
                     if (isset($login_cookie) and empty($_GET['_modulo'])) {
                         echo "Bem-Vindo, $login_cookie <br>";
+                        $qpf = $banco->query("SELECT * From anexo where tipoanexo = 'pdf' ") or die('erro');
+
+                        while ($rowf = mysqli_fetch_array($qpf)) { 
+                            echo '<iframe  style="width: 400px!important; height: 500px;!important" src="data:application/pdf;base64,' . base64_encode($rowf['anexo']) . '"/>';
+                            echo '<div> asdasd</div>';
+                            echo '<iframe  style="width: 400px!important; height: 500px;!important" src="data:application/pdf;base64,' . base64_encode($rowf['anexo']) . '"/>';
+                            }
+                            header("Content-type: application/pdf");
                         include_once("home.php");
                     } else if (empty($_GET['_modulo'])) {
                         include_once("login.php");

@@ -1,3 +1,21 @@
+<style>
+    input[type="file"] {
+        display: none;
+    }
+
+    label,
+    input[type=submit] {
+        padding: 20px 10px;
+        width: 200px;
+        background-color: #333;
+        color: #FFF;
+        text-transform: uppercase;
+        text-align: center;
+        display: block;
+        margin-top: 10px;
+        cursor: pointer;
+    }
+</style>
 <?
 $banco = abrirBanco();
 $qp = $banco->query("SELECT p.nome,p.telefone,b.bairro,p.email,p.idade,p.endereco,p.cursao,p.ctl,p.batizado,p.status,p.criadoem,r.rede,e.cargo,pl.nome as nomelider from pessoa p join rede r on(p.idrede = r.idrede) join emcargo e on(p.idemcargo = e.idemcargo) left join pessoa pl on(p.idlider = pl.id) join bairro b on(p.bairro = b.idbairro) where p.id=" . $_GET['id']) or die('erro');
@@ -8,11 +26,10 @@ $rown = mysqli_num_rows($qi);
 $rowi = mysqli_fetch_array($qi);
 
 if ($rown > 0) {
-
-    echo '<img style="width: 100px; height: 100px; border-radius: 50%;" src="data:image/jpeg;base64,' . base64_encode($rowi['anexo']) . '"/>';
+    echo '<img class="imagem" style="width: 200px!important; border-radius: 50%;" src="data:image/jpeg;base64,' . base64_encode($rowi['anexo']) . '"/>';
     Header("Content-type:anexo/jrpg");
 } else {
-    echo '<img style="width: 100px; height: 100px; border-radius: 50%;" src="../img/avatar.jpg"/>';
+    echo '<img style="width: 200px; border-radius: 50%;" src="../img/avatar.jpg"/>';
 }
 
 list($ano, $mes, $dia) = explode('-', $data);
@@ -35,13 +52,17 @@ if ($row['batizado'] == 'Y') {
     $batizado = 'Não';
 }
 
-if ($rown < 1) { ?>
+if ($_GET['id'] == $idpessoa) { ?>
     <form action="upanexo.php" method="post" enctype="multipart/form-data">
-        adicione uma imagem:
-        <input type="file" name="file" id="file">
-        <input type="hidden" nome="id" value="<?= $_GET['id'] ?>" name="id">
-        <input type="hidden" nome="tipo" value="avatar" name="id">
-        <input type="submit" value="submit" name="submit">
+        <? if ($rown > 0) { ?>
+            <label for="file">Atuzalizar foto</label>
+        <? } else { ?>
+            <label for="file">Enviar foto</label>
+        <? } ?>
+        <input hidden type="file" name="file" id="file">
+        <input type="hidden" nome="id" value="<?= $idpessoa ?>" name="id">
+        <input type="hidden" nome="tipo" value="avatar" name="tipo">
+        <input style="display: none;" id="submit" type="submit" value="submit" name="submit">
     </form>
 <? } ?>
 <div>Nome: <?= $row['nome'] ?></div>
@@ -59,3 +80,13 @@ if ($rown < 1) { ?>
 <div>Status: <?= $row['status'] ?></div>
 <div>Lider: <?= $row['nomelider'] ?></div>
 <div>Registrdo em: <?= $row['criadoem'] ?></div>
+
+<script>
+    document.getElementById("file").onchange = function() {
+        debugger
+        if ($("form").children('input').val() != '') {
+            $("form").children('input#submit').css("display", "block");
+            $("form").children('label').css("display", "none");
+        }
+    };
+</script>

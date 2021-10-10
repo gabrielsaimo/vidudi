@@ -12,7 +12,8 @@
 
 <body>
   <style>
-    <? if ($_COOKIE['mobile'] == 'Y') { ?>.form-container {
+    <? if ($_COOKIE['mobile'] == 'Y') { ?>
+      .form-container {
       width: 100% !important;
     }
 

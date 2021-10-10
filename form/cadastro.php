@@ -37,6 +37,8 @@
         <button type="submit" value="Cadastrar" id="cadastrar" name="cadastrar" data-loading-btn class="">
           Cadastra
         </button>
+        <br><br><br><br>
+        <a href="index.php"><<< Já tenho uma conta</a>
 
       </div>
 

@@ -191,7 +191,7 @@ if ($_COOKIE['mobile'] == 'Y') { ?>
                             <td><?= $row["rede"] ?></td>
                             <td><?= $row["criadoem"] ?></td>
                             <td><?= $row["alteradoem"] ?></td>
-                            <td class="clickable-row" data-href="index.php?_modulo=ipessoa&_acao=r&id=<?= $row["id"] ?>">Visializar</td>
+                            <td class="clickable-row" data-href="index.php?_modulo=ipessoa&_acao=r&id=<?= $row["id"] ?>">Visualizar</td>
                             <? if ($row["status"] != 'ATIVO') { ?>
                                 <td> <button class="btn fundo-azul" id="<?= $row["id"] ?>" onclick="ativar(this)"><img src="../img/visivel.png"></button></td>
                             <? } else { ?>
