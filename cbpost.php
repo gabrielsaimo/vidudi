@@ -1,4 +1,5 @@
 <?
+include_once("/form/cb.php");
 session_start();
 $idusuario_cookie = $_COOKIE['idusuario'];
 if(isset($_REQUEST['acao'])){
@@ -8,7 +9,6 @@ $tabela="pessoa";
     if ($_REQUEST['acao']=="_I_"){
         $acao="INSERT INTO";
         i();
-        
     }
     if ($_REQUEST['acao']=="_U_"){
         $acao="UPDATE";
@@ -19,12 +19,6 @@ $tabela="pessoa";
         d();
     }
 }
-function abrirBanco() {
-    $conexao = new mysqli("localhost", "root", "root", "vid_udi");
-    return $conexao;
-    }
-
-
     function i() { 
         global $acao;
         global $tabela;
