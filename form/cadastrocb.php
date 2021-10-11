@@ -1,5 +1,5 @@
 <?php
-
+include_once('../form/cb.php');
 $login = $_POST['login'];
 $senha = $_POST['senha'];
 $confsenha = $_POST['confsenha'];
@@ -33,7 +33,4 @@ $idusuario = $array['idusuario'];
         }
       }
     }
-    function abrirBanco() {
-      $conexao = new mysqli("localhost", "root", "root", "vid_udi");
-      return $conexao;
-  }
+?>
