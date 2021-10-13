@@ -4,9 +4,9 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
+  <link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css">
   <link rel="stylesheet" type="text/css" href="../css/navibar.css">
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+  <script src="/js/bootstrap.bundle.min.js"></script>
 </head>
 <?
 $banco = abrirBanco();
@@ -68,9 +68,13 @@ if(!empty($idpessoa)){
               <li class="nav-item"><a class="nav-link" href="index.php?_modulo=gerenciar&_acao=r">Gercenciar</a></li>
             <? } ?>
             <li class="nav-item dropdown">
+              <?if(!empty($rowi['anexo'])){?>
               <a class="nav-link " data-bs-toggle="dropdown"><? echo '<img style="width: 30px;  border-radius: 80%;" src="data:image/gif;base64,' . base64_encode($rowi['anexo']) . '"/>'; ?></a>
+              <?}else{?>
+                <a class="nav-link " data-bs-toggle="dropdown"><img style="width: 30px; border-radius: 50%;" src="../img/avatar.jpg"/> </a>
+                <?}?>
               <ul class="dropdown-menu dropdown-menu-end">
-                <li><a class="dropdown-item" href="index.php?_modulo=ipessoa&_acao=r&id=<?= $idpessoa ?>"> Seu perfiu</a></li>
+                <li><a class="dropdown-item" href="index.php?_modulo=ipessoa&_acao=r&id=<?= $idpessoa ?>"> Seu perfil</a></li>
                 <li><a class="dropdown-item" onclick="logout()" href="index.php?&logout=Y">Sair</a></li>
               </ul>
             </li>

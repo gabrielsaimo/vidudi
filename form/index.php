@@ -24,7 +24,7 @@ if ($detect->isMobile()) {  //se o dispositivo é um dispositivo móvel
 <head>
     <meta charset="UTF-8">
     <title>Videria</title>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="/js/jquery.min.js"></script>
     <link rel="stylesheet" type="text/css" href="../css/style.css">
 </head>
 <style>
