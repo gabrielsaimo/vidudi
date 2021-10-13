@@ -5,6 +5,7 @@
 <div class="container menos-top">
     <form action="cb.php" method="get">
         <? $banco = abrirBanco();
+        $sqlbairro = $banco->query("SELECT * FROM bairro");
         $q = $banco->query("SELECT p.id,p.nome FROM pessoa p join emcargo e on(p.idemcargo = e.idemcargo) where p.idemcargo in(2,3,4) and p.status='ATIVO'") or die("erro ao selecionar");
         ?>
         <table>
@@ -22,6 +23,18 @@
                             <input type="hidden" name="idcelula" value="">
                         <td><input type="text" name="celula" value="" class="input1" placeholder="Digite a Célula aqui..."></td>
                     <? } ?>
+                </tr>
+                <tr>
+                <td><input type="hidden" name="_modulo" value="celula">
+                    <td></td>
+                    <input type="hidden" name="_modulo" value="celula"><input type="hidden" name="_acao" value="u">
+                    <td class="texto">Bairro: </td>
+                    <td></td>
+                    <? echo "<td> <select class='input1' name='bairro'>";
+                    while ($rowb = mysqli_fetch_array($sqlbairro)) {
+                        echo "<option value='" . $rowb['idbairro'] . "'>" . $rowb['bairro'] . "</option>";
+                    }
+                    echo "</select></td>"; ?>
                 </tr>
                 <tr>
                     <td><input type="hidden" name="_modulo" value="celula">
