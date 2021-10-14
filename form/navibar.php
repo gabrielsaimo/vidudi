@@ -65,7 +65,7 @@ if(!empty($idpessoa)){
           <ul class="navbar-nav ms-auto">
             <li class="nav-item"><a class="nav-link" href="#">Test</a></li>
             <? if (!empty($row['idemcargo']) and $row['idemcargo'] > 3) { ?>
-              <li class="nav-item"><a class="nav-link" href="index.php?_modulo=gerenciar&_acao=r">Gercenciar</a></li>
+              <li class="nav-item"><a class="nav-link" href="index.php?_modulo=gerenciar&_acao=r">Gerenciar</a></li>
             <? } ?>
             <li class="nav-item dropdown">
               <?if(!empty($rowi['anexo'])){?>

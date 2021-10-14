@@ -6,6 +6,7 @@ $tipo =$_REQUEST['tipo'];
 $link = $_REQUEST['link'];
 $data = $_REQUEST['data'];
 $linkaudio = $_REQUEST['linkaudio'];
+$titulo = $_REQUEST['titulo'];
 // arquivos
 $qi = $banco->query("SELECT anexo from anexo");
 if($tipo == 'avatar'){
@@ -36,7 +37,7 @@ if($tipo == 'avatar'){
     if (isset($_FILES['file'])) {
         $file =addslashes(file_get_contents($_FILES['file']['tmp_name']));
         if (isset($file)) {
-            $insert = $banco->query ("INSERT INTO anexo SET anexo = '$file',link= '$link ',data='$data',tipoanexo='cadapdf',idobjeto='$id',linkaudio='$linkaudio',criadoem=sysdate()") or die(mysqli_error($banco));
+            $insert = $banco->query ("INSERT INTO anexo SET anexo = '$file',link= '$link ',data='$data',tipoanexo='cadapdf',idobjeto='$id',linkaudio='$linkaudio',titulo='$titulo',criadoem=sysdate()") or die(mysqli_error($banco));
             echo"<script language='javascript' type='text/javascript'>
             alert('".$tipo." cadastrado com sucesso!');window.location.
             href='javascript:history.back()'</script>";

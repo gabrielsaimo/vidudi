@@ -56,16 +56,17 @@ if ($detect->isMobile()) {  //se o dispositivo é um dispositivo móvel
                         $qli = $banco->query("SELECT * From anexo where tipoanexo = 'cadapdf' order by idanexo desc") or die('erro ao buscar link');
                         
                         while ($rowli = mysqli_fetch_array($qli)) {
-                            echo '<div style="margin-bottom: 60px;display: block;margin-left: auto;margin-right: auto;width: 324px;height: 400px;">';
-                            echo '<img style="width: 300px; height: 350px; border-radius: 10%;" src="data:image/gif;base64,' . base64_encode($rowli['anexo']) . '"/>'; 
+                            echo '<div style="margin-bottom: 180px;display: block;margin-left: auto;margin-right: auto;width: 324px;height: 400px;">';
+                            echo '<img style="width: 370px; height: 450px; border-radius: 10%;" src="data:image/gif;base64,' . base64_encode($rowli['anexo']) . '"/>'; 
                             $texto = $rowli['link'];
                             $audio = $rowli['linkaudio'];
                             $novo_texto = str_replace("file/d/", "u/0/uc?id=", $texto);
                             $link = str_replace("/view?usp=sharing", "&export=download", $novo_texto);
                             $novo_audio = str_replace("file/d/", "u/0/uc?id=", $audio);
                             $linkaudio = str_replace("/view?usp=sharing", "&export=download", $novo_audio);
-                            ?><a style="display: block;width: 300px;  margin-top:5px" href="<?= $link ?>"><li type="button"  style="width: 300px;" class="btn1"> <?=date('d-m-Y', strtotime($rowli['data']))?> - PDF </li> </a> 
-                            <a style="display: block;width: 300px;  margin-top:5px" href="<?=$linkaudio?>"><li type="button"  style="width: 300px;" class="btn1"> <?=date('d-m-Y', strtotime($rowli['data']))?> - Audio </li> </a><?
+                            ?><a style="display: block;width: 370px;  margin-top:5px" href="<?= $link ?>"><li type="button"  style="width: 370px;" class="btn1"> <?=$rowli['titulo']?><br> <?=date('d-m-Y', strtotime($rowli['data']))?> - PDF </li> </a> <?
+                          if(!empty($audio)){?> 
+                           <a style="display: block;width: 370px;  margin-top:5px" href="<?=$linkaudio?>"><li type="button"  style="width: 370px;" class="btn1"> <?=date('d-m-Y', strtotime($rowli['data']))?> - Audio </li> </a><?}
                             echo '</div>';
                         }
                         echo '</div>';
