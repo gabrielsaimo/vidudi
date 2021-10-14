@@ -67,6 +67,8 @@ if ($detect->isMobile()) {  //se o dispositivo é um dispositivo móvel
                         $qli = $banco->query("SELECT * From anexo where tipoanexo = 'cadapdf' order by idanexo desc") or die('erro ao buscar link');
                         $i = 1;
                         while ($rowli = mysqli_fetch_array($qli)) {
+                            $texto = $rowli['link'];
+                            $audio = $rowli['linkaudio'];
                             if($rowli['anexo'] != ''){
                                 if($i == 1){
                                     $widith = '370px';
@@ -76,7 +78,11 @@ if ($detect->isMobile()) {  //se o dispositivo é um dispositivo móvel
                                     $margentop = '-190px';
                                 }
                                 echo '<div class="container" style="display: block;margin-left: 50%;margin-right: auto;width: 420px;height: 600px;text-align: center;margin-top: '.$widith.'">'.$rowli['titulo'];
-                                echo '<img style="width: 370px; height: 420px; border-radius: 5%;" src="data:image/gif;base64,' . base64_encode($rowli['anexo']) . '"/>'; 
+                                if(!empty($rowli['titulo']) and $rowli['titulo'] != ' '){
+                                    echo '<img style="width: 370px; height: 420px; border-radius: 5%;" src="data:image/gif;base64,' . base64_encode($rowli['anexo']) . '"/>'; 
+                                }else{
+                                    echo '<img style="width: 370px; height: 599px; border-radius: 5%;" src="data:image/gif;base64,' . base64_encode($rowli['anexo']) . '"/>';
+                                }
                             }else{
                                 if($i == 1){
                                     $margentop = '80px';
@@ -85,15 +91,15 @@ if ($detect->isMobile()) {  //se o dispositivo é um dispositivo móvel
                                 }
                                 echo '<div class="container" style="margin-bottom: 260px;display: block;margin-left: 50%;margin-right: auto;width: 420px;height: 140px;text-align: center;margin-top: '. $margentop.';"> '.$rowli['titulo'];
                             }
-                                $texto = $rowli['link'];
-                                $audio = $rowli['linkaudio'];
+                                
                                 $novo_texto = str_replace("file/d/", "u/0/uc?id=", $texto);
+                                $data = str_replace('-','/',date('d-m-Y', strtotime($rowli['data'])));
                                 $link = str_replace("/view?usp=sharing", "&export=download", $novo_texto);
                                 $novo_audio = str_replace("file/d/", "u/0/uc?id=", $audio);
                                 $linkaudio = str_replace("/view?usp=sharing", "&export=download", $novo_audio);
-                            if(!empty($texto)){?><a style="display: block;width: 370px;  margin-top:5px" href="<?= $link ?>"><li type="button"  style="width: 370px;" class="btn1"> <?=$rowli['titulo']?><br> <?=date('d-m-Y', strtotime($rowli['data']))?> - PDF </li> </a> <?
+                            if(!empty($texto) and !empty($rowli['titulo']) and $rowli['titulo'] != ' '){?><a style="display: block;width: 370px;  margin-top:5px" href="<?= $link ?>"><li type="button"  style="width: 370px;" class="btn1"> <?=$rowli['titulo']?><br> <?=$data?> - PDF </li> </a> <?
                             }if(!empty($audio)){?> 
-                           <a style="display: block;width: 370px;  margin-top:5px" href="<?=$linkaudio?>"><li type="button"  style="width: 370px;" class="btn1"> <?=date('d-m-Y', strtotime($rowli['data']))?> - Audio</li> </a><?}
+                           <a style="display: block;width: 370px;  margin-top:5px" href="<?=$linkaudio?>"><li type="button"  style="width: 370px;" class="btn1"> <?=$data?> - Audio</li> </a><?}
                             echo '</div>';
                             $i++;
                         }
