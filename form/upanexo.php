@@ -35,13 +35,22 @@ if($tipo == 'avatar'){
     }
 }else if($tipo == 'cadapdf'){
     if (isset($_FILES['file'])) {
-        $file =addslashes(file_get_contents($_FILES['file']['tmp_name']));
-        if (isset($file)) {
-            $insert = $banco->query ("INSERT INTO anexo SET anexo = '$file',link= '$link ',data='$data',tipoanexo='cadapdf',idobjeto='$id',linkaudio='$linkaudio',titulo='$titulo',criadoem=sysdate()") or die(mysqli_error($banco));
+        if(!empty($_FILES['file']['tmp_name'])){
+            $file =addslashes(file_get_contents($_FILES['file']['tmp_name']));
+            $vfile = "anexo = '$file',";
+        }else{
+            $vfile = '';
+        }if(!empty($link)){
+          $link = "link= '$link',";
+        }else{
+            $link = '';
+        }
+        
+            $insert = $banco->query ("INSERT INTO anexo SET $vfile $link data='$data',tipoanexo='cadapdf',idobjeto='$id',linkaudio='$linkaudio',titulo='$titulo',criadoem=sysdate()") or die(mysqli_error($banco));
             echo"<script language='javascript' type='text/javascript'>
             alert('".$tipo." cadastrado com sucesso!');window.location.
             href='javascript:history.back()'</script>";
-        }
+        
     }
 }else if($tipo == 'audio'){
     if (isset($_FILES['file'])) {

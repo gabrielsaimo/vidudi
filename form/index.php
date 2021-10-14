@@ -78,7 +78,7 @@ if ($detect->isMobile()) {  //se o dispositivo é um dispositivo móvel
                                     $margentop = '-190px';
                                 }
                                 echo '<div class="container" style="display: block;margin-left: 50%;margin-right: auto;width: 420px;height: 600px;text-align: center;margin-top: '.$widith.'">'.$rowli['titulo'];
-                                if(!empty($rowli['titulo']) and $rowli['titulo'] != ' '){
+                                if(!empty($texto) and $texto != ' '){
                                     echo '<img style="width: 370px; height: 420px; border-radius: 5%;" src="data:image/gif;base64,' . base64_encode($rowli['anexo']) . '"/>'; 
                                 }else{
                                     echo '<img style="width: 370px; height: 599px; border-radius: 5%;" src="data:image/gif;base64,' . base64_encode($rowli['anexo']) . '"/>';
@@ -97,7 +97,7 @@ if ($detect->isMobile()) {  //se o dispositivo é um dispositivo móvel
                                 $link = str_replace("/view?usp=sharing", "&export=download", $novo_texto);
                                 $novo_audio = str_replace("file/d/", "u/0/uc?id=", $audio);
                                 $linkaudio = str_replace("/view?usp=sharing", "&export=download", $novo_audio);
-                            if(!empty($texto) and !empty($rowli['titulo']) and $rowli['titulo'] != ' '){?><a style="display: block;width: 370px;  margin-top:5px" href="<?= $link ?>"><li type="button"  style="width: 370px;" class="btn1"> <?=$rowli['titulo']?><br> <?=$data?> - PDF </li> </a> <?
+                            if(!empty($texto) ){?><a style="display: block;width: 370px;  margin-top:5px" href="<?= $link ?>"><li type="button"  style="width: 370px;" class="btn1"> <?=$rowli['titulo']?><br> <?=$data?> - PDF </li> </a> <?
                             }if(!empty($audio)){?> 
                            <a style="display: block;width: 370px;  margin-top:5px" href="<?=$linkaudio?>"><li type="button"  style="width: 370px;" class="btn1"> <?=$data?> - Audio</li> </a><?}
                             echo '</div>';
