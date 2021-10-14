@@ -33,10 +33,22 @@ if ($detect->isMobile()) {  //se o dispositivo é um dispositivo móvel
     }
 
     <? } ?>
+    .container  {
+
+margin-top: 245px;
+  transform: translate(-50%, -50%);
+  height: 400px;
+  width: 600px;
+  background: #f2f2f2;
+  overflow: hidden;
+  border-radius: 20px;
+  cursor: pointer;
+  box-shadow: 0 0 20px 8px #d0d0d0;
+}
 </style>
 
 <body>
-    <div class="container" style="margin-top:-60px ;">
+    <div  style="margin-top:-60px ;">
         <div class="posicionarCabecalho">
         </div>
         <? if (empty($idusuario_cookie)) {
@@ -51,16 +63,16 @@ if ($detect->isMobile()) {  //se o dispositivo é um dispositivo móvel
                 if ($_GET['_acao']) {
                 } else {
                     if (isset($login_cookie) and empty($_GET['_modulo'])) {
-                        echo '<div>';
+                        echo '<div >';
                         //echo "Bem-Vindo, $login_cookie <br>";
                         $qli = $banco->query("SELECT * From anexo where tipoanexo = 'cadapdf' order by idanexo desc") or die('erro ao buscar link');
                         
                         while ($rowli = mysqli_fetch_array($qli)) {
                             if($rowli['anexo'] != ''){
-                                echo '<div style="margin-bottom: 180px;display: block;margin-left: auto;margin-right: auto;width: 355px;height: 400px;text-align: center;">'.$rowli['titulo'];
-                                echo '<img style="width: 370px; height: 450px; border-radius: 5%;" src="data:image/gif;base64,' . base64_encode($rowli['anexo']) . '"/>'; 
+                                echo '<div class="container" style="margin-bottom: 180px;display: block;margin-left: auto;margin-right: auto;width: 420px;height: 600px;text-align: center;">'.$rowli['titulo'];
+                                echo '<img style="width: 370px; height: 420px; border-radius: 5%;" src="data:image/gif;base64,' . base64_encode($rowli['anexo']) . '"/>'; 
                             }else{
-                                echo '<div style="margin-bottom: 30px;display: block;margin-left: auto;margin-right: auto;width: 355px;height: 100px;text-align: center;"> '.$rowli['titulo'];
+                                echo '<div class="container" style="margin-bottom: 50px;display: block;margin-left: auto;margin-right: auto;width: 420px;height: 140px;text-align: center;"> '.$rowli['titulo'];
                             }
                                 $texto = $rowli['link'];
                                 $audio = $rowli['linkaudio'];
