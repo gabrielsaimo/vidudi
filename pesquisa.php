@@ -119,7 +119,6 @@ if ($_COOKIE['mobile'] == 'Y') { ?>
                             <td colspan="3">
                                 <h6> <?= $row["nome"] ?></h6>
                             </td>
-
                         </tr>
                         <tr>
                             <td style="width: 35%;">
