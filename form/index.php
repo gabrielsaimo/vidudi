@@ -75,7 +75,7 @@ if ($detect->isMobile()) {  //se o dispositivo é um dispositivo móvel
                                     $widith = '37px';
                                     $margentop = '-190px';
                                 }
-                                echo '<div class="container" style="display: block;margin-left: 48%;margin-right: auto;width: 420px;height: 600px;text-align: center;margin-top: '.$widith.'">'.$rowli['titulo'];
+                                echo '<div class="container" style="display: block;margin-left: 50%;margin-right: auto;width: 420px;height: 600px;text-align: center;margin-top: '.$widith.'">'.$rowli['titulo'];
                                 echo '<img style="width: 370px; height: 420px; border-radius: 5%;" src="data:image/gif;base64,' . base64_encode($rowli['anexo']) . '"/>'; 
                             }else{
                                 if($i == 1){
@@ -83,7 +83,7 @@ if ($detect->isMobile()) {  //se o dispositivo é um dispositivo móvel
                                 }else{
                                     $margentop = '-190px';
                                 }
-                                echo '<div class="container" style="margin-bottom: 260px;display: block;margin-left: 48%;margin-right: auto;width: 420px;height: 140px;text-align: center;margin-top: '. $margentop.';"> '.$rowli['titulo'];
+                                echo '<div class="container" style="margin-bottom: 260px;display: block;margin-left: 50%;margin-right: auto;width: 420px;height: 140px;text-align: center;margin-top: '. $margentop.';"> '.$rowli['titulo'];
                             }
                                 $texto = $rowli['link'];
                                 $audio = $rowli['linkaudio'];
