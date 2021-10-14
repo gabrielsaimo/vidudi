@@ -55,7 +55,7 @@ if ($detect->isMobile()) {  //se o dispositivo é um dispositivo móvel
         }
         $q1 = $banco->query("SELECT u.*,p.id,p.idemcargo,p.idrede from usuario u join pessoa p on (u.idusuario = p.idusuario)where u.idusuario =" . $idusuario_cookie);
         $row = mysqli_fetch_array($q1); ?>
-        <div class="row" style="margin-top: 100px; height:50px ;">
+        <div class="row" style="margin-top: 100px; height:50px;margin-right: 0px;">
             <?
 
             if (mysqli_num_rows($q1) > 0) {
