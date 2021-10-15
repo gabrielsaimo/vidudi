@@ -75,6 +75,7 @@ if(!empty($idpessoa)){
                 <?}?>
               <ul class="dropdown-menu dropdown-menu-end">
                 <li><a class="dropdown-item" href="index.php?_modulo=ipessoa&_acao=r&id=<?= $idpessoa ?>"> Seu perfil</a></li>
+                <li><a class="dropdown-item" onclick="logout()" href="index.php?_modulo=sobre&_acao=r">Sobre</a></li>
                 <li><a class="dropdown-item" onclick="logout()" href="index.php?&logout=Y">Sair</a></li>
               </ul>
             </li>
