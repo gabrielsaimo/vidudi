@@ -77,11 +77,13 @@ if ($detect->isMobile()) {  //se o dispositivo é um dispositivo móvel
                                     $widith = '37px';
                                     $margentop = '-190px';
                                 }
-                                echo '<div class="container" style="display: block;margin-left: 50%;margin-right: auto;width: 420px;height: 600px;text-align: center;margin-top: '.$widith.'">'.$rowli['titulo'];
+                                
                                 if(!empty($texto) and $texto != ' '){
-                                    echo '<img style="width: 370px; height: 420px; border-radius: 5%;" src="data:image/gif;base64,' . base64_encode($rowli['anexo']) . '"/>'; 
+                                    echo '<div class="container" style="display: block;margin-left: 50%;margin-right: auto;width: 420px;height: 600px;text-align: center;margin-top: '.$widith.'">'.$rowli['titulo'];
+                                    echo '<img style="width: 320px; height: 445px; border-radius: 5%;" src="data:image/gif;base64,' . base64_encode($rowli['anexo']) . '"/>'; 
                                 }else{
-                                    echo '<img style="width: 370px; height: 599px; border-radius: 5%;" src="data:image/gif;base64,' . base64_encode($rowli['anexo']) . '"/>';
+                                    echo '<div class="container" style="display: block;margin-left: 50%;margin-right: auto;width: 650px;height: 600px;text-align: center;margin-top: '.$widith.'">'.$rowli['titulo'];
+                                    echo '<img style="width: 600px; height: 590px;margin-top: 5px; border-radius: 5%;" src="data:image/gif;base64,' . base64_encode($rowli['anexo']) . '"/>';
                                 }
                             }else{
                                 if($i == 1){

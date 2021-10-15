@@ -53,17 +53,17 @@ if(!empty($idpessoa)){
               <li class="nav-item"><a class="nav-link" href="?_modulo=celula&_colunas[]=id&_colunas[]=celula&_colunas[]=endereco&_colunas[]=dia&_colunas[]=hora&_colunas[]=lider&_colunas[]=multiplicou">Células</a></li>
               <li class="nav-item"><a class="nav-link" href="?_modulo=celula&_acao=r">Inserir Celula</a></li>
             <? } ?>
-            <li class="nav-item dropdown">
+          <!--  <li class="nav-item dropdown">
               <a class="nav-link  dropdown-toggle" href="#" data-bs-toggle="dropdown"> Teste </a>
               <ul class="dropdown-menu">
                 <li><a class="dropdown-item" href="#"> Submenu item 1</a></li>
                 <li><a class="dropdown-item" href="#"> Submenu item 2 </a></li>
                 <li><a class="dropdown-item" href="#"> Submenu item 3 </a></li>
               </ul>
-            </li>
+            </li> -->
           </ul>
           <ul class="navbar-nav ms-auto">
-            <li class="nav-item"><a class="nav-link" href="#">Test</a></li>
+           <!-- <li class="nav-item"><a class="nav-link" href="#">Test</a></li> -->
             <? if (!empty($row['idemcargo']) and $row['idemcargo'] > 3) { ?>
               <li class="nav-item"><a class="nav-link" href="index.php?_modulo=gerenciar&_acao=r">Gerenciar</a></li>
             <? } ?>
