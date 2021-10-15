@@ -93,13 +93,15 @@ if ($detect->isMobile()) {  //se o dispositivo é um dispositivo móvel
                             }
                                 
                                 $novo_texto = str_replace("file/d/", "u/0/uc?id=", $texto);
-                                $data = str_replace('-','/',date('d-m-Y', strtotime($rowli['data'])));
+                                if(!empty($rowli['data']) and $rowli['data'] !='1970-01-01'){
+                                    $data = str_replace('-','/',date('d-m-Y', strtotime($rowli['data'])));
+                                }
                                 $link = str_replace("/view?usp=sharing", "&export=download", $novo_texto);
                                 $novo_audio = str_replace("file/d/", "u/0/uc?id=", $audio);
                                 $linkaudio = str_replace("/view?usp=sharing", "&export=download", $novo_audio);
-                            if(!empty($texto) ){?><a style="display: block;width: 370px;  margin-top:5px" href="<?= $link ?>"><li type="button"  style="width: 370px;" class="btn1"> <?=$rowli['titulo']?><br> <?=$data?> - PDF </li> </a> <?
+                            if(!empty($texto) ){?><a style="display: block;width: 370px;  margin-top:5px" href="<?= $link ?>"><li type="button"  style="width: 370px;" class="btn1"> <?=$rowli['titulo']?> <br> <?=$data?> PDF  </li></a> <?
                             }if(!empty($audio)){?> 
-                           <a style="display: block;width: 370px;  margin-top:5px" href="<?=$linkaudio?>"><li type="button"  style="width: 370px;" class="btn1"> <?=$data?> - Audio</li> </a><?}
+                           <a style="display: block;width: 370px;  margin-top:5px" href="<?=$linkaudio?>"><li type="button"  style="width: 370px;" class="btn1"> <?=$data?>  Audio</li> </a><?}
                             echo '</div>';
                             $i++;
                         }
