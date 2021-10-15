@@ -36,7 +36,7 @@ $tabela="pessoa";
         global $tabela;
         $banco = abrirBanco();
         $sql = $acao." pessoa SET nome='{$_REQUEST["nome"]}',sexo='{$_REQUEST["sexo"]}',atualizadoem=now() WHERE id='{$_REQUEST["id"]}'";
-        die($sql); $banco->query($sql);
+        $banco->query($sql);
         $banco->close();
         voltarIndex();
     }
