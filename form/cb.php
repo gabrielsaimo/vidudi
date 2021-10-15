@@ -1,12 +1,10 @@
 <?
 
-session_start();
 foreach ($_POST as $nome_campo => $valor_campo) {
     if($nome_campo == ''){
         unset($nome_campo);
         unset($valor_campo);
     }
-
    if($nome_campo == "sexo" ){
     
    }
@@ -40,8 +38,8 @@ $idusuario_cookie = $_COOKIE['idusuario'];
         $value = "('{$_REQUEST["nome"]}','{$_REQUEST['bairro']}','{$_REQUEST['endereco']}','{$_REQUEST["sexo"]}',sysdate(),sysdate(),'{$_REQUEST["email"]}','{$_REQUEST["emcargo"]}','{$_REQUEST["rede"]}','{$_COOKIE['idusuario']}')";
         $modulo = 'pessoa';
     }else{
-        $obj = "(celula,endereco,horario,inidata,dia,idlider,status)";
-        $value ="('{$_REQUEST["celula"]}','{$_REQUEST['endereco']}','{$_REQUEST['horario']}','{$_REQUEST['inidata']}','{$_REQUEST['dia']}','{$_REQUEST['idlider']}','{$_REQUEST['status']}')";
+        $obj = "(celula,endereco,horario,inidata,dia,idlider,status,bairro)";
+        $value ="('{$_REQUEST["celula"]}','{$_REQUEST['endereco']}','{$_REQUEST['horario']}','{$_REQUEST['inidata']}','{$_REQUEST['dia']}','{$_REQUEST['idlider']}','{$_REQUEST['status']}','{$_REQUEST['bairro']}')";
         $modulo = 'celula';
     }
         //verifica se recebe modulo
