@@ -21,7 +21,6 @@
             width: 75% !important;
             height: 100px;
             font-size: 45px !important;
-            text-transform: uppercase;
             letter-spacing: 2.5px;
             font-weight: 500;
             color: #000;
@@ -44,7 +43,6 @@
             height: 150px;
             margin-top: 1px;
             font-size: 45px;
-            text-transform: uppercase;
             letter-spacing: 2.5px;
             font-weight: 500;
             color: #000;
@@ -67,7 +65,6 @@
             width: 450px;
             height: 150px;
             font-size: 40px;
-            text-transform: uppercase;
             letter-spacing: 1.2px;
             font-weight: 500;
             color: #000;

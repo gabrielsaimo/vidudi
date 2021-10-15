@@ -114,7 +114,7 @@
                     <? if (isset($_GET["id"]) != null) { ?>
                         <!--  _1_i_pessoa_emcargo  ---->
                         <input type="hidden" name="_modulo" value="pessoa"><input type="hidden" name="_acao" value="i">
-                        <td class="texto">Emcargo: </td>
+                        <td class="texto">Encargo: </td>
                         <? echo "<td> <select class='input1' name='emcargo'>";
                         while ($rows = mysqli_fetch_array($q)) {
                             echo "<option value='" . $rows['idemcargo'] . "'>" . $rows['cargo'] . "</option>";
@@ -122,7 +122,7 @@
                         echo "</select></td>"; ?>
                     <? } else { ?>
                         <input type="hidden" name="_modulo" value="pessoa"><input type="hidden" name="_acao" value="i">
-                        <td class="texto">Emcargo: </td>
+                        <td class="texto">Encargo: </td>
 
                         <? echo "<td> <select class='input1' name='emcargo'>";
                         while ($rows = mysqli_fetch_array($q)) {

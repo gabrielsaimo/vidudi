@@ -9,7 +9,6 @@
         width: 200px;
         background-color: #333;
         color: #FFF;
-        text-transform: uppercase;
         text-align: center;
         display: block;
         margin-top: 10px;
@@ -72,7 +71,7 @@ if ($_GET['id'] == $idpessoa) { ?>
 <div>Email: <?= $row['email'] ?> </div>
 <div>Data de Naiscimento: <?= date('d-m-Y', strtotime($row['idade'])) ?></div>
 <div>Idade: <?= $idade ?> Anos</div>
-<div>Emcargo: <?= $row['cargo'] ?></div>
+<div>Encargo: <?= $row['cargo'] ?></div>
 <div>Rede: <?= $row['rede'] ?></div>
 <div>Cursao: <?= $cursao ?></div>
 <div>CTL: <?= $ctl ?></div>
