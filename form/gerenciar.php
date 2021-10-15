@@ -11,7 +11,7 @@ $qpf = $banco->query("SELECT * From anexo  ") or die('erro ao consultar'.mysqli_
 <table>
 <tr>
         <td class="texto" style="width: 105px;" >Titulo:</td>
-        <td><input type="text" name="titulo" value="" class="input1" placeholder="Titulo da palavra"></td>
+        <td><input autofocus type="text" name="titulo" value="" class="input1" placeholder="Titulo da palavra"></td>
     </tr>
     <tr>
         <td class="texto" style="width: 105px;" >Link do PDF:</td>
