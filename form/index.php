@@ -11,10 +11,18 @@ $detect = new Mobile_Detect; //criando uma nova instância de Mobile_Detect
 if ($detect->isMobile()) {  //se o dispositivo é um dispositivo móvel
     $celula = 'Y';
     setcookie("mobile", $celula);
+    $l ='370px';
+    $h = '475px';
+    $a ='320px';
+    $m = '445px';
 } else //senão
 {
     $celula = 'N';
     setcookie("mobile", $celula);
+    $l ='600px';
+    $h= '600px';
+    $a ='530px';
+    $m = '560px';
 }
 ?>
 <!DOCTYPE html>
@@ -74,16 +82,21 @@ if ($detect->isMobile()) {  //se o dispositivo é um dispositivo móvel
                                     $widith = '370px';
                                     $margentop = '80px';
                                 }else{
-                                    $widith = '37px';
+                                    if($celula != 'Y'){
+                                        $widith = '37px';
+                                    }else{
+                                        $widith = '120px';
+                                    }
+                                    
                                     $margentop = '-190px';
                                 }
                                 
                                 if(!empty($texto) and $texto != ' '){
-                                    echo '<div class="container" style="display: block;margin-left: 50%;margin-right: auto;width: 420px;height: 600px;text-align: center;margin-top: '.$widith.'">'.$rowli['titulo'];
+                                    echo '<div class="container" style="display: block;margin-left: 50%;margin-right: auto;width: 370px;height: 600px;text-align: center;margin-top: '.$widith.'">'.$rowli['titulo'];
                                     echo '<img style="width: 320px; height: 445px; border-radius: 5%;" src="data:image/gif;base64,' . base64_encode($rowli['anexo']) . '"/>'; 
                                 }else{
-                                    echo '<div class="container" style="display: block;margin-left: 50%;margin-right: auto;width: 650px;height: 600px;text-align: center;margin-top: '.$widith.'">'.$rowli['titulo'];
-                                    echo '<img style="width: 600px; height: 590px;margin-top: 5px; border-radius: 5%;" src="data:image/gif;base64,' . base64_encode($rowli['anexo']) . '"/>';
+                                    echo '<div class="container" style="display: block;margin-left: 50%;margin-right: auto;width: '.$l.';height:'.$h.';text-align: center;margin-top: '.$widith.'">'.$rowli['titulo'];
+                                    echo '<img style="width: '.$a.'; height: '.$m.';margin-top: 5px; border-radius: 5%;" src="data:image/gif;base64,' . base64_encode($rowli['anexo']) . '"/>';
                                 }
                             }else{
                                 if($i == 1){
@@ -91,7 +104,7 @@ if ($detect->isMobile()) {  //se o dispositivo é um dispositivo móvel
                                 }else{
                                     $margentop = '-190px';
                                 }
-                                echo '<div class="container" style="margin-bottom: 260px;display: block;margin-left: 50%;margin-right: auto;width: 420px;height: 140px;text-align: center;margin-top: '. $margentop.';"> '.$rowli['titulo'];
+                                echo '<div class="container" style="margin-bottom: 260px;display: block;margin-left: 50%;margin-right: auto;width: 368px;height: 140px;text-align: center;margin-top: '. $margentop.';"> '.$rowli['titulo'];
                             }
                                 
                                 $novo_texto = str_replace("file/d/", "u/0/uc?id=", $texto);
@@ -101,9 +114,14 @@ if ($detect->isMobile()) {  //se o dispositivo é um dispositivo móvel
                                 $link = str_replace("/view?usp=sharing", "&export=download", $novo_texto);
                                 $novo_audio = str_replace("file/d/", "u/0/uc?id=", $audio);
                                 $linkaudio = str_replace("/view?usp=sharing", "&export=download", $novo_audio);
-                            if(!empty($texto) ){?><a style="display: block;width: 370px;  margin-top:5px" href="<?= $link ?>"><li type="button"  style="width: 370px;" class="btn1"> <?=$rowli['titulo']?> <br> <?=$data?> PDF  </li></a> <?
+                                if($rowli['anexo'] == ''){
+                                    $w = '310px';
+                                }else{
+                                    $w = '320px';
+                                }
+                            if(!empty($texto) ){?><a style="display: block;width: <?=$w?>;  margin-top:5px" href="<?= $link ?>"><li type="button"  style="width: <?=$w?>;" class="btn1"> <?=$rowli['titulo']?> <br> <?=$data?> PDF  </li></a> <?
                             }if(!empty($audio)){?> 
-                           <a style="display: block;width: 370px;  margin-top:5px" href="<?=$linkaudio?>"><li type="button"  style="width: 370px;" class="btn1"> <?=$data?>  Audio</li> </a><?}
+                           <a style="display: block;width: <?=$w?>;  margin-top:5px" href="<?=$linkaudio?>"><li type="button"  style="width: <?=$w?>;" class="btn1"> <?=$data?>  Audio</li> </a><?}
                             echo '</div>';
                             $i++;
                         }
