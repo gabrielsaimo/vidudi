@@ -3,7 +3,7 @@
 $qpf = $banco->query("SELECT * From anexo  ") or die('erro ao consultar'.mysqli_error($banco));?>
 <form action="upanexo.php" method="post" enctype="multipart/form-data" >
         <label class="btn1" for="file">selecionar capa do pdf</label>
-        <input hidden type="file" name="file" id="file">
+        <input hidden type="file" name="file" id="file" accept="image/png, image/gif, image/jpeg">
         <input type="hidden" nome="id" value="<?= $idpessoa ?>" name="id">
         <input type="hidden" nome="tipo" value="cadapdf" name="tipo">
     

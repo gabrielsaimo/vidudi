@@ -58,7 +58,7 @@ if ($_GET['id'] == $idpessoa) { ?>
         <? } else { ?>
             <label for="file">Enviar foto</label>
         <? } ?>
-        <input hidden type="file" name="file" id="file">
+        <input hidden type="file" name="file" id="file" accept="image/png, image/gif, image/jpeg">
         <input type="hidden" nome="id" value="<?= $idpessoa ?>" name="id">
         <input type="hidden" nome="tipo" value="avatar" name="tipo">
         <input style="display: none;" id="submit" type="submit" value="submit" name="submit">
