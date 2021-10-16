@@ -26,7 +26,7 @@ if ($_GET['_modulo'] == 'pessoa') {
     $q = $banco->query("select * from pessoa p left join celula c on(p.idlider = c.idlider and c.status = 'ATIVO') group by  c.idcelula");
     $nump = mysqli_num_rows($q);
 }
-
+echo '<div style="text-align: end;">'.$nump.' Resultados.</div>';
 
 
 if ($_COOKIE['mobile'] == 'Y') { ?>
@@ -156,8 +156,6 @@ if ($_COOKIE['mobile'] == 'Y') { ?>
             </thead>
             <tbody>
                 <?
-
-                echo $nump;
                 if ($_GET['_modulo'] == 'celula') {
 
                     while ($row = mysqli_fetch_array($q)) { ?>
@@ -204,11 +202,6 @@ if ($_COOKIE['mobile'] == 'Y') { ?>
             ?>
             </tbody>
         </table>
-
-
-
-
-
         <br>
         <div style="display: flex; justify-content: center;">
         </div>

@@ -85,17 +85,17 @@ if ($detect->isMobile()) {  //se o dispositivo é um dispositivo móvel
                                     if($celula != 'Y'){
                                         $widith = '37px';
                                     }else{
-                                        $widith = '120px';
+                                        $widith = '70px';
                                     }
                                     
                                     $margentop = '-190px';
                                 }
                                 
                                 if(!empty($texto) and $texto != ' '){
-                                    echo '<div class="container" style="display: block;margin-left: 50%;margin-right: auto;width: 370px;height: 600px;text-align: center;margin-top: '.$widith.'">'.$rowli['titulo'];
+                                    echo '<div class="container" style="display: block;margin-left: 51.7%;margin-right: auto;width: 370px;height: 600px;text-align: center;margin-top: '.$widith.'">'.$rowli['titulo'];
                                     echo '<img style="width: 320px; height: 445px; border-radius: 5%;" src="data:image/gif;base64,' . base64_encode($rowli['anexo']) . '"/>'; 
                                 }else{
-                                    echo '<div class="container" style="display: block;margin-left: 50%;margin-right: auto;width: '.$l.';height:'.$h.';text-align: center;margin-top: '.$widith.'">'.$rowli['titulo'];
+                                    echo '<div class="container" style="display: block;margin-left: 51.7%;margin-right: auto;width: '.$l.';height:'.$h.';text-align: center;margin-top: '.$widith.'">'.$rowli['titulo'];
                                     echo '<img style="width: '.$a.'; height: '.$m.';margin-top: 5px; border-radius: 5%;" src="data:image/gif;base64,' . base64_encode($rowli['anexo']) . '"/>';
                                 }
                             }else{
@@ -104,7 +104,7 @@ if ($detect->isMobile()) {  //se o dispositivo é um dispositivo móvel
                                 }else{
                                     $margentop = '-190px';
                                 }
-                                echo '<div class="container" style="margin-bottom: 260px;display: block;margin-left: 50%;margin-right: auto;width: 368px;height: 140px;text-align: center;margin-top: '. $margentop.';"> '.$rowli['titulo'];
+                                echo '<div class="container" style="margin-bottom: 260px;display: block;margin-left: 51.7%;margin-right: auto;width: 368px;height: 140px;text-align: center;margin-top: '. $margentop.';"> '.$rowli['titulo'];
                             }
                                 
                                 $novo_texto = str_replace("file/d/", "u/0/uc?id=", $texto);
