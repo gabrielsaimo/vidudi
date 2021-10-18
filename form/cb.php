@@ -1,4 +1,5 @@
-<?
+<?$_REQUEST["_1_u_celula_batizado"] = 'Y';
+$_REQUEST["_1_u_celula_semi"] = 'N';
 
 if ($_REQUEST["batizado"] == 'on') {
     $_REQUEST["batizado"] = 'Y';
@@ -35,7 +36,8 @@ if ($_REQUEST['_modulo'] == 'pessoa1') {
 } else {
     $arrynomes = [];
     $arryvalor = [];
-    foreach ($_REQUEST as $nome_campo => $valor_campo) {
+    $arryvalorup=[];
+    foreach ($_REQUEST as $nome_campo => $valor_campo) { // pegando os posts 
 
         $post =  explode('_', $nome_campo);
         $nunpost = $post[1];
@@ -45,32 +47,40 @@ if ($_REQUEST['_modulo'] == 'pessoa1') {
         if (!empty($post[3])) {
             $tabela = $post[3];
         }
-        $coluna = $post[4];
+            $coluna = $post[4];
+            
         if (!empty($nunpost)) {
-            $result = "_" . $post[1] . "_" . $post[2] . "_" . $post[3] . "_" . $post[4];
-            $valor =  $_REQUEST[$result];
+            $result = "_" . $post[1] . "_" . $post[2] . "_" . $post[3] . "_" . $post[4]; // refazendo o post
+            $valor =  $_REQUEST[$result]; // pegando o valor 
+            $arryvalorup[] = $coluna.' = "'.$valor.'"';
         }
 
         if (!empty($coluna) and !empty($valor)) {
             $arrynomes[] = $coluna;
             $arryvalor[] = $valor;
         }
+
     }
+ 
+    // tratando pod valores para o insert
     $nomes = implode(",", $arrynomes);
     $valores = implode(',', $arryvalor);
+    $valoreup = implode(',', $arryvalorup);
     $value1 = '(' . $valores . ')';
     $obj = '(' . $nomes . ')';
-    $valu2 = str_replace('(', "('", $value1);
-    $value3 = str_replace(',', "','", $valu2);
-    $value = str_replace(')', "')", $value3);
+    $valu2 = str_replace('(', "('", $value1); //colcanado '' em tudo 
+    $value3 = str_replace(',', "','", $valu2); //colcanado '' em tudo 
+    $value = str_replace(')', "')", $value3); //colcanado '' em tudo 
     $obj;
+    print_r($obj);
     $value;
     $modulo = $tabela;
     $modulo;
     if (isset($tabela)) {
 
         //define qual finçao sera realizada 
-        if ($acao == "u") {
+        if ($acao == "u" and $_REQUEST['_acao'] == "u") {
+            die('up');
             $acaoss = "UPDATE ";
             alterarPessoa($modulo);
         } elseif ($acao == "i") {
@@ -117,11 +127,13 @@ function inserirPessoa($modulo, $_acao)
 function alterarPessoa($modulo)
 {
     global $acaoss;
+    global $obj;
+    global $valoreup;
     global $idusuario_cookie;
 
     if ($_REQUEST['_modulo'] == "celula1") {
         $sql = $acaoss . " $modulo SET status='ATIVO' WHERE idcelula='{$_REQUEST["id"]}'";
-    } else {
+    } else if($_REQUEST['_modulo'] == "pessoa1"){
         if (empty($_REQUEST["nome"]) and empty($_REQUEST["status"])) {
             $sql = $acaoss . " $modulo SET telefone='{$_REQUEST["telefone"]}',idade='{$_REQUEST["idade"]}',idlider='{$_REQUEST["idlider"]}',batizado='{$_REQUEST["batizado"]}',cursao='{$_REQUEST["cursao"]}',ctl='{$_REQUEST["ctl"]}',semi='{$_REQUEST["semi"]}',bairro='{$_REQUEST['bairro']}',endereco='{$_REQUEST['endereco']}' WHERE id='{$_REQUEST["id"]}'";
         } else if (!empty($_REQUEST["nome"])) {
@@ -129,6 +141,8 @@ function alterarPessoa($modulo)
         } else {
             $sql = $acaoss . " $modulo SET status='ATIVO' WHERE id='{$_REQUEST["id"]}'";
         }
+    }else{
+        $sql = $acaoss . $modulo .' set'. $valoreup.' WHERE id='{$_REQUEST["id"]};
     }
     banco($sql);
     voltarIndex();
