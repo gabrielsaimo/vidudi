@@ -1,5 +1,4 @@
-<?$_REQUEST["_1_u_celula_batizado"] = 'Y';
-$_REQUEST["_1_u_celula_semi"] = 'N';
+<?
 
 if ($_REQUEST["batizado"] == 'on') {
     $_REQUEST["batizado"] = 'Y';
@@ -71,16 +70,12 @@ if ($_REQUEST['_modulo'] == 'pessoa1') {
     $valu2 = str_replace('(', "('", $value1); //colcanado '' em tudo 
     $value3 = str_replace(',', "','", $valu2); //colcanado '' em tudo 
     $value = str_replace(')', "')", $value3); //colcanado '' em tudo 
-    $obj;
-    print_r($obj);
-    $value;
     $modulo = $tabela;
     $modulo;
     if (isset($tabela)) {
 
         //define qual finçao sera realizada 
         if ($acao == "u" and $_REQUEST['_acao'] == "u") {
-            die('up');
             $acaoss = "UPDATE ";
             alterarPessoa($modulo);
         } elseif ($acao == "i") {
