@@ -1,5 +1,5 @@
 <?php
-include_once('../form/cb.php');
+include_once('cb.php');
 $login = $_POST['login'];
 $senha = $_POST['senha'];
 $confsenha = $_POST['confsenha'];
