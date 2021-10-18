@@ -1,7 +1,7 @@
 <link rel="stylesheet" type="text/css" href="css/style.css">
 <meta charset="UTF-8">
 
-<div class="caixa"></div>
+
 <div class="container menos-top">
     <form action="cb.php" method="get">
         <? $banco = abrirBanco();
@@ -103,7 +103,7 @@
                         echo "</select></td>"; ?>
                 </tr>
                 <tr>
-                    <td><input type="submit" class="btn1" style="display: block;
+                    <td colspan="10" ><input type="submit" class="btn1" style="display: block;
     margin-left:auto;
     margin-right:auto;"></td>
                 </tr>
