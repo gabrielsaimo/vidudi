@@ -23,7 +23,7 @@ if ($_GET['_modulo'] == 'pessoa') {
     $q = $banco->query("SELECT * FROM vwpessoa " . $cond . " " . $per);
     $nump = mysqli_num_rows($q);
 } elseif ($_GET['_modulo'] == 'celula') {
-    $q = $banco->query("select * from pessoa p left join celula c on(p.idlider = c.idlider and c.status = 'ATIVO') group by  c.idcelula");
+    $q = $banco->query("SELECT * from pessoa p join celula c on(p.idlider = c.idlider )  group by  c.idcelula");
     $nump = mysqli_num_rows($q);
 }
 if(!empty($modulo)){
@@ -86,7 +86,7 @@ if ($_COOKIE['mobile'] == 'Y') { ?>
                     $rowi = mysqli_fetch_array($qi);
                     ?>
                     <table>
-                        <tr>
+                        <tr class="clickable-row" data-href="index.php?_modulo=ipessoa&_acao=r&id=<?= $row["id"] ?>">
 
                             <?
                             if ($rown > 0) {
@@ -159,7 +159,6 @@ if ($_COOKIE['mobile'] == 'Y') { ?>
             <tbody>
                 <?
                 if ($_GET['_modulo'] == 'celula') {
-
                     while ($row = mysqli_fetch_array($q)) { ?>
                         <tr class="bb clickable-row" data-href="index.php?_modulo=icelula&_colunas[]=nome&_colunas[]=sexo&_colunas[]=emcargo&_colunas[]=rede&_colunas[]=criadoem&_colunas[]=alteradoem&_pk=idpessoa&id=<?= $row["idcelula"] ?>&_acao=r">
                             <td><?= $row["idcelula"] ?></td>
@@ -169,13 +168,13 @@ if ($_COOKIE['mobile'] == 'Y') { ?>
                             <td><?= $row["horario"] ?></td>
                             <td><?= $row["nome"] ?></td>
                             <td><?= date('d-m-Y', strtotime($row["inidata"])) ?></td>
-                            <? if ($row["status"] != 'ATIVO') { ?>
+                           <!--
                                 <td> <button class="btn fundo-azul" title="Ativar" id="<?= $row["idcelula"] ?>" onclick="ativar(this)"><img src="../img/visivel.png"></button></td>
                                 <td></td>
-                            <? } else { ?>
+                    -->
                                 <td> <a class="btn fundo-amarelo" title="Editar" href="?_modulo=celula&celula=<?= $row['celula'] ?>&_acao=u&id=<?= $row["idcelula"] ?>"><img src="../img/editar.png"></a> </td>
                                 <td> <button class="btn fundo-vermelho" title="Inativar" id="<?= $row["idcelula"] ?>" onclick="deletar(this)"><img src="../img/invisivel.png"></button></td>
-                            <? } ?>
+                           
                         </tr>
                     <? }
                 }
@@ -183,7 +182,7 @@ if ($_COOKIE['mobile'] == 'Y') { ?>
                 if ($_GET['_modulo'] == 'pessoa') {
                     while ($row = mysqli_fetch_array($q)) { //desenhar apenas as colunas
                     ?>
-                        <tr class="bb">
+                        <tr class="bb " >
                             <td><?= $row["nome"] ?></td>
                             <td><?= $row["sexo"] ?></td>
                             <td><?= $row["cargo"] ?></td>

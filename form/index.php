@@ -32,7 +32,7 @@ if ($detect->isMobile()) {  //se o dispositivo é um dispositivo móvel
 <head>
     <meta charset="UTF-8">
     <title>Videria</title>
-    <script src="/js/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link rel="stylesheet" type="text/css" href="../css/style.css">
 </head>
 <style>
@@ -128,7 +128,7 @@ if ($detect->isMobile()) {  //se o dispositivo é um dispositivo móvel
                         echo '</div>';
                     } else if (empty($_GET['_modulo']) and !empty($row['telefone'])) {
                         include_once("login.php");
-                    }else{
+                    }else if($_GET['_modulo'] != 'pessoa' and $_GET['_modulo'] != 'celula'){
                         include_once("home.php");
                     }
                 }

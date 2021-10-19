@@ -3,7 +3,7 @@
 
 
 <div class="container menos-top">
-    <form action="cb.php" method="get">
+    <form action="cb.php" method="pots">
         <? $banco = abrirBanco();
         $sqlbairro = $banco->query("SELECT * FROM bairro");
         $q = $banco->query("SELECT p.id,p.nome FROM pessoa p join emcargo e on(p.idemcargo = e.idemcargo) where p.idemcargo in(2,3,4,5) and p.status='ATIVO'") or die("erro ao selecionar");

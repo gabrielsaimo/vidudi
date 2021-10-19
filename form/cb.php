@@ -1,38 +1,9 @@
 <?
-
-if ($_REQUEST["batizado"] == 'on') {
-    $_REQUEST["batizado"] = 'Y';
-} else {
-    $_REQUEST["batizado"] = 'N';
-}
-if ($_REQUEST["cursao"] == 'on') {
-    $_REQUEST["cursao"] = 'Y';
-} else {
-    $_REQUEST["cursao"] = 'N';
-}
-if ($_REQUEST["ctl"] == 'on') {
-    $_REQUEST["ctl"] = 'Y';
-} else {
-    $_REQUEST["ctl"] = 'N';
-}
-if ($_REQUEST["semi"] == 'on') {
-    $_REQUEST["semi"] = 'Y';
-} else {
-    $_REQUEST["semi"] = 'N';
-}
-
 $idusuario_cookie = $_COOKIE['idusuario'];
 
 //verifica e define em qual foi recebido
-if ($_REQUEST['_modulo'] == 'pessoa1') {
-    $obj = "(nome,bairro,endereco,sexo,criadoem,alteradoem,email,idemcargo,idrede,idusuario)";
-    $value = "('{$_REQUEST["nome"]}','{$_REQUEST['bairro']}','{$_REQUEST['endereco']}','{$_REQUEST["sexo"]}',sysdate(),sysdate(),'{$_REQUEST["email"]}','{$_REQUEST["emcargo"]}','{$_REQUEST["rede"]}','{$_COOKIE['idusuario']}')";
-    $modulo = 'pessoa';
-} else if ($_REQUEST['_modulo'] == 'celula1') {
-    $obj = "(celula,endereco,horario,inidata,dia,idlider,status,bairro)";
-    $value = "('{$_REQUEST["celula"]}','{$_REQUEST['endereco']}','{$_REQUEST['horario']}','{$_REQUEST['inidata']}','{$_REQUEST['dia']}','{$_REQUEST['idlider']}','{$_REQUEST['status']}','{$_REQUEST['bairro']}')";
-    $modulo = 'celula';
-} else {
+if(!empty($_REQUEST)) {
+    
     $arrynomes = [];
     $arryvalor = [];
     $arryvalorup=[];
@@ -51,9 +22,6 @@ if ($_REQUEST['_modulo'] == 'pessoa1') {
         if (!empty($nunpost)) {
             $result = "_" . $post[1] . "_" . $post[2] . "_" . $post[3] . "_" . $post[4]; // refazendo o post
             $valor =  $_REQUEST[$result]; // pegando o valor 
-            if($valor == 'on'){
-                $valor == 'Y';
-            }
             $arryvalorup[] = $coluna.' = "'.$valor.'"';
         }
 
@@ -94,15 +62,7 @@ if ($_REQUEST['_modulo'] == 'pessoa1') {
 if (isset($_REQUEST['_modulo'])) {
 
     //define qual finçao sera realizada 
-    if ($_REQUEST['_acao'] == "u") {
-        
-        $acaoss = "UPDATE ";
-        alterarPessoa($modulo);
-    } elseif ($_REQUEST['_acao'] == "i") {
-        die('aaa');
-        $acaoss = "INSERT INTO ";
-        inserirPessoa($modulo, $_REQUEST['_acao']);
-    } elseif ($_REQUEST['_acao'] == "d") {
+    if ($_REQUEST['_acao'] == "d") {
         $acaoss = "DELETE FROM ";
         excluirPessoa($modulo);
     }
@@ -110,7 +70,7 @@ if (isset($_REQUEST['_modulo'])) {
 //funçao que abre o banco de dados MSQLI
 function abrirBanco()
 {
-    $conexao = new mysqli("localhost", "root", "root", "vid_udi", "3306");
+    $conexao = new mysqli("localhost", "root", "root", "crud", "3306");
     return $conexao;
 }
 
@@ -131,9 +91,8 @@ function alterarPessoa($modulo)
     global $obj;
     global $valoreup;
     global $idusuario_cookie;
-$idpost = str_replace(' ','',$_REQUEST["id"]);
-echo $acaoss . $modulo .' set '. $valoreup." WHERE id='$idpost'";
-    
+    $idpost = str_replace(' ','',$_REQUEST["id"]);
+
         $sql = $acaoss . $modulo .' set '. $valoreup." WHERE id='$idpost'";
         
     banco($sql);

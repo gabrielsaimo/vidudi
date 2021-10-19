@@ -80,15 +80,15 @@
 
     <? } ?>
 </style>
-<div class="caixa"></div>
+
 <div class="container ">
     <br>
     <form action="cb.php" method="post">
-        <?= $idusuario_cookie = $_COOKIE['idusuario'];
+        <? $idusuario_cookie = $_COOKIE['idusuario'];
         $q = $banco->query("SELECT * FROM emcargo") or die("erro ao selecionar emcargo");
         $qr = $banco->query("SELECT * FROM rede") or die("erro ao selecionar rede");
         ?>
-        <table class="centro menos-top">
+        <table class="centro">
             <tbody>
                 <? if (isset($_GET["id"]) != null) { ?>
                     <? $pessoa = selectIdPessoa($_GET["id"]); ?>
@@ -169,11 +169,10 @@
                     <td>
                     <td>
                     <input type="hidden" name="id" value="<?= $pessoa["id"] ?> ">
-                    <input type="hidden" name="_1_u_pessoa_idusuario" value="<?= $idusuario_cookie ?>">
                     <? } else { ?>
                     <td>
-                    <? } ?>
                     <input type="hidden" name="_1_i_pessoa_idusuario" value="<?=$idusuario_cookie ?>">
+                    <? } ?>
                     </td>
                     <tr>
                         <td colspan=3><input class=" btn1 " type="submit" name="Enviar" value="Enviar"></td>
