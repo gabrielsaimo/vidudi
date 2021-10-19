@@ -141,7 +141,6 @@ if ($detect->isMobile()) {  //se o dispositivo é um dispositivo móvel
                         $_GET['_acao'] = 'r';
                     }
                 } else {
-                    die('awaw');
                     include_once("login.php");
                 }
             };

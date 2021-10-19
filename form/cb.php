@@ -1,5 +1,5 @@
 <?
-/*
+
 if ($_REQUEST["batizado"] == 'on') {
     $_REQUEST["batizado"] = 'Y';
 } else {
@@ -20,7 +20,7 @@ if ($_REQUEST["semi"] == 'on') {
 } else {
     $_REQUEST["semi"] = 'N';
 }
-*/
+
 $idusuario_cookie = $_COOKIE['idusuario'];
 
 //verifica e define em qual foi recebido
@@ -51,6 +51,9 @@ if ($_REQUEST['_modulo'] == 'pessoa1') {
         if (!empty($nunpost)) {
             $result = "_" . $post[1] . "_" . $post[2] . "_" . $post[3] . "_" . $post[4]; // refazendo o post
             $valor =  $_REQUEST[$result]; // pegando o valor 
+            if($valor == 'on'){
+                $valor == 'Y';
+            }
             $arryvalorup[] = $coluna.' = "'.$valor.'"';
         }
 
@@ -123,15 +126,18 @@ function inserirPessoa($modulo, $_acao)
 
 function alterarPessoa($modulo)
 {
+    
     global $acaoss;
     global $obj;
     global $valoreup;
     global $idusuario_cookie;
-
-    if (!empty($_REQUEST['_modulo']) and $_REQUEST['_modulo'] == 'pessoa1') {
-        $sql = $acaoss . $modulo .' set'. $valoreup." WHERE id='{$_REQUEST["id"]}'";
-    }
+$idpost = str_replace(' ','',$_REQUEST["id"]);
+echo $acaoss . $modulo .' set '. $valoreup." WHERE id='$idpost'";
+    
+        $sql = $acaoss . $modulo .' set '. $valoreup." WHERE id='$idpost'";
+        
     banco($sql);
+    
     voltarIndex();
 }
 

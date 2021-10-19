@@ -139,25 +139,25 @@
                 </tr>
                 <tr>
                     <td>
-                        <input type="checkbox" name="_1_u_pessoa_batizado" id="batizado">
+                        <input type="checkbox" name="_1_u_pessoa_batizado" id="batizado" value="Y">
                         <label style="font-size: 20px; margin-left: 10px;" for="batizado">Batizado</label>
 
                     </td>
                 <tr>
                     <td>
-                        <input type="checkbox" name="_1_u_pessoa_cursao" id="cursao">
+                        <input type="checkbox" name="_1_u_pessoa_cursao" id="cursao" value="Y">
                         <label style="font-size: 20px; margin-left: 10px;" for="cursao">Cursao</label>
                     </td>
                 </tr>
                 <tr>
                     <td>
-                        <input type="checkbox" name="_1_u_pessoa_ctl" id="ctl">
+                        <input type="checkbox" name="_1_u_pessoa_ctl" id="ctl" value="Y">
                         <label style="font-size: 20px; margin-left: 10px;" for="ctl">CTL</label>
                     </td>
                 </tr>
                 <tr>
                     <td>
-                        <input type="checkbox" name="_1_u_pessoa_semi" id="semi">
+                        <input type="checkbox" name="_1_u_pessoa_semi" id="semi" value="Y">
                         <label style="font-size: 20px; margin-left: 10px;" for="semi">Seminario</label>
                     </td>
                 </tr>
