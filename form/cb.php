@@ -130,7 +130,7 @@ function voltarIndex()
     if ($_REQUEST['_modulo'] == "pessoa") {
         header("Location:index.php");
     } else {
-        header("Location:index.php?_modulo=celula&_colunas[]=idcelula&_colunas[]=celula&_colunas[]=endereco&_colunas[]=hora&_colunas[]=multiplicou");
+        header("Location:index.php");
     }
 }
 //funçao para abrir e fechar o banco de dados

@@ -182,7 +182,7 @@ if ($_COOKIE['mobile'] == 'Y') { ?>
                 if ($_GET['_modulo'] == 'pessoa') {
                     while ($row = mysqli_fetch_array($q)) { //desenhar apenas as colunas
                     ?>
-                        <tr class="bb " >
+                        <tr class="bb">
                             <td><?= $row["nome"] ?></td>
                             <td><?= $row["sexo"] ?></td>
                             <td><?= $row["cargo"] ?></td>

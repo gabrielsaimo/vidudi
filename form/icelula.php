@@ -80,7 +80,7 @@ if ($_COOKIE['mobile'] == 'Y') { ?>
                     if (!empty($_GET)) {
                         foreach ($_GET['_colunas'] as $v) {
                             //listas os campos enviados pelo get para montar a tabela de pesquisa
-                            echo '<td class="bb">' . $v . ' </td>';
+                            echo '<td class="bb" >' . $v . ' </td>';
                         }
                     }
                     ?>
@@ -89,14 +89,14 @@ if ($_COOKIE['mobile'] == 'Y') { ?>
             <?
             while ($row = mysqli_fetch_array($qp)) { //desenhar apenas as colunas
             ?>
-                <tr class="bb">
+                <tr class="bb" style="height: 30px;">
                     <td><?= $row["nome"] ?></td>
                     <td><?= $row["sexo"] ?></td>
                     <td><?= $row["cargo"] ?></td>
                     <td><?= $row["rede"] ?></td>
                     <td><?= $row["criadoem"] ?></td>
                     <td><?= $row["alteradoem"] ?></td>
-                    <td class="clickable-row" data-href="index.php?_modulo=ipessoa&_acao=r&id=<?= $row["id"] ?>">Visializar</td>
+                    <td class="clickable-row" data-href="index.php?_modulo=ipessoa&_acao=r&id=<?= $row["id"] ?>">ver</td>
                     <? if ($row["status"] != 'ATIVO') { ?>
                         <td> <button class="btn fundo-azul" id="<?= $row["id"] ?>" onclick="ativar(this)"><img src="../img/visivel.png"></button></td>
                     <? } else { ?>
