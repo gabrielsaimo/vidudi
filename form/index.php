@@ -61,7 +61,7 @@ if ($detect->isMobile()) {  //se o dispositivo é um dispositivo móvel
         <? if (empty($idusuario_cookie)) {
             $idusuario_cookie = 0;
         }
-        $q1 = $banco->query("SELECT u.*,p.id,p.idemcargo,p.idrede from usuario u join pessoa p on (u.idusuario = p.idusuario)where u.idusuario =" . $idusuario_cookie);
+        $q1 = $banco->query("SELECT u.*,p.id,p.idemcargo,p.idrede,p.telefone from usuario u join pessoa p on (u.idusuario = p.idusuario)where u.idusuario =" . $idusuario_cookie);
         $row = mysqli_fetch_array($q1); ?>
         <div class="row" style="margin-top: 100px; height:50px;margin-right: 0px;">
             <?
@@ -69,7 +69,7 @@ if ($detect->isMobile()) {  //se o dispositivo é um dispositivo móvel
             if (mysqli_num_rows($q1) > 0) {
                 if ($_GET['_acao']) {
                 } else {
-                    if (isset($login_cookie) and empty($_GET['_modulo'])) {
+                    if (isset($login_cookie) and empty($_GET['_modulo']) and !empty($row['telefone'])) {
                         echo '<div >';
                         //echo "Bem-Vindo, $login_cookie <br>";
                         $qli = $banco->query("SELECT * From anexo where tipoanexo = 'cadapdf' order by idanexo desc") or die('erro ao buscar link');
@@ -126,8 +126,10 @@ if ($detect->isMobile()) {  //se o dispositivo é um dispositivo móvel
                             $i++;
                         }
                         echo '</div>';
-                    } else if (empty($_GET['_modulo'])) {
+                    } else if (empty($_GET['_modulo']) and !empty($row['telefone'])) {
                         include_once("login.php");
+                    }else{
+                        include_once("home.php");
                     }
                 }
             } else {
@@ -139,6 +141,7 @@ if ($detect->isMobile()) {  //se o dispositivo é um dispositivo móvel
                         $_GET['_acao'] = 'r';
                     }
                 } else {
+                    die('awaw');
                     include_once("login.php");
                 }
             };

@@ -88,7 +88,7 @@
 
     <? } ?>
 </style>
-<form style="margin-top: 1000px; cursor: pointer;">
+<form style=" cursor: pointer;">
     <? $idusuario_cookie = $_COOKIE['idusuario'];
     $qp = $banco->query("SELECT p.* from pessoa p join usuario u on (p.idusuario = u.idusuario) where u.idusuario =" . $idusuario_cookie);
     $rows = mysqli_fetch_array($qp);
@@ -104,17 +104,14 @@
                 <tr>
                     <td class="texto">Telefone: </td>
                     <? if (isset($rows["id"]) != null) { ?>
-                        <td><input class="input1" id="telefone" type="phone" name="telefone" value="<?= $pessoa["telefone"] ?>" size="20" placeholder="..."></td>
+                        <td><input class="input1" id="telefone" type="phone" name="_1_u_pessoa_telefone" value="<?= $pessoa["telefone"] ?>" size="20" placeholder="..."></td>
                     <? } else { ?>
-                        <td><input type="phone" id="telefone" name="telefone" value="<?= $pessoa["telefone"] ?>" class="input1" placeholder="..."></td>
+                        <td><input type="phone" id="telefone" name="_1_u_pessoa_telefone" value="<?= $pessoa["telefone"] ?>" class="input1" placeholder="..."></td>
                     <? } ?>
                 </tr>
                 <tr>
-
-                    <input type="hidden" name="_modulo" value="pessoa"><input type="hidden" name="_acao" value="u">
                     <td class="texto">Bairro: </td>
-
-                    <? echo "<td> <select class='input1' name='bairro'>";
+                    <? echo "<td> <select class='input1' name='_1_u_pessoa_bairro'>";
                     while ($rowb = mysqli_fetch_array($sqlbairro)) {
                         echo "<option value='" . $rowb['idbairro'] . "'>" . $rowb['bairro'] . "</option>";
                     }
@@ -123,70 +120,62 @@
                 <tr>
                     <td class="texto">Endereço: </td>
                     <? if (isset($rows["id"]) != null) { ?>
-                        <td><input class="input1" id="endereco" type="andrres" name="endereco" value="<?= $pessoa["endereco"] ?>" size="20" placeholder="..."></td>
+                        <td><input class="input1" id="endereco" type="andrres" name="_1_u_pessoa_endereco" value="<?= $pessoa["endereco"] ?>" size="20" placeholder="..."></td>
                     <? } else { ?>
-                        <td><input type="andrres" id="endereco" name="endereco" value="<?= $pessoa["endereco"] ?>" class="input1" placeholder="..."></td>
+                        <td><input type="andrres" id="endereco" name="_1_u_pessoa_endereco" value="<?= $pessoa["endereco"] ?>" class="input1" placeholder="..."></td>
                     <? } ?>
                 </tr>
                 <tr>
-
-                    <input type="hidden" name="_modulo" value="pessoa"><input type="hidden" name="_acao" value="u">
                     <td class="texto">Lider: </td>
-
-                    <? echo "<td> <select class='input1' name='idlider'>";
+                    <? echo "<td> <select class='input1' name='_1_u_pessoa_idlider'>";
                     while ($row = mysqli_fetch_array($q)) {
                         echo "<option value='" . $row['id'] . "'>" . $row['nome'] . "</option>";
                     }
                     echo "</select></td>"; ?>
                 </tr>
                 <tr>
-                    <input type="hidden" name="_modulo" value="pessoa">
                     <td class="texto">data de nascimento: </td>
-                    <input type="hidden" name="_acao" value="u">
-                    <input type="hidden" name="idade" value="">
-                    <td><input type="date" name="idade" value="" class="input1"></td>
+                    <td><input type="date" name="_1_u_pessoa_idade" value="" class="input1"></td>
                 </tr>
                 <tr>
                     <td>
-                        <input type="checkbox" name="batizado" id="batizado">
-                        <label style="font-size: 70px; margin-left: 40px;" for="batizado">Batizado</label>
+                        <input type="checkbox" name="_1_u_pessoa_batizado" id="batizado">
+                        <label style="font-size: 20px; margin-left: 10px;" for="batizado">Batizado</label>
 
                     </td>
                 <tr>
                     <td>
-                        <input type="checkbox" name="cursao" id="cursao">
-                        <label style="font-size: 70px; margin-left: 40px;" for="cursao">Cursao</label>
+                        <input type="checkbox" name="_1_u_pessoa_cursao" id="cursao">
+                        <label style="font-size: 20px; margin-left: 10px;" for="cursao">Cursao</label>
                     </td>
                 </tr>
                 <tr>
                     <td>
-                        <input type="checkbox" name="ctl" id="ctl">
-                        <label style="font-size: 70px; margin-left: 40px;" for="ctl">CTL</label>
+                        <input type="checkbox" name="_1_u_pessoa_ctl" id="ctl">
+                        <label style="font-size: 20px; margin-left: 10px;" for="ctl">CTL</label>
                     </td>
                 </tr>
                 <tr>
                     <td>
-                        <input type="checkbox" name="semi" id="semi">
-                        <label style="font-size: 70px; margin-left: 40px;" for="semi">Seminario</label>
+                        <input type="checkbox" name="_1_u_pessoa_semi" id="semi">
+                        <label style="font-size: 20px; margin-left: 10px;" for="semi">Seminario</label>
                     </td>
                 </tr>
 
                 </tr>
 
                 <? if (isset($rows["id"]) != null) { ?>
-                    <td><input type="hidden" name="_acao" value="u">
-                    <td><input type="hidden" name="_modulo" value="pessoa">
+                    <td>
+            
                     <? } else { ?>
-                    <td><input type="hidden" name="_acao" value="u">
-                    <td><input type="hidden" name="_modulo" value="pessoa">
+                    <td>
+            
                     <? } ?>
                     <input type="hidden" name="id" value="<?= $pessoa["id"] ?> ">
-                    <input type="hidden" nome="idusuario" value="<?= $idusuario_cookie ?>">
+                    <input type="hidden" nome="_1_u_pessoa_idusuario" value="<?= $idusuario_cookie ?>">
                     </td>
                     <tr>
-                        <td colspan=3>
-                            <input class="enviar btn1 left" type="submit" name="Enviar" value="Enviar">
-                        </td>
+                        <td colspan=3><input class=" btn1 " type="submit" name="Enviar" value="Enviar"></td>
                     </tr>
                     </td>
             </tbody>

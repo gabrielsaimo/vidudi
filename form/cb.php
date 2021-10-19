@@ -1,5 +1,5 @@
 <?
-
+/*
 if ($_REQUEST["batizado"] == 'on') {
     $_REQUEST["batizado"] = 'Y';
 } else {
@@ -20,7 +20,7 @@ if ($_REQUEST["semi"] == 'on') {
 } else {
     $_REQUEST["semi"] = 'N';
 }
-
+*/
 $idusuario_cookie = $_COOKIE['idusuario'];
 
 //verifica e define em qual foi recebido
@@ -75,7 +75,7 @@ if ($_REQUEST['_modulo'] == 'pessoa1') {
     if (isset($tabela)) {
 
         //define qual finçao sera realizada 
-        if ($acao == "u" and $_REQUEST['_acao'] == "u") {
+        if ($acao == "u") {
             $acaoss = "UPDATE ";
             alterarPessoa($modulo);
         } elseif ($acao == "i") {
@@ -92,9 +92,11 @@ if (isset($_REQUEST['_modulo'])) {
 
     //define qual finçao sera realizada 
     if ($_REQUEST['_acao'] == "u") {
+        
         $acaoss = "UPDATE ";
         alterarPessoa($modulo);
     } elseif ($_REQUEST['_acao'] == "i") {
+        die('aaa');
         $acaoss = "INSERT INTO ";
         inserirPessoa($modulo, $_REQUEST['_acao']);
     } elseif ($_REQUEST['_acao'] == "d") {
@@ -105,7 +107,7 @@ if (isset($_REQUEST['_modulo'])) {
 //funçao que abre o banco de dados MSQLI
 function abrirBanco()
 {
-    $conexao = new mysqli("localhost", "root", "root", "crud", "3306");
+    $conexao = new mysqli("localhost", "root", "root", "vid_udi", "3306");
     return $conexao;
 }
 
@@ -126,18 +128,8 @@ function alterarPessoa($modulo)
     global $valoreup;
     global $idusuario_cookie;
 
-    if ($_REQUEST['_modulo'] == "celula1") {
-        $sql = $acaoss . " $modulo SET status='ATIVO' WHERE idcelula='{$_REQUEST["id"]}'";
-    } else if($_REQUEST['_modulo'] == "pessoa1"){
-        if (empty($_REQUEST["nome"]) and empty($_REQUEST["status"])) {
-            $sql = $acaoss . " $modulo SET telefone='{$_REQUEST["telefone"]}',idade='{$_REQUEST["idade"]}',idlider='{$_REQUEST["idlider"]}',batizado='{$_REQUEST["batizado"]}',cursao='{$_REQUEST["cursao"]}',ctl='{$_REQUEST["ctl"]}',semi='{$_REQUEST["semi"]}',bairro='{$_REQUEST['bairro']}',endereco='{$_REQUEST['endereco']}' WHERE id='{$_REQUEST["id"]}'";
-        } else if (!empty($_REQUEST["nome"])) {
-            $sql = $acaoss . " $modulo SET nome='{$_REQUEST["nome"]}',sexo='{$_REQUEST["sexo"]}',alteradoem=now(),email='{$_REQUEST["email"]}',idemcargo='{$_REQUEST["emcargo"]}',idrede='{$_REQUEST["rede"]}',idusuario='$idusuario_cookie' WHERE id='{$_REQUEST["id"]}'";
-        } else {
-            $sql = $acaoss . " $modulo SET status='ATIVO' WHERE id='{$_REQUEST["id"]}'";
-        }
-    }else{
-        $sql = $acaoss . $modulo .' set'. $valoreup.' WHERE id='{$_REQUEST["id"]};
+    if (!empty($_REQUEST['_modulo']) and $_REQUEST['_modulo'] == 'pessoa1') {
+        $sql = $acaoss . $modulo .' set'. $valoreup." WHERE id='{$_REQUEST["id"]}'";
     }
     banco($sql);
     voltarIndex();
@@ -147,6 +139,7 @@ function excluirPessoa($modulo)
 {
     global $acaoss;
     if ($_REQUEST['_acao'] == 'd' && $_REQUEST['_modulo'] == "celula") {
+        echo $acaoss . $modulo . " WHERE idcelula='{$_REQUEST["id"]}'";
         $sql = $acaoss . $modulo . " WHERE idcelula='{$_REQUEST["id"]}'";
     } else {
         $sql = $acaoss . $modulo . " WHERE id='{$_REQUEST["id"]}'";
