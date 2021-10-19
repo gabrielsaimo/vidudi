@@ -112,6 +112,7 @@
                 <tr>
                     <td class="texto">Bairro: </td>
                     <? echo "<td> <select class='input1' name='_1_u_pessoa_bairro'>";
+                    echo "<option value='0'> </option>";
                     while ($rowb = mysqli_fetch_array($sqlbairro)) {
                         echo "<option value='" . $rowb['idbairro'] . "'>" . $rowb['bairro'] . "</option>";
                     }
@@ -128,6 +129,7 @@
                 <tr>
                     <td class="texto">Lider: </td>
                     <? echo "<td> <select class='input1' name='_1_u_pessoa_idlider'>";
+                        echo "<option value='0'> </option>";
                     while ($row = mysqli_fetch_array($q)) {
                         echo "<option value='" . $row['id'] . "'>" . $row['nome'] . "</option>";
                     }
