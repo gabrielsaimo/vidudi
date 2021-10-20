@@ -19,7 +19,7 @@ if(!empty($_REQUEST)) {
             $coluna = $post[4];
             
         if (!empty($acao) and !empty($tabela) and !empty($coluna) and !empty($nunpost)) {
-         echo   $result = "_" . $post[1] . "_" . $post[2] . "_" . $post[3] . "_" . $post[4]; // refazendo o post
+           $result = "_" . $post[1] . "_" . $post[2] . "_" . $post[3] . "_" . $post[4]; // refazendo o post
             $valor =  $_REQUEST[$result]; // pegando o valor 
             $arryvalorup[] = $coluna.' = "'.$valor.'"';
         }
@@ -42,58 +42,39 @@ if(!empty($_REQUEST)) {
     $value = str_replace(')', "')", $value3); //colcanado '' em tudo 
     $modulo = $tabela;
     $modulo;
-    if (isset($tabela)) {
 
-        //define qual finçao sera realizada 
-        if ($acao == "u") {
-            $acaoss = "UPDATE ";
-            alterarPessoa($modulo);
-        } elseif ($acao == "i") {
-            $acaoss = "INSERT INTO ";
-            inserirPessoa($modulo, $acao);
-        } elseif ($acao == "d") {
-            $acaoss = "DELETE FROM ";
-            excluirPessoa($modulo);
+    if (isset($tabela)) {
+        if ($acao) {
+            sql($modulo,$acao,$obj,$valoreup,$value,$valor);
         }
     }
 }
-//verifica se recebe modulo
-if (isset($_REQUEST['_modulo'])) {
 
-    //define qual finçao sera realizada 
-    if ($_REQUEST['_acao'] == "d") {
-        $acaoss = "DELETE FROM ";
-        excluirPessoa($modulo);
-    }
-}
 //funçao que abre o banco de dados MSQLI
 function abrirBanco()
 {
-    $conexao = new mysqli("localhost", "root", "root", "vid_udi", "3306");
+    $conexao = new mysqli("localhost", "root", "root", "crud", "3306");
     return $conexao;
 }
 
-function inserirPessoa($modulo, $_acao)
-{
-    global $acaoss;
-    global $obj;
-    global $value;
-    $sql = $acaoss . $modulo . $obj . " VALUES " . $value;
-    banco($sql);
-    voltarIndex();
-}
 
-function alterarPessoa($modulo)
-{
-    
-    global $acaoss;
-    global $obj;
-    global $valoreup;
-    global $idusuario_cookie;
-    $idpost = str_replace(' ','',$_REQUEST["id"]);
 
+function sql($modulo,$acao,$obj,$valoreup,$value,$valor)
+{
+    if($acao == 'u'){
+        $acaoss = "UPDATE ";
+        $idpost = str_replace(' ','',$_REQUEST["id"]);
         $sql = $acaoss . $modulo .' set '. $valoreup." WHERE id='$idpost'";
-        
+    }
+    if($acao == 'i'){
+        $acaoss = "INSERT INTO ";
+        $sql = $acaoss . $modulo . $obj . " VALUES " . $value;
+    }  
+    if($acao == 'd'){
+        $acaoss = "DELETE FROM ";
+        $idpost = str_replace(' ','',$valor);
+        $sql = $acaoss . $modulo ." WHERE id='$idpost'";
+    } 
     banco($sql);
     
     voltarIndex();
