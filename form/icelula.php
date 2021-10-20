@@ -94,8 +94,8 @@ if ($_COOKIE['mobile'] == 'Y') { ?>
                     <td><?= $row["sexo"] ?></td>
                     <td><?= $row["cargo"] ?></td>
                     <td><?= $row["rede"] ?></td>
-                    <td><?= $row["criadoem"] ?></td>
-                    <td><?= $row["alteradoem"] ?></td>
+                 <!--   <td><?/*= $row["criadoem"] ?></td>
+                    <td><?= $row["alteradoem"] */?></td> -->
                     <td class="clickable-row" data-href="index.php?_modulo=ipessoa&_acao=r&id=<?= $row["id"] ?>">ver</td>
                     <? if ($row["status"] != 'ATIVO') { ?>
                         <td> <button class="btn fundo-azul" id="<?= $row["id"] ?>" onclick="ativar(this)"><img src="../img/visivel.png"></button></td>
@@ -113,4 +113,21 @@ if ($_COOKIE['mobile'] == 'Y') { ?>
                     window.location = $(this).data("href");
                 });
             });
+            function deletar(vthis) {
+                var _1_d_pessoa_id = $(vthis).attr("id");
+                $.ajax({
+                    url: 'cb.php',
+                    type: 'POST',
+                    dataType: 'text',
+                    data: {
+                        _1_d_pessoa_id
+                    },
+                    success: function(data, text, jqxhr) {
+                        location.reload();
+                    },
+                    error: function(r) {
+                        alert('deu erro');
+                    }
+                });
+            }
         </script>

@@ -104,14 +104,14 @@
                 <tr>
                     <td class="texto">Telefone: </td>
                     <? if (isset($rows["id"]) != null) { ?>
-                        <td><input class="input1" id="telefone" type="phone" name="_1_u_pessoa_telefone" value="<?= $pessoa["telefone"] ?>" size="20" placeholder="..."></td>
+                        <td><input required class="input1" id="telefone" type="phone" name="_1_u_pessoa_telefone" value="<?= $pessoa["telefone"] ?>" size="20" placeholder="..."></td>
                     <? } else { ?>
                         <td><input type="phone" id="telefone" name="_1_u_pessoa_telefone" value="<?= $pessoa["telefone"] ?>" class="input1" placeholder="..."></td>
                     <? } ?>
                 </tr>
                 <tr>
                     <td class="texto">Bairro: </td>
-                    <? echo "<td> <select class='input1' name='_1_u_pessoa_bairro'>";
+                    <? echo "<td> <select class='input1' required name='_1_u_pessoa_bairro'>";
                     echo "<option value='0'> </option>";
                     while ($rowb = mysqli_fetch_array($sqlbairro)) {
                         echo "<option value='" . $rowb['idbairro'] . "'>" . $rowb['bairro'] . "</option>";
@@ -121,9 +121,9 @@
                 <tr>
                     <td class="texto">Endereço: </td>
                     <? if (isset($rows["id"]) != null) { ?>
-                        <td><input class="input1" id="endereco" type="andrres" name="_1_u_pessoa_endereco" value="<?= $pessoa["endereco"] ?>" size="20" placeholder="..."></td>
+                        <td><input required class="input1" id="endereco" type="andrres" name="_1_u_pessoa_endereco" value="<?= $pessoa["endereco"] ?>" size="20" placeholder="..."></td>
                     <? } else { ?>
-                        <td><input type="andrres" id="endereco" name="_1_u_pessoa_endereco" value="<?= $pessoa["endereco"] ?>" class="input1" placeholder="..."></td>
+                        <td><input required type="andrres" id="endereco" name="_1_u_pessoa_endereco" value="<?= $pessoa["endereco"] ?>" class="input1" placeholder="..."></td>
                     <? } ?>
                 </tr>
                 <tr>
@@ -136,30 +136,30 @@
                     echo "</select></td>"; ?>
                 </tr>
                 <tr>
-                    <td class="texto">data de nascimento: </td>
-                    <td><input type="date" name="_1_u_pessoa_idade" value="" class="input1"></td>
+                    <td class="texto">Data de Nascimento: </td>
+                    <td><input required type="date" name="_1_u_pessoa_idade" value="" class="input1"></td>
                 </tr>
                 <tr>
                     <td>
-                        <input type="checkbox" name="_1_u_pessoa_batizado" id="batizado" value="Y">
+                        <input  type="checkbox" name="_1_u_pessoa_batizado" id="batizado" value="Y">
                         <label style="font-size: 20px; margin-left: 10px;" for="batizado">Batizado</label>
 
                     </td>
                 <tr>
                     <td>
-                        <input type="checkbox" name="_1_u_pessoa_cursao" id="cursao" value="Y">
+                        <input  type="checkbox" name="_1_u_pessoa_cursao" id="cursao" value="Y">
                         <label style="font-size: 20px; margin-left: 10px;" for="cursao">Cursao</label>
                     </td>
                 </tr>
                 <tr>
                     <td>
-                        <input type="checkbox" name="_1_u_pessoa_ctl" id="ctl" value="Y">
+                        <input  type="checkbox" name="_1_u_pessoa_ctl" id="ctl" value="Y">
                         <label style="font-size: 20px; margin-left: 10px;" for="ctl">CTL</label>
                     </td>
                 </tr>
                 <tr>
                     <td>
-                        <input type="checkbox" name="_1_u_pessoa_semi" id="semi" value="Y">
+                        <input  type="checkbox" name="_1_u_pessoa_semi" id="semi" value="Y">
                         <label style="font-size: 20px; margin-left: 10px;" for="semi">Seminario</label>
                     </td>
                 </tr>

@@ -1,6 +1,5 @@
 <?
 $idusuario_cookie = $_COOKIE['idusuario'];
-
 //verifica e define em qual foi recebido
 if(!empty($_REQUEST)) {
     
@@ -19,8 +18,8 @@ if(!empty($_REQUEST)) {
         }
             $coluna = $post[4];
             
-        if (!empty($nunpost)) {
-            $result = "_" . $post[1] . "_" . $post[2] . "_" . $post[3] . "_" . $post[4]; // refazendo o post
+        if (!empty($acao) and !empty($tabela) and !empty($coluna) and !empty($nunpost)) {
+         echo   $result = "_" . $post[1] . "_" . $post[2] . "_" . $post[3] . "_" . $post[4]; // refazendo o post
             $valor =  $_REQUEST[$result]; // pegando o valor 
             $arryvalorup[] = $coluna.' = "'.$valor.'"';
         }
@@ -70,7 +69,7 @@ if (isset($_REQUEST['_modulo'])) {
 //funçao que abre o banco de dados MSQLI
 function abrirBanco()
 {
-    $conexao = new mysqli("localhost", "root", "root", "crud", "3306");
+    $conexao = new mysqli("localhost", "root", "root", "vid_udi", "3306");
     return $conexao;
 }
 
@@ -102,13 +101,12 @@ function alterarPessoa($modulo)
 
 function excluirPessoa($modulo)
 {
+    global $valor;
     global $acaoss;
-    if ($_REQUEST['_acao'] == 'd' && $_REQUEST['_modulo'] == "celula") {
-        echo $acaoss . $modulo . " WHERE idcelula='{$_REQUEST["id"]}'";
-        $sql = $acaoss . $modulo . " WHERE idcelula='{$_REQUEST["id"]}'";
-    } else {
-        $sql = $acaoss . $modulo . " WHERE id='{$_REQUEST["id"]}'";
-    }
+    global $valoreup;
+    $idpost = str_replace(' ','',$valor);
+        $sql = $acaoss . $modulo ." WHERE id='$idpost'";
+        
     banco($sql);
     voltarIndex();
 }

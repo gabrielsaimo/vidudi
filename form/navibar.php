@@ -49,7 +49,7 @@ if(!empty($idpessoa)){
           <ul class="navbar-nav">
             <li class="nav-item active"> <a class="nav-link" href="index.php">Inicio </a> </li>
             <? if (!empty($row['idemcargo']) and $row['idemcargo'] >= 3) { ?>
-              <li class="nav-item"><a class="nav-link" href="?_modulo=pessoa&_colunas[]=nome&_colunas[]=sexo&_colunas[]=emcargo&_colunas[]=rede&_colunas[]=criadoem&_colunas[]=alteradoem&_pk=idpessoa">Pesquisar Membros</a></li>
+              <li class="nav-item"><a class="nav-link" href="?_modulo=pessoa&_colunas[]=nome&_colunas[]=sexo&_colunas[]=emcargo&_colunas[]=rede&_pk=idpessoa">Pesquisar Membros</a></li>
               <li class="nav-item"><a class="nav-link" href="?_modulo=celula&_colunas[]=id&_colunas[]=celula&_colunas[]=endereco&_colunas[]=dia&_colunas[]=hora&_colunas[]=lider&_colunas[]=multiplicou">Células</a></li>
               <li class="nav-item"><a class="nav-link" href="?_modulo=celula&_acao=r">Inserir Celula</a></li>
             <? } ?>

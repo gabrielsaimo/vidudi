@@ -11,20 +11,20 @@ $qpf = $banco->query("SELECT * From anexo  ") or die('erro ao consultar'.mysqli_
 <table>
 <tr>
         <td class="texto" style="width: 105px;" >Titulo:</td>
-        <td><input autofocus type="text" name="titulo" value="" class="input1" placeholder="Titulo da palavra"></td>
+        <td><input autofocus required type="text" name="titulo" value="" class="input1" placeholder="Titulo da palavra"></td>
     </tr>
     <tr>
         <td class="texto" style="width: 105px;" >Link do PDF:</td>
-        <td><input type="text" name="link" value="" class="input1" placeholder="link do google drive"></td>
+        <td><input type="text" name="url" value="" class="input1" placeholder="link do google drive"></td>
     </tr>
     <tr>
         <td class="texto"  >Link do audio:</td>
-        <td><input type="text" name="linkaudio" value="" class="input1" placeholder="link do google drive"></td>
+        <td><input type="url" name="linkaudio" value="" class="input1" placeholder="link do google drive"></td>
     </tr>
     <tr>
         
         <td class="texto"  >Data:</td>
-        <td><input type="date" name="data" value="" class="input1" ></td>
+        <td><input type="date" required name="data" value="" class="input1" ></td>
         
     </tr>
     <tr>

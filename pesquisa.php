@@ -8,11 +8,11 @@ if ($_GET['_modulo'] == 'celula' or $_GET['_modulo'] == 'pessoa') {
     $rows = mysqli_fetch_array($qp);
     if ($_GET['_modulo'] != 'celula') {
         if ($rows['idemcargo'] == 2) {
-            $per = ' where p.idemcargo in(1) and p.idrede =' . $rows['idrede'];
+            $per = ' where idemcargo in(1) and idrede =' . $rows['idrede'];
         } else if ($rows['idemcargo'] == 3) {
-            $per = ' where p.idemcargo in(1,2) and p.idrede =' . $rows['idrede'];
+            $per = ' where idemcargo in(1,2) and idrede =' . $rows['idrede'];
         } else if ($rows['idemcargo'] == 4) {
-            $per = ' where p.idemcargo in(1,2,3) and p.idrede =' . $rows['idrede'];
+            $per = ' where idemcargo in(1,2,3) and idrede =' . $rows['idrede'];
         }
     } else {
         $per = "where statusc = 'ATIVO' or statusc = 'INATIVO'";
@@ -21,6 +21,7 @@ if ($_GET['_modulo'] == 'celula' or $_GET['_modulo'] == 'pessoa') {
 $modulo = $_GET['_modulo'];
 if ($_GET['_modulo'] == 'pessoa') {
     $q = $banco->query("SELECT * FROM vwpessoa " . $cond . " " . $per);
+
     $nump = mysqli_num_rows($q);
 } elseif ($_GET['_modulo'] == 'celula') {
     $q = $banco->query("SELECT * from pessoa p join celula c on(p.idlider = c.idlider )  group by  c.idcelula");
@@ -44,7 +45,7 @@ if ($_COOKIE['mobile'] == 'Y') { ?>
                     $rowc = $rowc - 1;
                 }
             ?>
-                <div class="card clickable-row" data-href="index.php?_modulo=icelula&_colunas[]=nome&_colunas[]=sexo&_colunas[]=emcargo&_colunas[]=rede&_colunas[]=criadoem&_colunas[]=alteradoem&_pk=idpessoa&id=<?= $row["idcelula"] ?>&_acao=r">
+                <div class="card clickable-row" data-href="index.php?_modulo=icelula&_colunas[]=nome&_colunas[]=sexo&_colunas[]=emcargo&_colunas[]=rede&_pk=idpessoa&id=<?= $row["idcelula"] ?>&_acao=r">
                     <table>
                         <tr>
                             <td style="width: 50%;">
@@ -160,7 +161,7 @@ if ($_COOKIE['mobile'] == 'Y') { ?>
                 <?
                 if ($_GET['_modulo'] == 'celula') {
                     while ($row = mysqli_fetch_array($q)) { ?>
-                        <tr class="bb clickable-row" data-href="index.php?_modulo=icelula&_colunas[]=nome&_colunas[]=sexo&_colunas[]=emcargo&_colunas[]=rede&_colunas[]=criadoem&_colunas[]=alteradoem&_pk=idpessoa&id=<?= $row["idcelula"] ?>&_acao=r">
+                        <tr class="bb clickable-row" data-href="index.php?_modulo=icelula&_colunas[]=nome&_colunas[]=sexo&_colunas[]=emcargo&_colunas[]=rede&_pk=idpessoa&id=<?= $row["idcelula"] ?>&_acao=r">
                             <td><?= $row["idcelula"] ?></td>
                             <td><?= $row["celula"] ?></td>
                             <td><?= $row["endereco"] ?></td>
@@ -187,15 +188,15 @@ if ($_COOKIE['mobile'] == 'Y') { ?>
                             <td><?= $row["sexo"] ?></td>
                             <td><?= $row["cargo"] ?></td>
                             <td><?= $row["rede"] ?></td>
-                            <td><?= $row["criadoem"] ?></td>
-                            <td><?= $row["alteradoem"] ?></td>
+                           <!-- <td><?/*= $row["criadoem"] ?></td>
+                            <td><?= $row["alteradoem"] */?></td> -->
                             <td class="clickable-row" data-href="index.php?_modulo=ipessoa&_acao=r&id=<?= $row["id"] ?>">Visualizar</td>
-                            <? if ($row["status"] != 'ATIVO') { ?>
+                            <?/* if ($row["status"] != 'ATIVO') { ?>
                                 <td> <button class="btn fundo-azul" id="<?= $row["id"] ?>" onclick="ativar(this)"><img src="../img/visivel.png"></button></td>
-                            <? } else { ?>
+                            <? } else { */?>
                                 <td><a class="btn fundo-amarelo" title="Editar" href="?_modulo=<?= $_GET['_modulo'] ?>&_acao=r&id=<?= $row["id"] ?>"><img src="../img/editar.png"> </a> </td>
                                 <td> <button class="btn fundo-vermelho" title="Inativar" onclick="deletar(this)" id="<?= $row["id"] ?>"><img src="../img/invisivel.png"></button></td>
-                            <? } ?>
+                            <?/* } */?>
                         </tr>
             <? }
                 }
@@ -214,15 +215,13 @@ if ($_COOKIE['mobile'] == 'Y') { ?>
             });
 
             function deletar(vthis) {
-                var id = $(vthis).attr("id");
+                var _1_d_pessoa_id = $(vthis).attr("id");
                 $.ajax({
                     url: 'cb.php',
                     type: 'POST',
                     dataType: 'text',
                     data: {
-                        id,
-                        _acao: "d",
-                        _modulo: "<?= $modulo ?>"
+                        _1_d_pessoa_id
                     },
                     success: function(data, text, jqxhr) {
                         location.reload();

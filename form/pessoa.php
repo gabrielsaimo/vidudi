@@ -1,7 +1,7 @@
 <meta charset="UTF-8">
 
 <head>
-    <link rel="stylesheet" type="text/css" href="../css/mobile.css">
+    <link rel="stylesheet" required type="text/css" href="../css/mobile.css">
 </head>
 <style>
     <? if ($celula == 1) { ?>@media only screen and (min-width: 600px) {
@@ -96,17 +96,17 @@
                 <tr>
                     <td class="texto">Nome: </td>
                     <? if (isset($_GET["id"]) != null) { ?>
-                        <td><input class="input1" id="nome" type="text" name="_1_u_pessoa_nome" value="<?= $pessoa["nome"] ?>" size="20" placeholder="digite seu nome aqui ..."></td>
+                        <td><input  class="input1" id="nome" required type="text" name="_1_u_pessoa_nome" value="<?= $pessoa["nome"] ?>" size="20" placeholder="digite seu nome aqui ..."></td>
                     <? } else { ?>
-                        <td><input type="text" id="nome" name="_1_i_pessoa_nome" value="<?= $pessoa["nome"] ?>" class="input1" placeholder="digite seu nome aqui ..."></td>
+                        <td><input  required type="text" id="nome" name="_1_i_pessoa_nome" value="<?= $pessoa["nome"] ?>" class="input1" placeholder="digite seu nome aqui ..."></td>
                     <? } ?>
                 </tr>
                 <tr>
                     <td class="texto">Email: </td>
                     <? if (isset($_GET["id"]) != null) { ?>
-                        <td><input class="input1" id="nome" type="email" name="_1_u_pessoa_email" value="<?= $pessoa["email"] ?>" size="20" placeholder="..."></td>
+                        <td><input class="input1" id="nome" required type="email" name="_1_u_pessoa_email" value="<?= $pessoa["email"] ?>" size="20" placeholder="..."></td>
                     <? } else { ?>
-                        <td><input type="email" id="nome" name="_1_i_pessoa_email" value="<?= $pessoa["email"] ?>" class="input1" placeholder="..."></td>
+                        <td><input required type="email" id="nome" name="_1_i_pessoa_email" value="<?= $pessoa["email"] ?>" class="input1" placeholder="..."></td>
                     <? } ?>
                 </tr>
                 <tr>
@@ -168,14 +168,14 @@
                 <? if (isset($_GET["id"]) != null) { ?>
                     <td>
                     <td>
-                    <input type="hidden" name="id" value="<?= $pessoa["id"] ?> ">
+                    <input required type="hidden" name="id" value="<?= $pessoa["id"] ?> ">
                     <? } else { ?>
                     <td>
-                    <input type="hidden" name="_1_i_pessoa_idusuario" value="<?=$idusuario_cookie ?>">
+                    <input required type="hidden" name="_1_i_pessoa_idusuario" value="<?=$idusuario_cookie ?>">
                     <? } ?>
                     </td>
                     <tr>
-                        <td colspan=3><input class=" btn1 " type="submit" name="Enviar" value="Enviar"></td>
+                        <td colspan=3><input class=" btn1 " required type="submit" name="Enviar" value="Enviar"></td>
                     </tr>
                     </td>
                     </tr>

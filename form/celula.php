@@ -16,7 +16,7 @@
                     <td class="texto">Célula: </td>
                     <? if ($_REQUEST['_acao'] == 'u') { ?>
                         <td>
-                        <td><input type="text" name="celula" value="<?= $_REQUEST['celula'] ?>" class="input1" placeholder="Digite a Célula aqui..."></td>
+                        <td><input type="text" name="_1_u_celula_celula" value="<?= $_REQUEST['celula'] ?>" class="input1" placeholder="Digite a Célula aqui..."></td>
                         <input type="hidden" name="idcelula" value="<?= $_REQUEST['id'] ?>">
                     <? } else { ?>
                         <td>
@@ -26,7 +26,6 @@
                 <tr>
                 <td>
                     <td></td>
-                    
                     <td class="texto">Bairro: </td>
                     <td></td>
                     <? echo "<td> <select class='input1' name='_1_i_celula_bairro'>";
@@ -41,8 +40,7 @@
                     <td class="texto">Endereço: </td>
                     <? if ($_REQUEST['_acao'] == 'u') { ?>
                         <td>
-                        <td><input type="text" name="endereco" value="<?= $_REQUEST['celula'] ?>" class="input1" placeholder="ex: rua 1 bairo 2"></td>
-                        <input type="hidden" name="endereco" value="<?= $_REQUEST['endereco'] ?>">
+                        <td><input type="text" name="_1_u_celula_endereco" value="<?= $_REQUEST['endereco'] ?>" class="input1" placeholder="ex: rua 1 bairo 2"></td>
                     <? } else { ?>
                         <td>
                         <td><input type="text" name="_1_i_celula_endereco" value="" class="input1" placeholder="ex: rua 1 bairo 2"></td>
@@ -54,8 +52,7 @@
                     <td class="texto">horario: </td>
                     <? if ($_REQUEST['_acao'] == 'u') { ?>
                         <td>
-                        <td><input type="text" name="endereco" value="<?= $_REQUEST['celula'] ?>" class="input1" placeholder="ex: 18h"></td>
-                        <input type="hidden" name="endereco" value="<?= $_REQUEST['horario'] ?>">
+                        <td><input type="text" name="_1_u_celula_horario" value="<?= $_REQUEST['horario'] ?>" class="input1" placeholder="ex: 18h"></td>
                     <? } else { ?>
                         <td>
                         <td><input type="text" name="_1_i_celula_horario" value="" class="input1" placeholder="ex: 18h"></td>
@@ -67,8 +64,7 @@
                     <td class="texto">dia: </td>
                     <? if ($_REQUEST['_acao'] == 'u') { ?>
                         <td>
-                        <td><input type="data" name="_1_u_celula_dia" value="<?= $_REQUEST['celula'] ?>" class="input1" placeholder="ex: 18h"></td>
-                        <input type="hidden" name="endereco" value="<?= $_REQUEST['dia'] ?>">
+                        <td><input type="data" name="_1_u_celula_dia" value="<?= $_REQUEST['dia'] ?>" class="input1" placeholder="ex: Sabado"></td>
                     <? } else { ?>
                         <td>
                         <td><input type="text" name="_1_i_celula_dia" value="" class="input1" placeholder="ex: Sabado"></td>
@@ -79,8 +75,7 @@
                 <td class="texto">muliplicou: </td>
                 <? if ($_REQUEST['_acao'] == 'u') { ?>
                     <td>
-                    <td><input type="data" name="endereco" value="<?= $_REQUEST['celula'] ?>" class="input1" placeholder="ex: 18h"></td>
-                    <input type="hidden" name="endereco" value="<?= $_REQUEST['inidata'] ?>">
+                    <td><input type="date" name="_1_u_celula_inidata" value="<?= $_REQUEST['inidata'] ?>" class="input1"></td>
                 <? } else { ?>
                     <td>
                     <td><input type="date" name="_1_i_celula_inidata" value="" class="input1"></td>
@@ -91,15 +86,14 @@
                     <td class="texto">Lider: </td>
                     <td>
                         <? echo "<td> <select class='input1' name='_1_i_celula_idlider'>";
+                        echo "<option value='0'></option>";
                         while ($row = mysqli_fetch_array($q)) {
                             echo "<option value='" . $row['id'] . "'>" . $row['nome'] . "</option>";
                         }
                         echo "</select></td>"; ?>
                 </tr>
                 <tr>
-                    <td colspan="10" ><input type="submit" class="btn1" style="display: block;
-    margin-left:auto;
-    margin-right:auto;"></td>
+                    <td colspan="10" ><input type="submit" class="btn1" style="display: block;margin-left:auto;margin-right:auto;"></td>
                 </tr>
             </tbody>
         </table>
