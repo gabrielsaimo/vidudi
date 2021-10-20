@@ -74,7 +74,7 @@ if(!empty($idpessoa)){
                 <a class="nav-link " data-bs-toggle="dropdown"><img style="width: 30px; border-radius: 50%;" src="../img/avatar.jpg"/> </a>
                 <?}?>
               <ul class="dropdown-menu dropdown-menu-end">
-                <li><a class="dropdown-item" href="index.php?_modulo=ipessoa&_acao=r&id=<?= $idpessoa ?>"> Seu perfil</a></li>
+                <li><a class="dropdown-item" href="index.php?_modulo=ipessoa&_acao=u&id=<?= $idpessoa ?>"> Seu perfil</a></li>
                 <li><a class="dropdown-item" onclick="logout()" href="index.php?_modulo=sobre&_acao=r">Sobre</a></li>
                 <li><a class="dropdown-item" onclick="logout()" href="index.php">Sair</a></li>
               </ul>

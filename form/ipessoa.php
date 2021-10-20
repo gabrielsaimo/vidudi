@@ -17,10 +17,18 @@
 </style>
 <?
 $banco = abrirBanco();
-$qp = $banco->query("SELECT p.nome,p.telefone,b.bairro,p.email,p.idade,p.endereco,p.cursao,p.ctl,p.batizado,p.status,p.criadoem,r.rede,e.cargo,pl.nome as nomelider from pessoa p join rede r on(p.idrede = r.idrede) join emcargo e on(p.idemcargo = e.idemcargo) left join pessoa pl on(p.idlider = pl.id) join bairro b on(p.bairro = b.idbairro) where p.id=" . $_GET['id']) or die('erro');
+if($_GET['_acao'] == 'u'){
+    $qid = $banco->query("SELECT p.id FROM pessoa p WHERE p.idusuario =".$idusuario_cookie) or die('erro ao restornar o id');
+    $rowid = mysqli_fetch_array($qid);
+  echo $id = $rowid['id'];
+}else{
+    $id = $_GET['id'];
+}
+$qp = $banco->query("SELECT p.nome,p.telefone,b.bairro,p.email,p.idade,p.endereco,p.cursao,p.ctl,p.batizado,p.status,p.criadoem,r.rede,e.cargo,pl.nome as nomelider from pessoa p join rede r on(p.idrede = r.idrede) join emcargo e on(p.idemcargo = e.idemcargo) left join pessoa pl on(p.idlider = pl.id) join bairro b on(p.bairro = b.idbairro) where p.id=" . $id) or die('erro');
 $row = mysqli_fetch_array($qp);
 $data = $row['idade'];
-$qi = $banco->query("SELECT anexo from anexo where tipoanexo='avatar' and idobjeto=" . $_GET['id']);
+
+$qi = $banco->query("SELECT anexo from anexo where tipoanexo='avatar' and idobjeto=" . $id);
 $rown = mysqli_num_rows($qi);
 $rowi = mysqli_fetch_array($qi);
 
@@ -82,7 +90,6 @@ if ($_GET['id'] == $idpessoa) { ?>
 
 <script>
     document.getElementById("file").onchange = function() {
-        debugger
         if ($("form").children('input').val() != '') {
             $("form").children('input#submit').css("display", "block");
             $("form").children('label').css("display", "none");
