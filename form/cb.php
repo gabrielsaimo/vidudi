@@ -50,15 +50,6 @@ if(!empty($_REQUEST)) {
     }
 }
 
-//funçao que abre o banco de dados MSQLI
-function abrirBanco()
-{
-    $conexao = new mysqli("localhost", "root", "root", "crud", "3306");
-    return $conexao;
-}
-
-
-
 function sql($modulo,$acao,$obj,$valoreup,$value,$valor)
 {
     if($acao == 'u'){
@@ -79,29 +70,11 @@ function sql($modulo,$acao,$obj,$valoreup,$value,$valor)
     
     voltarIndex();
 }
-
-function excluirPessoa($modulo)
+//funçao que abre o banco de dados MSQLI
+function abrirBanco()
 {
-    global $valor;
-    global $acaoss;
-    global $valoreup;
-    $idpost = str_replace(' ','',$valor);
-        $sql = $acaoss . $modulo ." WHERE id='$idpost'";
-        
-    banco($sql);
-    voltarIndex();
-}
-
-
-
-function selectIdPessoa($id)
-{
-    $banco = abrirBanco();
-    $sql = "SELECT * FROM pessoa WHERE id=" . $id;
-    $resultado = $banco->query($sql) or die('erro no sql :' . mysqli_error($banco));
-    $banco->close();
-    $pessoa = mysqli_fetch_assoc($resultado);
-    return $pessoa;
+    $conexao = new mysqli("localhost", "root", "root", "crud", "3306");
+    return $conexao;
 }
 
 function voltarIndex()

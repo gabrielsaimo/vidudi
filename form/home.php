@@ -97,16 +97,12 @@
         $q = $banco->query("SELECT p.id,p.nome FROM pessoa p join emcargo e on(p.idemcargo = e.idemcargo) where p.idemcargo in(2,3,4) and p.status='ATIVO'") or die("erro ao selecionar"); ?>
         <table >
             <tbody>
-                <? if (isset($rows["id"]) != null) { ?>
-                    <? $pessoa = selectIdPessoa($rows["id"]); ?>
-                <? } ?>
-
                 <tr>
                     <td class="texto">Telefone: </td>
                     <? if (isset($rows["id"]) != null) { ?>
-                        <td><input required class="input1" id="telefone" type="phone" name="_1_u_pessoa_telefone" value="<?= $pessoa["telefone"] ?>" size="20" placeholder="..."></td>
+                        <td><input required class="input1" id="telefone" type="phone" name="_1_u_pessoa_telefone" value="<?= $rows["telefone"] ?>" size="20" placeholder="..."></td>
                     <? } else { ?>
-                        <td><input type="phone" id="telefone" name="_1_u_pessoa_telefone" value="<?= $pessoa["telefone"] ?>" class="input1" placeholder="..."></td>
+                        <td><input type="phone" id="telefone" name="_1_u_pessoa_telefone" value="<?= $rows["telefone"] ?>" class="input1" placeholder="..."></td>
                     <? } ?>
                 </tr>
                 <tr>
@@ -121,9 +117,9 @@
                 <tr>
                     <td class="texto">Endereço: </td>
                     <? if (isset($rows["id"]) != null) { ?>
-                        <td><input required class="input1" id="endereco" type="andrres" name="_1_u_pessoa_endereco" value="<?= $pessoa["endereco"] ?>" size="20" placeholder="..."></td>
+                        <td><input required class="input1" id="endereco" type="andrres" name="_1_u_pessoa_endereco" value="<?= $rows["endereco"] ?>" size="20" placeholder="..."></td>
                     <? } else { ?>
-                        <td><input required type="andrres" id="endereco" name="_1_u_pessoa_endereco" value="<?= $pessoa["endereco"] ?>" class="input1" placeholder="..."></td>
+                        <td><input required type="andrres" id="endereco" name="_1_u_pessoa_endereco" value="<?= $rows["endereco"] ?>" class="input1" placeholder="..."></td>
                     <? } ?>
                 </tr>
                 <tr>
@@ -173,7 +169,7 @@
                     <td>
             
                     <? } ?>
-                    <input type="hidden" name="id" value="<?= $pessoa["id"] ?> ">
+                    <input type="hidden" name="id" value="<?= $rows["id"] ?> ">
                     <input type="hidden" nome="_1_u_pessoa_idusuario" value="<?= $idusuario_cookie ?>">
                     </td>
                     <tr>
