@@ -90,23 +90,25 @@
         ?>
         <table class="centro">
             <tbody>
-                <? if (isset($_GET["id"]) != null) { ?>
-                    <? $pessoa = selectIdPessoa($_GET["id"]); ?>
-                <? } ?>
+                <? if ($_GET['_acao'] == 'u') { 
+                    $qp = $banco->query("SELECT * FROM pessoa where id = ".$_COOKIE['id'] ) or die("erro ao selecionar pessoa");
+                    $rowno = mysqli_fetch_assoc($qp);
+                 } ?>
                 <tr>
                     <td class="texto">Nome: </td>
                     <? if (isset($_GET["id"]) != null) { ?>
-                        <td><input  class="input1" id="nome" required type="text" name="_1_u_pessoa_nome" value="<?= $pessoa["nome"] ?>" size="20" placeholder="digite seu nome aqui ..."></td>
+                        <td><input type="hidden" name="_1_u_pessoa_id" value="<?=$_COOKIE['id']?>">
+                            <input  class="input1" id="nome" required type="text" name="_1_u_pessoa_nome" value="<?= $rowno["nome"] ?>" size="20" placeholder="digite seu nome aqui ..."></td>
                     <? } else { ?>
-                        <td><input  required type="text" id="nome" name="_1_i_pessoa_nome" value="<?= $pessoa["nome"] ?>" class="input1" placeholder="digite seu nome aqui ..."></td>
+                        <td><input  required type="text" id="nome" name="_1_i_pessoa_nome" value="<?= $rowno["nome"] ?>" class="input1" placeholder="digite seu nome aqui ..."></td>
                     <? } ?>
                 </tr>
                 <tr>
                     <td class="texto">Email: </td>
                     <? if (isset($_GET["id"]) != null) { ?>
-                        <td><input class="input1" id="nome" required type="email" name="_1_u_pessoa_email" value="<?= $pessoa["email"] ?>" size="20" placeholder="..."></td>
+                        <td><input class="input1" id="nome" required type="email" name="_1_u_pessoa_email" value="<?= $rowno["email"] ?>" size="20" placeholder="..."></td>
                     <? } else { ?>
-                        <td><input required type="email" id="nome" name="_1_i_pessoa_email" value="<?= $pessoa["email"] ?>" class="input1" placeholder="..."></td>
+                        <td><input required type="email" id="nome" name="_1_i_pessoa_email" value="<?= $rowno["email"] ?>" class="input1" placeholder="..."></td>
                     <? } ?>
                 </tr>
                 <tr>
@@ -168,7 +170,7 @@
                 <? if (isset($_GET["id"]) != null) { ?>
                     <td>
                     <td>
-                    <input required type="hidden" name="id" value="<?= $pessoa["id"] ?> ">
+                    <input required type="hidden" name="id" value="<?= $rowno["id"] ?> ">
                     <? } else { ?>
                     <td>
                     <input required type="hidden" name="_1_i_pessoa_idusuario" value="<?=$idusuario_cookie ?>">
