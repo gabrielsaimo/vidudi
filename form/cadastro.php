@@ -24,14 +24,14 @@
       <div class="login-form">
 
         <div>
-          <input type="text" placeholder="Usuario" name="login">
+          <input required type="text" placeholder="Usuario" name="login">
         </div>
 
         <div>
-          <input type="password" placeholder="Senha" name="senha">
+          <input required type="password" placeholder="Senha" name="senha">
         </div>
         <div>
-          <input type="password" placeholder="Confirmar Senha" name="confsenha">
+          <input required type="password" placeholder="Confirmar Senha" name="confsenha">
         </div>
 
         <button type="submit" value="Cadastrar" id="cadastrar" name="cadastrar" data-loading-btn class="">
