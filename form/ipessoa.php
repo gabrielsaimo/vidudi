@@ -19,21 +19,21 @@
 $banco = abrirBanco();
 if($_GET['_acao'] == 'u'){
     $qid = $banco->query("SELECT p.id FROM pessoa p WHERE p.idusuario =".$idusuario_cookie) or die('erro ao restornar o id');
-    $rowid = mysqli_fetch_array($qid);
+    $rowid = mysqli_fetch_assoc($qid);
   echo $id = $rowid['id'];
 }else{
     $id = $_GET['id'];
 }
 $qp = $banco->query("SELECT p.nome,p.telefone,b.bairro,p.email,p.idade,p.endereco,p.cursao,p.ctl,p.batizado,p.status,p.criadoem,r.rede,e.cargo,pl.nome as nomelider from pessoa p join rede r on(p.idrede = r.idrede) join emcargo e on(p.idemcargo = e.idemcargo) left join pessoa pl on(p.idlider = pl.id) join bairro b on(p.bairro = b.idbairro) where p.id=" . $id) or die('erro');
-$row = mysqli_fetch_array($qp);
+$row = mysqli_fetch_assoc($qp);
 $data = $row['idade'];
 
 $qi = $banco->query("SELECT anexo from anexo where tipoanexo='avatar' and idobjeto=" . $id);
 $rown = mysqli_num_rows($qi);
-$rowi = mysqli_fetch_array($qi);
+$rowi = mysqli_fetch_assoc($qi);
 
 if ($rown > 0) {
-    echo '<img class="imagem" style="width: 200px!important; border-radius: 50%;" src="data:image/jpeg;base64,' . base64_encode($rowi['anexo']) . '"/>';
+    echo '<img class="imagem" style="width: 200px!important;height: 160px; border-radius: 50%;" src="data:image/jpeg;base64,' . base64_encode($rowi['anexo']) . '"/>';
     Header("Content-type:anexo/jrpg");
 } else {
     echo '<img style="width: 200px; border-radius: 50%;" src="../img/avatar.jpg"/>';

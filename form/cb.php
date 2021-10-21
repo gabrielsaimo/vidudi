@@ -1,5 +1,8 @@
 <?
 $idusuario_cookie = $_COOKIE['idusuario'];
+if(empty($idusuario_cookie)){
+
+}
 //verifica e define em qual foi recebido
 if(!empty($_REQUEST)) {
     
@@ -30,7 +33,7 @@ if(!empty($_REQUEST)) {
         }
 
     }
- 
+    if(!empty($result)){
     // tratando pod valores para o insert
     $nomes = implode(",", $arrynomes);
     $valores = implode(',', $arryvalor);
@@ -41,11 +44,10 @@ if(!empty($_REQUEST)) {
     $value3 = str_replace(',', "','", $valu2); //colcanado '' em tudo 
     $value = str_replace(')', "')", $value3); //colcanado '' em tudo 
     $modulo = $tabela;
-    $modulo;
-
-    if (isset($tabela)) {
-        if ($acao) {
-            sql($modulo,$acao,$obj,$valoreup,$value,$valor);
+        if (isset($tabela)) {
+            if ($acao) {
+                sql($modulo,$acao,$obj,$valoreup,$value,$valor);
+            }
         }
     }
 }
@@ -53,18 +55,15 @@ if(!empty($_REQUEST)) {
 function sql($modulo,$acao,$obj,$valoreup,$value,$valor)
 {
     if($acao == 'u'){
-        $acaoss = "UPDATE ";
         $idpost = str_replace(' ','',$_REQUEST["id"]);
-        $sql = $acaoss . $modulo .' set '. $valoreup." WHERE id='$idpost'";
+        $sql = "UPDATE ". $modulo .' set '. $valoreup." WHERE id='$idpost'";
     }
     if($acao == 'i'){
-        $acaoss = "INSERT INTO ";
-        $sql = $acaoss . $modulo . $obj . " VALUES " . $value;
+        $sql = "INSERT INTO ". $modulo . $obj . " VALUES " . $value;
     }  
     if($acao == 'd'){
-        $acaoss = "DELETE FROM ";
         $idpost = str_replace(' ','',$valor);
-        $sql = $acaoss . $modulo ." WHERE id='$idpost'";
+        $sql = "DELETE FROM ". $modulo ." WHERE id='$idpost'";
     } 
     banco($sql);
     
@@ -73,7 +72,7 @@ function sql($modulo,$acao,$obj,$valoreup,$value,$valor)
 //funçao que abre o banco de dados MSQLI
 function abrirBanco()
 {
-    $conexao = new mysqli("localhost", "root", "root", "crud", "3306");
+    $conexao = new mysqli("localhost", "root", "root", "vid_udi", "3306");
     return $conexao;
 }
 

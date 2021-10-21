@@ -88,98 +88,99 @@
 
     <? } ?>
 </style>
-<form style=" cursor: pointer;">
-    <? $idusuario_cookie = $_COOKIE['idusuario'];
-    $qp = $banco->query("SELECT p.* from pessoa p join usuario u on (p.idusuario = u.idusuario) where u.idusuario =" . $idusuario_cookie);
-    $rows = mysqli_fetch_array($qp);
-    $sqlbairro = $banco->query("SELECT * FROM bairro");
-    if (empty($rows['idlider'])) {
-        $q = $banco->query("SELECT p.id,p.nome FROM pessoa p join emcargo e on(p.idemcargo = e.idemcargo) where p.idemcargo in(2,3,4) and p.status='ATIVO'") or die("erro ao selecionar"); ?>
-        <table >
-            <tbody>
-                <tr>
-                    <td class="texto">Telefone: </td>
-                    <? if (isset($rows["id"]) != null) { ?>
-                        <td><input required class="input1" id="telefone" type="phone" name="_1_u_pessoa_telefone" value="<?= $rows["telefone"] ?>" size="20" placeholder="..."></td>
-                    <? } else { ?>
-                        <td><input type="phone" id="telefone" name="_1_u_pessoa_telefone" value="<?= $rows["telefone"] ?>" class="input1" placeholder="..."></td>
-                    <? } ?>
-                </tr>
-                <tr>
-                    <td class="texto">Bairro: </td>
-                    <? echo "<td> <select class='input1' required name='_1_u_pessoa_bairro'>";
-                    echo "<option value='0'> </option>";
-                    while ($rowb = mysqli_fetch_array($sqlbairro)) {
-                        echo "<option value='" . $rowb['idbairro'] . "'>" . $rowb['bairro'] . "</option>";
-                    }
-                    echo "</select></td>"; ?>
-                </tr>
-                <tr>
-                    <td class="texto">Endereço: </td>
-                    <? if (isset($rows["id"]) != null) { ?>
-                        <td><input required class="input1" id="endereco" type="andrres" name="_1_u_pessoa_endereco" value="<?= $rows["endereco"] ?>" size="20" placeholder="..."></td>
-                    <? } else { ?>
-                        <td><input required type="andrres" id="endereco" name="_1_u_pessoa_endereco" value="<?= $rows["endereco"] ?>" class="input1" placeholder="..."></td>
-                    <? } ?>
-                </tr>
-                <tr>
-                    <td class="texto">Lider: </td>
-                    <? echo "<td> <select class='input1' name='_1_u_pessoa_idlider'>";
-                        echo "<option value='0'> </option>";
-                    while ($row = mysqli_fetch_array($q)) {
-                        echo "<option value='" . $row['id'] . "'>" . $row['nome'] . "</option>";
-                    }
-                    echo "</select></td>"; ?>
-                </tr>
-                <tr>
-                    <td class="texto">Data de Nascimento: </td>
-                    <td><input required type="date" name="_1_u_pessoa_idade" value="" class="input1"></td>
-                </tr>
-                <tr>
-                    <td>
-                        <input  type="checkbox" name="_1_u_pessoa_batizado" id="batizado" value="Y">
-                        <label style="font-size: 20px; margin-left: 10px;" for="batizado">Batizado</label>
+<div style="width: 500px;">
+    <div style="width: 500px;">
+        <form style=" cursor: pointer; width: 500px;margin-left: 100%;">
+            <? $idusuario_cookie = $_COOKIE['idusuario'];
+            $qp = $banco->query("SELECT p.* from pessoa p join usuario u on (p.idusuario = u.idusuario) where u.idusuario =" . $idusuario_cookie);
+            $rows = mysqli_fetch_array($qp);
+            $sqlbairro = $banco->query("SELECT * FROM bairro");
+            if (empty($rows['idlider'])) {
+                $q = $banco->query("SELECT p.id,p.nome FROM pessoa p join emcargo e on(p.idemcargo = e.idemcargo) where p.idemcargo in(2,3,4) and p.status='ATIVO'") or die("erro ao selecionar"); ?>
+                <table>
+                    <tbody>
+                        <tr>
+                            <td class="texto">Telefone: </td>
+                            <? if (isset($rows["id"]) != null) { ?>
+                                <td><input required class="input1" id="telefone" type="phone" name="_1_u_pessoa_telefone" value="<?= $rows["telefone"] ?>" size="20" placeholder="..."></td>
+                            <? } else { ?>
+                                <td><input type="phone" id="telefone" name="_1_u_pessoa_telefone" value="<?= $rows["telefone"] ?>" class="input1" placeholder="..."></td>
+                            <? } ?>
+                        </tr>
+                        <tr>
+                            <td class="texto">Bairro: </td>
+                            <? echo "<td> <select class='input1' required name='_1_u_pessoa_bairro'>";
+                            echo "<option value='0'> </option>";
+                            while ($rowb = mysqli_fetch_array($sqlbairro)) {
+                                echo "<option value='" . $rowb['idbairro'] . "'>" . $rowb['bairro'] . "</option>";
+                            }
+                            echo "</select></td>"; ?>
+                        </tr>
+                        <tr>
+                            <td class="texto">Endereço: </td>
+                            <? if (isset($rows["id"]) != null) { ?>
+                                <td><input required class="input1" id="endereco" type="andrres" name="_1_u_pessoa_endereco" value="<?= $rows["endereco"] ?>" size="20" placeholder="..."></td>
+                            <? } else { ?>
+                                <td><input required type="andrres" id="endereco" name="_1_u_pessoa_endereco" value="<?= $rows["endereco"] ?>" class="input1" placeholder="..."></td>
+                            <? } ?>
+                        </tr>
+                        <tr>
+                            <td class="texto">Lider: </td>
+                            <? echo "<td> <select class='input1' name='_1_u_pessoa_idlider'>";
+                            echo "<option value='0'> </option>";
+                            while ($row = mysqli_fetch_array($q)) {
+                                echo "<option value='" . $row['id'] . "'>" . $row['nome'] . "</option>";
+                            }
+                            echo "</select></td>"; ?>
+                        </tr>
+                        <tr>
+                            <td class="texto">Data de Nascimento: </td>
+                            <td><input required type="date" name="_1_u_pessoa_idade" value="" class="input1"></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input type="checkbox" name="_1_u_pessoa_batizado" id="batizado" value="Y">
+                                <label style="font-size: 20px; margin-left: 10px;" for="batizado">Batizado</label>
 
-                    </td>
-                <tr>
-                    <td>
-                        <input  type="checkbox" name="_1_u_pessoa_cursao" id="cursao" value="Y">
-                        <label style="font-size: 20px; margin-left: 10px;" for="cursao">Cursao</label>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <input  type="checkbox" name="_1_u_pessoa_ctl" id="ctl" value="Y">
-                        <label style="font-size: 20px; margin-left: 10px;" for="ctl">CTL</label>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <input  type="checkbox" name="_1_u_pessoa_semi" id="semi" value="Y">
-                        <label style="font-size: 20px; margin-left: 10px;" for="semi">Seminario</label>
-                    </td>
-                </tr>
+                            </td>
+                        <tr>
+                            <td>
+                                <input type="checkbox" name="_1_u_pessoa_cursao" id="cursao" value="Y">
+                                <label style="font-size: 20px; margin-left: 10px;" for="cursao">Cursao</label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input type="checkbox" name="_1_u_pessoa_ctl" id="ctl" value="Y">
+                                <label style="font-size: 20px; margin-left: 10px;" for="ctl">CTL</label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input type="checkbox" name="_1_u_pessoa_semi" id="semi" value="Y">
+                                <label style="font-size: 20px; margin-left: 10px;" for="semi">Seminario</label>
+                            </td>
+                        </tr>
 
-                </tr>
+                        </tr>
 
-                <? if (isset($rows["id"]) != null) { ?>
-                    <td>
-            
-                    <? } else { ?>
-                    <td>
-            
-                    <? } ?>
-                    <input type="hidden" name="id" value="<?= $rows["id"] ?> ">
-                    <input type="hidden" nome="_1_u_pessoa_idusuario" value="<?= $idusuario_cookie ?>">
-                    </td>
-                    <tr>
-                        <td colspan=3><input class=" btn1 " type="submit" name="Enviar" value="Enviar"></td>
-                    </tr>
-                    </td>
-            </tbody>
-        </table>
-    <? } else { ?>
+                        <? if (isset($rows["id"]) != null) { ?>
+                            <td>
 
-    <? } ?>
+                            <? } else { ?>
+                            <td>
 
-</form>
+                            <? } ?>
+                            <input type="hidden" name="id" value="<?= $rows["id"] ?> ">
+                            <input type="hidden" nome="_1_u_pessoa_idusuario" value="<?= $idusuario_cookie ?>">
+                            </td>
+                            <tr>
+                                <td colspan=3><input class=" btn1 " type="submit" name="Enviar" value="Enviar"></td>
+                            </tr>
+                            </td>
+                    </tbody>
+                </table>
+            <? } ?>
+        </form>
+    </div>
+</div>
