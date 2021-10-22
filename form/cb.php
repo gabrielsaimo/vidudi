@@ -12,38 +12,30 @@ if(!empty($_REQUEST)) {
     foreach ($_REQUEST as $nome_campo => $valor_campo) { // pegando os posts 
 
         $post =  explode('_', $nome_campo);
-        $nunpost = $post[1];
-        if (!empty($post[2])) {
+        if(!empty($post[1]) and !empty($post[2]) and !empty($post[3]) and !empty($post[4])){
+            $nunpost = $post[1];
             $acao = $post[2];
-        }
-        if (!empty($post[3])) {
             $tabela = $post[3];
-        }
             $coluna = $post[4];
-            
-        if (!empty($acao) and !empty($tabela) and !empty($coluna) and !empty($nunpost)) {
-           $result = "_" . $post[1] . "_" . $post[2] . "_" . $post[3] . "_" . $post[4]; // refazendo o post
-            $valor =  $_REQUEST[$result]; // pegando o valor 
+            $valor =  $_REQUEST[$nome_campo]; // pegando o valor 
             $arryvalorup[] = $coluna.' = "'.$valor.'"';
-        }
-
-        if (!empty($coluna) and !empty($valor)) {
             $arrynomes[] = $coluna;
             $arryvalor[] = $valor;
+            $valido ++;
         }
-
+        
     }
-    if(!empty($result)){
-    // tratando pod valores para o insert
-    $nomes = implode(",", $arrynomes);
-    $valores = implode(',', $arryvalor);
-    $valoreup = implode(',', $arryvalorup);
-    $value1 = '(' . $valores . ')';
-    $obj = '(' . $nomes . ')';
-    $valu2 = str_replace('(', "('", $value1); //colcanado '' em tudo 
-    $value3 = str_replace(',', "','", $valu2); //colcanado '' em tudo 
-    $value = str_replace(')', "')", $value3); //colcanado '' em tudo 
-    $modulo = $tabela;
+    if($valido > 0){
+        // tratando pod valores para o insert
+        $nomes = implode(",", $arrynomes);
+        $valores = implode(',', $arryvalor);
+        $valoreup = implode(',', $arryvalorup);
+        $value1 = '(' . $valores . ')';
+        $obj = '(' . $nomes . ')';
+        $valu2 = str_replace('(', "('", $value1); //colcanado '' em tudo 
+        $value3 = str_replace(',', "','", $valu2); //colcanado '' em tudo 
+        $value = str_replace(')', "')", $value3); //colcanado '' em tudo 
+        $modulo = $tabela;
         if (isset($tabela)) {
             if ($acao) {
                 sql($modulo,$acao,$obj,$valoreup,$value,$valor);
@@ -51,6 +43,9 @@ if(!empty($_REQUEST)) {
         }
     }
 }
+   
+    
+
 
 function sql($modulo,$acao,$obj,$valoreup,$value,$valor)
 {

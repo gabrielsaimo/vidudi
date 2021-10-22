@@ -90,7 +90,7 @@
         ?>
         <table class="centro">
             <tbody>
-                <? if ($_GET['_acao'] == 'u') { 
+                <? if ($_GET['_acao'] == 'r') { 
                     $qp = $banco->query("SELECT * FROM pessoa where id = ".$_COOKIE['id'] ) or die("erro ao selecionar pessoa");
                     $rowno = mysqli_fetch_assoc($qp);
                  } ?>
