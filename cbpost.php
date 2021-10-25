@@ -53,7 +53,7 @@ $tabela="pessoa";
 
     function selectAll() {
         $banco = abrirBanco();
-        $sql = "SELECT p.id,p.nome,DATE_FORMAT(p.criadoem,'%d/%m/%Y %H:%i:%s') as criadoem,DATE_FORMAT(p.atualizadoem,'%d/%m/%Y %H:%i:%s') as atualizadoem,p.sexo,e.celula FROM pessoa p JOIN celula e on (p.idempresa = e.idcelula) ORDER BY p.nome";
+        $sql = "SELECT p.idpessoa,p.nome,DATE_FORMAT(p.criadoem,'%d/%m/%Y %H:%i:%s') as criadoem,DATE_FORMAT(p.atualizadoem,'%d/%m/%Y %H:%i:%s') as atualizadoem,p.sexo,e.celula FROM pessoa p JOIN celula e on (p.idempresa = e.idcelula) ORDER BY p.nome";
         $resultado = $banco->query($sql);
         $banco->close();
         while($row = mysqli_fetch_array($resultado)) {

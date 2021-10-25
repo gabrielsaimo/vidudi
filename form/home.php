@@ -96,7 +96,7 @@
             $rows = mysqli_fetch_array($qp);
             $sqlbairro = $banco->query("SELECT * FROM bairro");
             if (empty($rows['idlider'])) {
-                $q = $banco->query("SELECT p.id,p.nome FROM pessoa p join emcargo e on(p.idemcargo = e.idemcargo) where p.idemcargo in(2,3,4) and p.status='ATIVO'") or die("erro ao selecionar"); ?>
+                $q = $banco->query("SELECT p.idpessoa,p.nome FROM pessoa p join emcargo e on(p.idemcargo = e.idemcargo) where p.idemcargo in(2,3,4) and p.status='ATIVO'") or die("erro ao selecionar"); ?>
                 <table>
                     <tbody>
                         <tr>

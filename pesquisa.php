@@ -4,7 +4,7 @@
 <?
 $banco = abrirBanco();
 if ($_GET['_modulo'] == 'celula' or $_GET['_modulo'] == 'pessoa') {
-    $qp = $banco->query("SELECT p.idemcargo,p.idrede,p.id from pessoa p join usuario u on (p.idusuario = u.idusuario) where u.idusuario =" . $_COOKIE['idusuario']);
+    $qp = $banco->query("SELECT p.idemcargo,p.idrede,p.idpessoa from pessoa p join usuario u on (p.idusuario = u.idusuario) where u.idusuario =" . $_COOKIE['idusuario']);
     $rows = mysqli_fetch_array($qp);
     if ($_GET['_modulo'] != 'celula') {
         if ($rows['idemcargo'] == 2) {
@@ -27,8 +27,8 @@ if ($_GET['_modulo'] == 'pessoa') {
     $q = $banco->query("SELECT * from pessoa p join celula c on(p.idlider = c.idlider )  group by  c.idcelula");
     $nump = mysqli_num_rows($q);
 }
-if(!empty($modulo)){
-    echo '<div style="text-align: end;">'.$nump.' Resultados.</div>';
+if (!empty($modulo)) {
+    echo '<div style="text-align: end;">' . $nump . ' Resultados.</div>';
 }
 
 
@@ -82,12 +82,12 @@ if ($_COOKIE['mobile'] == 'Y') { ?>
             while ($row = mysqli_fetch_array($q)) { ?>
                 <div class="card">
 
-                    <? $qi = $banco->query("SELECT anexo from anexo where idobjeto=" . $row["id"]);
+                    <? $qi = $banco->query("SELECT anexo from anexo where idobjeto=" . $row["idpessoa"]);
                     $rown = mysqli_num_rows($qi);
                     $rowi = mysqli_fetch_array($qi);
                     ?>
                     <table>
-                        <tr class="clickable-row" data-href="index.php?_modulo=ipessoa&_acao=r&id=<?= $row["id"] ?>">
+                        <tr class="clickable-row" data-href="index.php?_modulo=ipessoa&_acao=r&id=<?= $row["idpessoa"] ?>">
 
                             <?
                             if ($rown > 0) {
@@ -169,13 +169,13 @@ if ($_COOKIE['mobile'] == 'Y') { ?>
                             <td><?= $row["horario"] ?></td>
                             <td><?= $row["nome"] ?></td>
                             <td><?= date('d-m-Y', strtotime($row["inidata"])) ?></td>
-                           <!--
+                            <? if ($row["status"] != 'ATIVO') { ?>
                                 <td> <button class="btn fundo-azul" title="Ativar" id="<?= $row["idcelula"] ?>" onclick="ativar(this)"><img src="../img/visivel.png"></button></td>
                                 <td></td>
-                    -->
+                            <? } else { ?>
                                 <td> <a class="btn fundo-amarelo" title="Editar" href="?_modulo=celula&celula=<?= $row['celula'] ?>&_acao=u&id=<?= $row["idcelula"] ?>"><img src="../img/editar.png"></a> </td>
                                 <td> <button class="btn fundo-vermelho" title="Inativar" id="<?= $row["idcelula"] ?>" onclick="deletar(this)"><img src="../img/invisivel.png"></button></td>
-                           
+                            <? } ?>
                         </tr>
                     <? }
                 }
@@ -188,15 +188,15 @@ if ($_COOKIE['mobile'] == 'Y') { ?>
                             <td><?= $row["sexo"] ?></td>
                             <td><?= $row["cargo"] ?></td>
                             <td><?= $row["rede"] ?></td>
-                           <!-- <td><?/*= $row["criadoem"] ?></td>
-                            <td><?= $row["alteradoem"] */?></td> -->
-                            <td class="clickable-row" data-href="index.php?_modulo=ipessoa&_acao=r&id=<?= $row["id"] ?>">Visualizar</td>
-                            <?/* if ($row["status"] != 'ATIVO') { ?>
-                                <td> <button class="btn fundo-azul" id="<?= $row["id"] ?>" onclick="ativar(this)"><img src="../img/visivel.png"></button></td>
-                            <? } else { */?>
-                                <td><a class="btn fundo-amarelo" title="Editar" href="?_modulo=<?= $_GET['_modulo'] ?>&_acao=r&id=<?= $row["id"] ?>"><img src="../img/editar.png"> </a> </td>
-                                <td> <button class="btn fundo-vermelho" title="Inativar" onclick="deletar(this)" id="<?= $row["id"] ?>"><img src="../img/invisivel.png"></button></td>
-                            <?/* } */?>
+                            <!-- <td><?/*= $row["criadoem"] ?></td>
+                            <td><?= $row["alteradoem"] */ ?></td> -->
+                            <td class="clickable-row" data-href="index.php?_modulo=ipessoa&_acao=r&id=<?= $row["idpessoa"] ?>">Visualizar</td>
+                            <? if ($row["status"] != 'ATIVO') { ?>
+                                <td> <button class="btn fundo-azul" id="<?= $row["idpessoa"] ?>" onclick="ativar(this)"><img src="../img/visivel.png"></button></td>
+                            <? } else { ?>
+                                <td><a class="btn fundo-amarelo" title="Editar" href="?_modulo=<?= $_GET['_modulo'] ?>&_acao=u&edite=Y&id=<?= $row["idpessoa"] ?>"><img src="../img/editar.png"> </a> </td>
+                                <td> <button class="btn fundo-vermelho" title="Inativar" onclick="deletar(this)" id="<?= $row["idpessoa"] ?>"><img src="../img/invisivel.png"></button></td>
+                            <? } ?>
                         </tr>
             <? }
                 }
@@ -215,13 +215,13 @@ if ($_COOKIE['mobile'] == 'Y') { ?>
             });
 
             function deletar(vthis) {
-                var _1_d_pessoa_id = $(vthis).attr("id");
+                var _1_d_pessoa_idpessoa = $(vthis).attr("id");
                 $.ajax({
                     url: 'cb.php',
                     type: 'POST',
                     dataType: 'text',
                     data: {
-                        _1_d_pessoa_id
+                        _1_d_pessoa_idpessoa
                     },
                     success: function(data, text, jqxhr) {
                         location.reload();
@@ -232,17 +232,15 @@ if ($_COOKIE['mobile'] == 'Y') { ?>
                 });
             }
 
-            function ativar(vthis) {
-                var id = $(vthis).attr("id");
+            function ativar(vthis) {debugger
+                var _1_u_pessoa_idpessoa = $(vthis).attr("id");
                 $.ajax({
                     url: 'cb.php',
                     type: 'POST',
                     dataType: 'text',
                     data: {
-                        id,
-                        _acao: "u",
-                        _modulo: "<?= $modulo ?>",
-                        status: "ATIVO"
+                        _1_u_pessoa_idpessoa,
+                        _1_u_pessoa_status: "ATIVO"
                     },
                     success: function(data, text, jqxhr) {
                         location.reload();

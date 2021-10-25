@@ -1,31 +1,35 @@
 <?
 $idusuario_cookie = $_COOKIE['idusuario'];
-if(empty($idusuario_cookie)){
 
+if (empty($idusuario_cookie)) {
 }
 //verifica e define em qual foi recebido
-if(!empty($_REQUEST)) {
-    
+if (!empty($_REQUEST)) {
+
     $arrynomes = [];
     $arryvalor = [];
-    $arryvalorup=[];
+    $arryvalorup = [];
     foreach ($_REQUEST as $nome_campo => $valor_campo) { // pegando os posts 
 
         $post =  explode('_', $nome_campo);
-        if(!empty($post[1]) and !empty($post[2]) and !empty($post[3]) and !empty($post[4])){
+        if (!empty($post[1]) and !empty($post[2]) and !empty($post[3]) and !empty($post[4])) {
             $nunpost = $post[1];
             $acao = $post[2];
             $tabela = $post[3];
             $coluna = $post[4];
             $valor =  $_REQUEST[$nome_campo]; // pegando o valor 
-            $arryvalorup[] = $coluna.' = "'.$valor.'"';
+            $arryvalorup[] = $coluna . ' = "' . $valor . '"';
             $arrynomes[] = $coluna;
             $arryvalor[] = $valor;
-            $valido ++;
+            $idv = '_' . $nunpost . '_' . $acao . '_' . $tabela . '_id' . $tabela;
+            if ($nome_campo == $idv) {
+                $id = ' WHERE id' . $tabela.' = '.$_REQUEST[$idv];
+                $valid = 1;
+            }
+            $valido++;
         }
-        
     }
-    if($valido > 0){
+    if ($valido > 0) {
         // tratando pod valores para o insert
         $nomes = implode(",", $arrynomes);
         $valores = implode(',', $arryvalor);
@@ -36,32 +40,34 @@ if(!empty($_REQUEST)) {
         $value3 = str_replace(',', "','", $valu2); //colcanado '' em tudo 
         $value = str_replace(')', "')", $value3); //colcanado '' em tudo 
         $modulo = $tabela;
+        if ($valid != 1 and $acao !='i'){
+            die('o id não foi informado!');
+        }
+
         if (isset($tabela)) {
             if ($acao) {
-                sql($modulo,$acao,$obj,$valoreup,$value,$valor);
+                sql($modulo, $acao, $obj, $valoreup, $value,$id);
             }
         }
     }
 }
-   
-    
 
 
-function sql($modulo,$acao,$obj,$valoreup,$value,$valor)
+
+
+function sql($modulo, $acao, $obj, $valoreup, $value,$id)
 {
-    if($acao == 'u'){
-        $idpost = str_replace(' ','',$_REQUEST["id"]);
-        $sql = "UPDATE ". $modulo .' set '. $valoreup." WHERE id='$idpost'";
+    if ($acao == 'u') {
+        $sql = "UPDATE " . $modulo . ' set ' . $valoreup . $id;
     }
-    if($acao == 'i'){
-        $sql = "INSERT INTO ". $modulo . $obj . " VALUES " . $value;
-    }  
-    if($acao == 'd'){
-        $idpost = str_replace(' ','',$valor);
-        $sql = "DELETE FROM ". $modulo ." WHERE id='$idpost'";
-    } 
+    if ($acao == 'i') {
+        $sql = "INSERT INTO " . $modulo . $obj . " VALUES " . $value;
+    }
+    if ($acao == 'd') {
+        $sql = "DELETE FROM " . $modulo . $id;
+    }
     banco($sql);
-    
+
     voltarIndex();
 }
 //funçao que abre o banco de dados MSQLI

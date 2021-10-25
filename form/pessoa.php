@@ -80,7 +80,14 @@
 
     <? } ?>
 </style>
-
+<? $acao = $_GET['_acao'];
+ if ($_COOKIE['id'] != $_GET['id']) {
+    $id = $_GET['id'];
+}if(!empty($id) or $id == null){
+    $id = $_COOKIE['id'];
+}else{
+    $id = $_COOKIE['id'];
+} ?>
 <div class="container ">
     <br>
     <form action="cb.php" method="post">
@@ -90,91 +97,52 @@
         ?>
         <table class="centro">
             <tbody>
-                <? if ($_GET['_acao'] == 'r') { 
-                    $qp = $banco->query("SELECT * FROM pessoa where id = ".$_COOKIE['id'] ) or die("erro ao selecionar pessoa");
-                    $rowno = mysqli_fetch_assoc($qp);
-                 } ?>
+                <?
+                $qp = $banco->query("SELECT * FROM pessoa where idpessoa = " . $id) or die("erro ao selecionar pessoa");
+                $rowno = mysqli_fetch_assoc($qp);
+                ?>
                 <tr>
                     <td class="texto">Nome: </td>
-                    <? if (isset($_GET["id"]) != null) { ?>
-                        <td><input type="hidden" name="_1_u_pessoa_id" value="<?=$_COOKIE['id']?>">
-                            <input  class="input1" id="nome" required type="text" name="_1_u_pessoa_nome" value="<?= $rowno["nome"] ?>" size="20" placeholder="digite seu nome aqui ..."></td>
-                    <? } else { ?>
-                        <td><input  required type="text" id="nome" name="_1_i_pessoa_nome" value="<?= $rowno["nome"] ?>" class="input1" placeholder="digite seu nome aqui ..."></td>
-                    <? } ?>
+                        <td><input type="hidden" name="_1_<?=$acao?>_pessoa_idpessoa" value="<?= $id ?>">
+                            <input class="input1" id="nome" required type="text" name="_1_<?=$acao?>_pessoa_nome" value="<?= $rowno["nome"] ?>" size="20" placeholder="digite seu nome aqui ...">
+                        </td>
                 </tr>
                 <tr>
                     <td class="texto">Email: </td>
-                    <? if (isset($_GET["id"]) != null) { ?>
-                        <td><input class="input1" id="nome" required type="email" name="_1_u_pessoa_email" value="<?= $rowno["email"] ?>" size="20" placeholder="..."></td>
-                    <? } else { ?>
-                        <td><input required type="email" id="nome" name="_1_i_pessoa_email" value="<?= $rowno["email"] ?>" class="input1" placeholder="..."></td>
-                    <? } ?>
+                        <td><input class="input1" id="nome" required type="email" name="_1_<?=$acao?>_pessoa_email" value="<?= $rowno["email"] ?>" size="20" placeholder="..."></td>
                 </tr>
                 <tr>
 
-                    <? if (isset($_GET["id"]) != null) { ?>
                         <!--  _1_i_pessoa_emcargo  ---->
                         <td class="texto">Encargo: </td>
-                        <? echo "<td> <select class='input1' name='_1_u_pessoa_idemcargo'>";
+                        <? echo "<td> <select class='input1' name='_1_".$acao."_pessoa_idemcargo'>";
                         while ($rows = mysqli_fetch_array($q)) {
                             echo "<option value='" . $rows['idemcargo'] . "'>" . $rows['cargo'] . "</option>";
                         }
                         echo "</select></td>"; ?>
-                    <? } else { ?>
-                        <td class="texto">Encargo: </td>
-
-                        <? echo "<td> <select class='input1' name='_1_i_pessoa_idemcargo'>";
-                        while ($rows = mysqli_fetch_array($q)) {
-                            echo "<option value='" . $rows['idemcargo'] . "'>" . $rows['cargo'] . "</option>";
-                        }
-                        echo "</select></td>"; ?>
-                    <? } ?>
                 </tr>
                 <tr>
                     <td class="texto">Sexo: </td>
-                    <? if (isset($_GET["id"]) != null) { ?>
                         <!--  _1_i_pessoa_sexo  ---->
-                        <td><select class='input1' name="_1_u_pessoa_sexo" value="">
+                        <td><select class='input1' name="_1_<?=$acao?>_pessoa_sexo" value="">
                                 <option value="Homem">Homem</option>
                                 <option value="mulher">mulher</option>
                             </select>
                         </td>
-                    <? } else { ?>
-                        <td><select class='input1' name="_1_i_pessoa_sexo" value="">
-                                <option value="Homem">Homem</option>
-                                <option value="mulher">mulher</option>
-                            </select>
-                        </td>
-                    <? } ?>
                 </tr>
                 <tr>
-                    <? if (isset($_GET["id"]) != null) { ?>
                         <td class="texto">Rede: </td>
 
-                        <? echo "<td> <select class='input1' name='_1_u_pessoa_idrede'>";
+                        <? echo "<td> <select class='input1' name='_1_".$acao."_pessoa_idrede'>";
                         while ($row = mysqli_fetch_array($qr)) {
                             echo "<option value='" . $row['idrede'] . "'>" . $row['rede'] . "</option>";
                         }
                         echo "</select></td>"; ?>
-                    <? } else { ?>
-                        <td class="texto">Rede: </td>
-
-                        <? echo "<td> <select class='input1' name='_1_i_pessoa_idrede'>";
-                        while ($row = mysqli_fetch_array($qr)) {
-                            echo "<option value='" . $row['idrede'] . "'>" . $row['rede'] . "</option>";
-                        }
-                        echo "</select></td>"; ?>
-                    <? } ?>
-                </tr>
-                <? if (isset($_GET["id"]) != null) { ?>
-                    <td>
-                    <td>
-                    <input required type="hidden" name="id" value="<?= $rowno["id"] ?> ">
-                    <? } else { ?>
-                    <td>
-                    <input required type="hidden" name="_1_i_pessoa_idusuario" value="<?=$idusuario_cookie ?>">
-                    <? } ?>
+                    
+                    </tr>
+                    <?if($_GET['edite'] != 'Y'){?>
+                        <input required type="hidden" name="_1_i_pessoa_idusuario" value="<?= $idusuario_cookie ?>">
+                        <?}?>  
                     </td>
                     <tr>
                         <td colspan=3><input class=" btn1 " required type="submit" name="Enviar" value="Enviar"></td>
