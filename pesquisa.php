@@ -4,7 +4,7 @@
 <?
 $banco = abrirBanco();
 if ($_GET['_modulo'] == 'celula' or $_GET['_modulo'] == 'pessoa') {
-    $qp = $banco->query("SELECT p.idemcargo,p.idrede,p.idpessoa from pessoa p join usuario u on (p.idusuario = u.idusuario) where u.idusuario =" . $_COOKIE['idusuario']);
+    $qp = $banco->query("SELECT p.idemcargo,p.idrede,p.idpessoa from vid_udi.pessoa p join vid_udi.usuario u on (p.idusuario = u.idusuario) where u.idusuario =" . $_COOKIE['idusuario']);
     $rows = mysqli_fetch_array($qp);
     if ($_GET['_modulo'] != 'celula') {
         if ($rows['idemcargo'] == 2) {
@@ -20,11 +20,11 @@ if ($_GET['_modulo'] == 'celula' or $_GET['_modulo'] == 'pessoa') {
 }
 $modulo = $_GET['_modulo'];
 if ($_GET['_modulo'] == 'pessoa') {
-    $q = $banco->query("SELECT * FROM vwpessoa " . $cond . " " . $per);
+    $q = $banco->query("SELECT * FROM vid_udi.vwpessoa ");
 
     $nump = mysqli_num_rows($q);
 } elseif ($_GET['_modulo'] == 'celula') {
-    $q = $banco->query("SELECT * from pessoa p join celula c on(p.idlider = c.idlider )  group by  c.idcelula");
+    $q = $banco->query("SELECT * from vid_udi.celula");
     $nump = mysqli_num_rows($q);
 }
 if (!empty($modulo)) {
@@ -37,7 +37,7 @@ if ($_COOKIE['mobile'] == 'Y') { ?>
         <? if ($_GET['_modulo'] == 'celula') { ?>
             <? while ($row = mysqli_fetch_array($q)) {
                 if (!empty($row['idlider'])) {
-                    $qc = $banco->query("select * from pessoa where idlider=" . $row['idlider']);
+                    $qc = $banco->query("select * from vid_udi.pessoa where idlider=" . $row['idlider']);
                     $rowc = mysqli_num_rows($qc);
                 }
 
@@ -82,7 +82,7 @@ if ($_COOKIE['mobile'] == 'Y') { ?>
             while ($row = mysqli_fetch_array($q)) { ?>
                 <div class="card">
 
-                    <? $qi = $banco->query("SELECT anexo from anexo where idobjeto=" . $row["idpessoa"]);
+                    <? $qi = $banco->query("SELECT anexo from vid_udi.anexo where idobjeto=" . $row["idpessoa"]);
                     $rown = mysqli_num_rows($qi);
                     $rowi = mysqli_fetch_array($qi);
                     ?>
@@ -173,8 +173,8 @@ if ($_COOKIE['mobile'] == 'Y') { ?>
                                 <td> <button class="btn fundo-azul" title="Ativar" id="<?= $row["idcelula"] ?>" onclick="ativar(this)"><img src="../img/visivel.png"></button></td>
                                 <td></td>
                             <? } else { ?>
-                                <td> <a class="btn fundo-amarelo" title="Editar" href="?_modulo=celula&celula=<?= $row['celula'] ?>&_acao=u&id=<?= $row["idcelula"] ?>"><img src="../img/editar.png"></a> </td>
-                                <td> <button class="btn fundo-vermelho" title="Inativar" id="<?= $row["idcelula"] ?>" onclick="deletar(this)"><img src="../img/invisivel.png"></button></td>
+                                <td> <a class="btn fundo-cinza" title="Editar" href="?_modulo=celula&celula=<?= $row['celula'] ?>&_acao=u&id=<?= $row["idcelula"] ?>"><img src="../img/editar.png"></a> </td>
+                                <td> <button class="btn fundo-laranja" title="Inativar" id="<?= $row["idcelula"] ?>" onclick="deletar(this)"><img src="../img/invisivel.png"></button></td>
                             <? } ?>
                         </tr>
                     <? }
@@ -194,8 +194,8 @@ if ($_COOKIE['mobile'] == 'Y') { ?>
                             <? if ($row["status"] != 'ATIVO') { ?>
                                 <td> <button class="btn fundo-azul" id="<?= $row["idpessoa"] ?>" onclick="ativar(this)"><img src="../img/visivel.png"></button></td>
                             <? } else { ?>
-                                <td><a class="btn fundo-amarelo" title="Editar" href="?_modulo=<?= $_GET['_modulo'] ?>&_acao=u&edite=Y&id=<?= $row["idpessoa"] ?>"><img src="../img/editar.png"> </a> </td>
-                                <td> <button class="btn fundo-vermelho" title="Inativar" onclick="deletar(this)" id="<?= $row["idpessoa"] ?>"><img src="../img/invisivel.png"></button></td>
+                                <td><a class="btn fundo-cinza" title="Editar" href="?_modulo=<?= $_GET['_modulo'] ?>&_acao=u&edite=Y&id=<?= $row["idpessoa"] ?>"><img src="../img/editar.png"> </a> </td>
+                                <td> <button class="btn fundo-laranja" title="Inativar" onclick="deletar(this)" id="<?= $row["idpessoa"] ?>"><img src="../img/invisivel.png"></button></td>
                             <? } ?>
                         </tr>
             <? }

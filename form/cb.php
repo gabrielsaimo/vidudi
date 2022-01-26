@@ -40,9 +40,7 @@ if (!empty($_REQUEST)) {
         $value3 = str_replace(',', "','", $valu2); //colcanado '' em tudo 
         $value = str_replace(')', "')", $value3); //colcanado '' em tudo 
         $modulo = $tabela;
-        if ($valid != 1 and $acao !='i'){
-            die('o id não foi informado!');
-        }
+
 
         if (isset($tabela)) {
             if ($acao) {

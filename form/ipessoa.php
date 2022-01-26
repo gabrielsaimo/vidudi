@@ -20,11 +20,12 @@ $banco = abrirBanco();
 if($_GET['_acao'] == 'u'){
     $qid = $banco->query("SELECT p.idpessoa FROM pessoa p WHERE p.idusuario =".$idusuario_cookie) or die('erro ao restornar o id');
     $rowid = mysqli_fetch_assoc($qid);
-  echo $id = $rowid['id'];
+    $id = $rowid['idpessoa'];
 }else{
     $id = $_GET['id'];
 }
-$qp = $banco->query("SELECT p.nome,p.telefone,b.bairro,p.email,p.idade,p.endereco,p.cursao,p.ctl,p.batizado,p.status,p.criadoem,r.rede,e.cargo,pl.nome as nomelider from pessoa p join rede r on(p.idrede = r.idrede) join emcargo e on(p.idemcargo = e.idemcargo) left join pessoa pl on(p.idlider = pl.id) join bairro b on(p.bairro = b.idbairro) where p.idpessoa=" . $id) or die('erro');
+$sql = "SELECT p.nome,p.telefone,b.bairro,p.email,p.idade,p.endereco,p.cursao,p.ctl,p.batizado,p.status,p.criadoem,r.rede,e.cargo,pl.nome as nomelider from pessoa p join rede r on(p.idrede = r.idrede) join emcargo e on(p.idemcargo = e.idemcargo) left join pessoa pl on(p.idlider = pl.idpessoa) join bairro b on(p.bairro = b.idbairro) where p.idpessoa=" . $id;
+$qp = $banco->query($sql) or die('erro');
 $row = mysqli_fetch_assoc($qp);
 $data = $row['idade'];
 

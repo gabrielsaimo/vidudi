@@ -81,11 +81,11 @@
     <? } ?>
 </style>
 <? $acao = $_GET['_acao'];
- if ($_COOKIE['id'] != $_GET['id']) {
+if($_GET['edite'] = "Y"){
     $id = $_GET['id'];
-}if(!empty($id) or $id == null){
-    $id = $_COOKIE['id'];
-}else{
+}else if ($_COOKIE['id'] != $_GET['id']) {
+    $id = $_GET['id'];
+}if(empty($id) and $id == null){
     $id = $_COOKIE['id'];
 } ?>
 <div class="container ">
@@ -97,13 +97,19 @@
         ?>
         <table class="centro">
             <tbody>
-                <?
-                $qp = $banco->query("SELECT * FROM pessoa where idpessoa = " . $id) or die("erro ao selecionar pessoa");
-                $rowno = mysqli_fetch_assoc($qp);
+                <?if(!empty($id)){
+                    $qp = $banco->query("SELECT * FROM pessoa where idpessoa = " . $id) or die("erro ao selecionar pessoa");
+                    $rowno = mysqli_fetch_assoc($qp);
+                }else{
+                    $acao = "i";
+                }
+                
                 ?>
                 <tr>
                     <td class="texto">Nome: </td>
-                        <td><input type="hidden" name="_1_<?=$acao?>_pessoa_idpessoa" value="<?= $id ?>">
+                    <?if($acao != "i"){?><input type="hidden" name="_1_<?=$acao?>_pessoa_idpessoa" value="<?= $id ?>">
+                    <?}?>
+                        <td>
                             <input class="input1" id="nome" required type="text" name="_1_<?=$acao?>_pessoa_nome" value="<?= $rowno["nome"] ?>" size="20" placeholder="digite seu nome aqui ...">
                         </td>
                 </tr>
@@ -140,7 +146,7 @@
                         echo "</select></td>"; ?>
                     
                     </tr>
-                    <?if($_GET['edite'] != 'Y'){?>
+                    <?if($_GET['edite'] != 'Y' or $acao == "i"){?>
                         <input required type="hidden" name="_1_i_pessoa_idusuario" value="<?= $idusuario_cookie ?>">
                         <?}?>  
                     </td>
