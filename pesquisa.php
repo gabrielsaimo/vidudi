@@ -171,7 +171,7 @@ if ($_COOKIE['mobile'] == 'Y') { ?>
                             <td><?= date('d-m-Y', strtotime($row["inidata"])) ?></td>
                             <? if ($row["status"] != 'ATIVO') { ?>
                                 <td> <button class="btn fundo-azul" title="Ativar" id="<?= $row["idcelula"] ?>" onclick="ativar(this)"><img src="../img/visivel.png"></button></td>
-                                <td></td>
+                                <td> <button class="btn fundo-vermelho" title="Ativar" id="<?= $row["idcelula"] ?>" onclick="ativar(this)"><img src="../img/lixo.png"></button></td>
                             <? } else { ?>
                                 <td> <a class="btn fundo-cinza" title="Editar" href="?_modulo=celula&celula=<?= $row['celula'] ?>&_acao=u&id=<?= $row["idcelula"] ?>"><img src="../img/editar.png"></a> </td>
                                 <td> <button class="btn fundo-laranja" title="Inativar" id="<?= $row["idcelula"] ?>" onclick="deletar(this)"><img src="../img/invisivel.png"></button></td>
@@ -192,7 +192,8 @@ if ($_COOKIE['mobile'] == 'Y') { ?>
                             <td><?= $row["alteradoem"] */ ?></td> -->
                             <td class="clickable-row" data-href="index.php?_modulo=ipessoa&_acao=r&id=<?= $row["idpessoa"] ?>">Visualizar</td>
                             <? if ($row["status"] != 'ATIVO') { ?>
-                                <td> <button class="btn fundo-azul" id="<?= $row["idpessoa"] ?>" onclick="ativar(this)"><img src="../img/visivel.png"></button></td>
+                                <td> <button class="btn fundo-azul" title="Ativar" id="<?= $row["idpessoa"] ?>" onclick="ativar(this)"><img src="../img/visivel.png"></button></td>
+                                <td> <button class="btn fundo-vermelho" title="Ativar" id="<?= $row["idcelula"] ?>" onclick="ativar(this)"><img src="../img/lixo.png"></button></td>
                             <? } else { ?>
                                 <td><a class="btn fundo-cinza" title="Editar" href="?_modulo=<?= $_GET['_modulo'] ?>&_acao=u&edite=Y&id=<?= $row["idpessoa"] ?>"><img src="../img/editar.png"> </a> </td>
                                 <td> <button class="btn fundo-laranja" title="Inativar" onclick="deletar(this)" id="<?= $row["idpessoa"] ?>"><img src="../img/invisivel.png"></button></td>
